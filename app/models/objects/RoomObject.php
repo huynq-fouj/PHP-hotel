@@ -5,15 +5,15 @@ class RoomObject {
     private $room_number_people;
     private $room_number_bed;
     private $room_quality;
-    private $room_quantity;
     private $room_type;
-    private $room_services;
     private $room_price;
     private $room_detail;
     private $room_title;
     private $room_width;
     private $room_length;
-    private $room_address;
+    private $room_static;
+    private $room_image;
+    private $room_hotel_id;
 
 
     function getRoom_id(){
@@ -32,16 +32,8 @@ class RoomObject {
         return $this->room_quality;
     }
 
-    function getRoom_quantity() {
-        return $this->room_quantity;
-    }
-
     function getRoom_type() {
         return $this->room_type;
-    }
-
-    function getRoom_services() {
-        return $this->room_services;
     }
 
     function getRoom_price() {
@@ -64,8 +56,16 @@ class RoomObject {
         return $this->room_length;
     }
 
-    function getRoom_address() {
-        return $this->room_address;
+    function getRoom_static() {
+        return $this->room_static;
+    }
+
+    function getRoom_image() {
+        return $this->room_image;
+    }
+
+    function getRoom_hotel_id() {
+        return $this->room_hotel_id;
     }
 
     function setRoom_id($room_id) {
@@ -84,16 +84,8 @@ class RoomObject {
         $this->room_quality = $room_quality;
     }
 
-    function setRoom_quantity($room_quantity) {
-        $this->room_quantity = $room_quantity;
-    }
-
     function setRoom_type($room_type) {
         $this->room_type = $room_type;
-    }
-
-    function setRoom_services($room_services) {
-        $this->room_services = $room_services;
     }
 
     function setRoom_price($room_price) {
@@ -116,8 +108,16 @@ class RoomObject {
         $this->room_length = $room_length;
     }
 
-    function setRoom_address($room_address) {
-        $this->room_address = $room_address;
+    function setRoom_static($room_static) {
+        $this->room_static = $room_static;
+    }
+
+    function setRoom_image($room_image) {
+        $this->room_image = $room_image;
+    }
+
+    function setRoom_hotel_id($room_hotel_id) {
+        $this->room_hotel_id = $room_hotel_id;
     }
 
 }
