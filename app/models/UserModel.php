@@ -144,7 +144,7 @@ class UserModel extends BasicModel {
      * - cre_at: 25/10/2023
      * - upd_at: 27/10/2023
      */
-    function getUserById(int $id) : UserObject | null {
+    function getUserById($id) : UserObject | null {
         $user = null;
         $sql = "SELECT * FROM tbluser WHERE user_id=$id";
         $result = $this->get($sql);
@@ -156,11 +156,17 @@ class UserModel extends BasicModel {
 
     /**
      * Phương thức lấy tất cả người sử dụng
+     * ***
      * - Author: Nguyễn Quang Huy
      * - cre_at: 25/10/2023
      * - upd_at: 27/10/2023
+     * ***
+     * @param mixed $page
+     * Trang cần lấy - int
+     * @param mixed $total
+     * Số lượng user trên 1 trang - int
      */
-    function getAllUser(UserObject $similar, int $page, int $total) : array {
+    function getUsers(UserObject $similar, $page, $total) : array {
         $list = array();
         $at = ($page - 1) * $total;
         $sql = "SELECT * FROM tbluser ";
