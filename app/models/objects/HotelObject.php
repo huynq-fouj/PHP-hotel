@@ -1,18 +1,18 @@
 <?php
 class HotelObject {
 
-    private $hotel_id;
-    private $hotel_name;
-    private $hotel_detail;
-    private $hotel_address;
-    private $hotel_quality;
-    private $hotel_image;
-    private $hotel_number_room;
-    private $hotel_number_floor;
-    private $hotel_number_bar;
-    private $hotel_number_restaurant;
-    private $hotel_built_at;
-    private $hotel_upgraded_at;
+    private $hotel_id;//int
+    private $hotel_name;//string
+    private $hotel_detail;//string
+    private $hotel_address;//string
+    private $hotel_quality;//float
+    private $hotel_image;//string
+    private $hotel_number_room;//int
+    private $hotel_number_floor;//int
+    private $hotel_number_bar;//int
+    private $hotel_number_restaurant;//int
+    private $hotel_built_at;//string
+    private $hotel_upgraded_at;//string
 
     function getHotel_id() {
         return $this->hotel_id;

@@ -1,20 +1,20 @@
 <?php
 class RoombookObject {
 
-    private $rb_id;
-    private $rb_room_id;
-    private $rb_customer_id;
-    private $rb_created_at;
-    private $rb_fullname;
-    private $rb_email;
-    private $rb_phone;
-    private $rb_start_date;
-    private $rb_end_date;
-    private $rb_number_adult;
-    private $rb_number_children;
-    private $rb_number_room;
-    private $rb_notes;
-    private $rb_static;
+    private $rb_id;//int
+    private $rb_room_id;//int
+    private $rb_customer_id;//int
+    private $rb_created_at;//string
+    private $rb_fullname;//string
+    private $rb_email;//string
+    private $rb_phone;//string
+    private $rb_start_date;//string
+    private $rb_end_date;//string
+    private $rb_number_adult;//int
+    private $rb_number_children;//int
+    private $rb_number_room;//int
+    private $rb_notes;//string
+    private $rb_static;//int
 
     function getRb_id () {
         return $this->rb_id;
