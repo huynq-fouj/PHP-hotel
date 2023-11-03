@@ -5,6 +5,41 @@ require_once "objects/RoomObject.php";
 class RoomModel extends BasicModel {
 
     function addRoom(RoomObject $item) : bool {
+        $sql = "INSERT INTO tblroom(
+            room_number_people,room_number_bed,room_quality,
+            room_type,room_price,room_detail,
+            room_title,room_width,room_length,
+            room_static,room_image,room_hotel_id
+            ) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
+        if($stmt = $this->con->prepare($sql)) {
+            $number_people = $item->getRoom_number_people();//int
+            $number_bed = $item->getRoom_number_bed();//int
+            $quality = $item->getRoom_quality();//float
+            $type = $item->getRoom_type();//string
+            $price = $item->getRoom_price();//float
+            $detail = $item->getRoom_detail();//string
+            $title = $item->getRoom_title();//string
+            $width = $item->getRoom_width();//float
+            $length = $item->getRoom_length();//float
+            $static = $item->getRoom_static();//int
+            $image = $item->getRoom_image();//string
+            $hotel_id = $item->getRoom_hotel_id();//int
+
+            $stmt->bind_param("iidsdssddisi",
+                                $number_people,
+                                $number_bed,
+                                $quality,
+                                $type,
+                                $price,
+                                $detail,
+                                $title,
+                                $width,
+                                $length,
+                                $static,
+                                $image,
+                                $hotel_id);
+            return $this->addV2($stmt);
+        }
         return false;
     }
 
@@ -19,7 +54,76 @@ class RoomModel extends BasicModel {
     }
 
     function editRoom(RoomObject $item) : bool {
+        $sql = "UPDATE tblroom SET room_number_people=?,room_number_bed=?,
+            room_quality=?,room_type=?,room_price=?,room_detail=?,
+            room_title=?,room_width=?,room_length=?,room_static=?,
+            room_image=?,room_hotel_id=? WHERE room_id=?";
+        if($stmt = $this->con->prepare($sql)) {
+            $number_people = $item->getRoom_number_people();//int
+            $number_bed = $item->getRoom_number_bed();//int
+            $quality = $item->getRoom_quality();//float
+            $type = $item->getRoom_type();//string
+            $price = $item->getRoom_price();//float
+            $detail = $item->getRoom_detail();//string
+            $title = $item->getRoom_title();//string
+            $width = $item->getRoom_width();//float
+            $length = $item->getRoom_length();//float
+            $static = $item->getRoom_static();//int
+            $image = $item->getRoom_image();//string
+            $hotel_id = $item->getRoom_hotel_id();//int
+            $id = $item->getRoom_id();
+            $stmt->bind_param("iidsdssddisii",
+                                $number_people,
+                                $number_bed,
+                                $quality,
+                                $type,
+                                $price,
+                                $detail,
+                                $title,
+                                $width,
+                                $length,
+                                $static,
+                                $image,
+                                $hotel_id,
+                                $id);
+            return $this->editV2($stmt);
+        }
         return false;
+    }
+
+    function getRoom($id) {
+        $item = null;
+        $sql = "SELECT * FROM tblroom WHERE room_id=$id";
+        $result = $this->get($sql);
+        if($result->num_rows > 0) {
+            $item = $result->fetch_object('RoomObject');
+        }
+        return $item;
+    }
+
+    function getRooms(RoomObject $similar, $page, $total) : array {
+        $list = array();
+        $at = ($page - 1) * $total;
+        $sql = "SELECT * FROM tblroom ";
+        $sql .= "LIMIT $at, $total;";
+        $result = $this->get($sql);
+        if($result->num_rows > 0) {
+            while($item = $result->fetch_object('RoomObject')) {
+                array_push($list, $item);
+            }
+        }
+        return $list;
+    }
+
+    function countRoom(RoomObject $similar) : int {
+        $sql = "SELECT COUNT(*) AS total FROM tblroom ";
+        $total = 0;
+        if($result = $this->get($sql)){
+            if($row = $result->fetch_array()) {
+                $total = $row[0];
+            }
+        }
+        return $total;
     }
 
 }

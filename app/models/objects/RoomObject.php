@@ -1,19 +1,19 @@
 <?php
 class RoomObject {
     
-    private $room_id;
-    private $room_number_people;
-    private $room_number_bed;
-    private $room_quality;
-    private $room_type;
-    private $room_price;
-    private $room_detail;
-    private $room_title;
-    private $room_width;
-    private $room_length;
-    private $room_static;
-    private $room_image;
-    private $room_hotel_id;
+    private $room_id;//int
+    private $room_number_people;//int
+    private $room_number_bed;//int
+    private $room_quality;//float
+    private $room_type;//string
+    private $room_price;//float
+    private $room_detail;//string
+    private $room_title;//string
+    private $room_width;//float
+    private $room_length;//float
+    private $room_static;//int
+    private $room_image;//string
+    private $room_hotel_id;//int
 
 
     function getRoom_id(){

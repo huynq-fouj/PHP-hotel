@@ -1,12 +1,12 @@
 <?php
 class UserObject {
-    private $user_id;
-    private $user_name;
-    private $user_password;
-    private $user_fullname;
-    private $user_email;
-    private $user_phone;
-    private $user_permission;
+    private $user_id;//int
+    private $user_name;//string
+    private $user_password;//string
+    private $user_fullname;//string
+    private $user_email;//string
+    private $user_phone;//string
+    private $user_permission;//int
 
     function setUser_id($user_id) {
         $this->user_id = $user_id;
