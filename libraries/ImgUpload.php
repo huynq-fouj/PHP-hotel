@@ -1,0 +1,38 @@
+<?php
+/**
+ * Upload file ảnh và trả về true nếu lưu ảnh thành công hoặc 
+ * trả về false nếu upload không thành công
+ * ***
+ * - Kích thước tối đa của file: 15728640
+ * - Kiểu đuôi mở rộng: .gif, .jpg, .jpe, .jpeg, .png, .webp
+ * ***
+ * * Author: Nguyễn Quang Huy
+ * * Cre_at: 05/11/2023
+ * * Upd_at: 05/11/2023
+ * ***
+ * @param string $target_dir
+ * Vị trí lưu file
+ * @param mixed $img
+ * Nhận giá trị là $_FILE["name của input nhận file"]
+ */
+function ImgUpload($target_dir,$img) {
+    $max_size = 15728640;//Kích thước tối đa của file
+    $ext_type = array('gif','jpg','jpe','jpeg','png','webp');//Kiểu mở rộng của file
+
+    if($target_dir[strlen($target_dir) - 1] != "/") {
+        $target_dir .= "/";
+    }
+
+    $target_file = $target_dir.basename($img['name']);
+    $file_type = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+    $tmp_name = $img['tmp_name'];
+
+    if(getimagesize($tmp_name) !== false
+    && in_array($file_type, $ext_type)
+    && $img['size'] < $max_size) {
+        return move_uploaded_file($tmp_name, $target_file);
+    }
+
+    return false;
+}
+?>
