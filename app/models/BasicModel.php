@@ -1,5 +1,5 @@
 <?php
-require_once(__DIR__."/../lib/connection.php");
+require_once("../lib/connection.php");
 
 class BasicModel {
     

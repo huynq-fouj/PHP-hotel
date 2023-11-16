@@ -1,11 +1,7 @@
 <?php
 session_start();
-if(!isset($_SESSION["user"])) {
-    header("location:/hostay/admin/login.php");
-} else {
-    if(!isset($_SESSION["user"]["permission"]) || $_SESSION["user"]["permission"] < 1) {
-        header("location:/hostay/admin/login.php?err=permis");
-    }
+if(!isset($_SESSION["user"]) || $_SESSION["user"]["permission"] < 1) {
+    header("location:/hostay/admin/login.php?err=permis");
 }
 
 require_once "layouts/header.php";
