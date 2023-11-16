@@ -755,6 +755,7 @@ a:hover {
   margin: 0;
   border-radius: 0;
   padding: 12px 0;
+  right: 0;
 }
 
 @media (min-width: 768px) {
@@ -2160,4 +2161,11 @@ footer .copyright-footer {
 
 footer .credits {
   font-size: 14px;
+}
+.avatar-profile {
+  width: 80px;
+  height: 80px;
+}
+.avatar-profile .avatar-profile-img {
+  width: 100%;
 }

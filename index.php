@@ -1,1 +1,1 @@
-<?php header("location: views");
+<?php header("location: /hostay/views");
