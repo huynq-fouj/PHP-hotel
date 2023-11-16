@@ -1,4 +1,5 @@
 <?php
+session_start();
 $active = "home";
 $title = "Hostay";
 $uri = $_SERVER["REQUEST_URI"];
@@ -13,6 +14,10 @@ if(str_contains($uri, "/views/contact")) {
 if(str_contains($uri, "/views/booking")) {
     $title = "Đặt phòng";
     $active = "booking";
+}
+if(str_contains($uri, "/views/profiles")) {
+    $title = "Thông tin cá nhân";
+    $active = "";
 }
 ?>
 <!DOCTYPE html>
@@ -40,7 +45,7 @@ if(str_contains($uri, "/views/booking")) {
                 <span></span>
                 <span></span>
             </button>
-            <a class="navbar-brand text-brand" href="index.html">Estate<span class="color-b">Agency</span></a>
+            <a class="navbar-brand text-brand" href="/hostay/"><span class="color-b">Hostay</span></a>
 
             <div class="navbar-collapse collapse justify-content-center" id="navbarDefault">
                 <ul class="navbar-nav">
@@ -79,6 +84,73 @@ if(str_contains($uri, "/views/booking")) {
                 <i class="bi bi-search"></i>
             </button>
 
+            <?php
+                if(isset($_SESSION["user"])) {
+            ?>
+            <div class="dropdown ms-3">
+
+                <a class="d-flex align-items-center pe-0 avatar-profile"
+                href="/hostay/views/profiles.php"
+                data-bs-toggle="dropdown">
+                    <img src="/hostay/public/user-profile.jpg" alt="Profile" class="rounded-circle avatar-profile-img">
+                </a><!-- End Profile Iamge Icon -->
+
+                <ul class="dropdown-menu dropdown-menu-end profile">
+                    <li class="dropdown-header">
+                    <h6><?=$_SESSION["user"]["fullname"]?></h6>
+                    <span><?=$_SESSION["user"]["name"]?></span>
+                    </li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+
+                    <li>
+                        <a class="dropdown-item d-flex align-items-center" href="/hostay/views/profiles.php">
+                            <i class="bi bi-person"></i>
+                            <span class="ms-1">Thông tin cá nhân</span>
+                        </a>
+                    </li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+
+                    <li>
+                        <a class="dropdown-item d-flex align-items-center" href="/hostay/admin">
+                            <i class="bi bi-gear"></i>
+                            <span class="ms-1">Đến trang quản trị</span>
+                        </a>
+                    </li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+
+                    <li>
+                        <a class="dropdown-item d-flex align-items-center" href="/hostay/views/contact.php">
+                            <i class="bi bi-question-circle"></i>
+                            <span class="ms-1">Cần giúp đỡ?</span>
+                        </a>
+                    </li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+
+                    <li>
+                        <a class="dropdown-item d-flex align-items-center" href="/hostay/logout.php">
+                            <i class="bi bi-box-arrow-right"></i>
+                            <span class="ms-1">Đăng xuất</span>
+                        </a>
+                    </li>
+
+                </ul><!-- End Profile Dropdown Items -->
+            </div><!-- End Profile Nav -->
+            <?php
+                } else {
+            ?>
+                <a href="/hostay/views/login.php" class="ms-3">Đăng nhập</a>
+            <?php
+                }
+            ?>
+            
         </div>
     </nav>
     <!-- End Header/Navbar -->
