@@ -1,3 +1,17 @@
+<?php
+function getActive(string $act) {
+if(isset($_SESSION["active"] && $_SESSION["active"] == $act){
+return "active";
+}
+return "";
+}
+function getShow(string $pos) {
+if(isset($_SESSION["pos"] && $_SESSION["pos"] == $pos){
+return "show";
+}
+return "";
+}
+?>
 <!-- ======= Sidebar ======= -->
 <aside id="sidebar" class="sidebar">
 
