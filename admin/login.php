@@ -81,7 +81,7 @@ if(isset($_POST["login"])) {
             <div class="col-sm-8 col-md-6 col-lg-5 py-3">
                 <form action="" method="post" class="needs-validation" novalidate>
                     <div class="row text-center mx-2 fs-3 fw-bold">
-                        <p>ĐĂNG NHẬP</p>
+                        <p>ADMIN LOGIN</p>
                     </div>
                     <div class="row mt-3 mx-2">
                         <label for="validationCustom01" class="form-label">Tên đăng nhập</label>
