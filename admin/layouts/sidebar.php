@@ -24,7 +24,7 @@ return "collapsed";
 <ul class="sidebar-nav" id="sidebar-nav">
 
   <li class="nav-item">
-    <a class="nav-link <?=getCollapsed("dashboard")?>" href="index.html">
+    <a class="nav-link <?=getCollapsed("dashboard")?>" href="/hostay/admin/">
       <i class="bi bi-grid"></i>
       <span>Dashboard</span>
     </a>
@@ -72,7 +72,7 @@ return "collapsed";
         </a>
       </li>
       <li>
-        <a href="/hostay/admin/addroom.php" class="<?=getActive("uradd")?>">
+        <a href="/hostay/admin/addroom.php" class="<?=getActive("roadd")?>">
           <i class="bi bi-circle"></i><span>Thêm mới</span>
         </a>
       </li>

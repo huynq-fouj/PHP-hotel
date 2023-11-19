@@ -7,6 +7,10 @@ if(!isset($_SESSION["user"])) {
         header("location:/hostay/admin/login.php?err=permis");
     }
 }
+//
+$_SESSION["pos"] = "user";
+$_SESSION["active"] = "urlist";
+//
 
 require_once "layouts/header.php";
 ?>
