@@ -1,18 +1,18 @@
 <?php
 function getActive(string $act) {
-if(isset($_SESSION["active"] && $_SESSION["active"] == $act){
+if(isset($_SESSION["active"]) && $_SESSION["active"] == $act){
 return "active";
 }
 return "";
 }
 function getShow(string $pos) {
-if(isset($_SESSION["pos"] && $_SESSION["pos"] == $pos){
+if(isset($_SESSION["pos"]) && $_SESSION["pos"] == $pos){
 return "show";
 }
 return "";
 }
 function getCollapsed(string $pos) {
-if(isset($_SESSION["pos"] && $_SESSION["pos"] == $pos){
+if(isset($_SESSION["pos"]) && $_SESSION["pos"] == $pos){
 return "";
 }
 return "collapsed";
@@ -34,14 +34,14 @@ return "collapsed";
     <a class="nav-link <?=getCollapsed("user")?>" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
         <i class="bi bi-people"></i><span>Người sử dụng</span><i class="bi bi-chevron-down ms-auto"></i>
     </a>
-    <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+    <ul id="components-nav" class="nav-content collapse <?=getShow("user")?>" data-bs-parent="#sidebar-nav">
       <li>
-        <a href="/hostay/admin/users.php">
+        <a href="/hostay/admin/users.php" class="<?=getActive("urlist")?>">
           <i class="bi bi-circle"></i><span>Danh sách</span>
         </a>
       </li>
       <li>
-        <a href="/hostay/admin/adduser.php">
+        <a href="/hostay/admin/adduser.php" class="<?=getActive("uradd")?>">
           <i class="bi bi-circle"></i><span>Thêm mới</span>
         </a>
       </li>
@@ -49,12 +49,12 @@ return "collapsed";
   </li><!-- End Components Nav -->
 
   <li class="nav-item">
-    <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+    <a class="nav-link <?=getCollapsed("bill")?>" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
       <i class="bi bi-journal-text"></i><span>Đơn đặt phòng</span><i class="bi bi-chevron-down ms-auto"></i>
     </a>
-    <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+    <ul id="forms-nav" class="nav-content collapse <?=getShow("bill")?>" data-bs-parent="#sidebar-nav">
       <li>
-        <a href="/hostay/admin/bills.php">
+        <a href="/hostay/admin/bills.php" class="<?=getActive("bilist")?>">
           <i class="bi bi-circle"></i><span>Danh sách</span>
         </a>
       </li>
@@ -62,17 +62,17 @@ return "collapsed";
   </li><!-- End Forms Nav -->
 
   <li class="nav-item">
-    <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+    <a class="nav-link <?=getCollapsed("room")?>" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
       <i class="bi bi-layout-text-window-reverse"></i><span>Phòng</span><i class="bi bi-chevron-down ms-auto"></i>
     </a>
-    <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+    <ul id="tables-nav" class="nav-content collapse <?=getShow("room")?>" data-bs-parent="#sidebar-nav">
       <li>
-        <a href="/hostay/admin/rooms.php">
+        <a href="/hostay/admin/rooms.php" class="<?=getActive("rolist")?>">
           <i class="bi bi-circle"></i><span>Danh sách</span>
         </a>
       </li>
       <li>
-        <a href="/hostay/admin/addroom.php">
+        <a href="/hostay/admin/addroom.php" class="<?=getActive("uradd")?>">
           <i class="bi bi-circle"></i><span>Thêm mới</span>
         </a>
       </li>
