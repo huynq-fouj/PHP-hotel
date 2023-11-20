@@ -29,7 +29,7 @@ class BasicModel {
      *  - cre_at: 28/10/2023
      *  - upd_at: 28/10/20203
      */
-    function add(string $sql) : bool {
+    protected function add(string $sql) : bool {
         return $this->exe($sql);
     }
 
@@ -39,7 +39,7 @@ class BasicModel {
      *  - cre_at: 28/10/2023
      *  - upd_at: 28/10/20203
      */
-    function del(string $sql) : bool {
+    protected function del(string $sql) : bool {
         return $this->exe($sql);
     }
 
@@ -49,7 +49,7 @@ class BasicModel {
      *  - cre_at: 28/10/2023
      *  - upd_at: 28/10/20203
      */
-    function edit(string $sql) : bool {
+    protected function edit(string $sql) : bool {
         return $this->exe($sql);
     }
 
@@ -88,7 +88,7 @@ class BasicModel {
      *  - cre_at: 28/10/2023
      *  - upd_at: 28/10/20203
      */
-    function addV2(mysqli_stmt $stmt) : bool {
+    protected function addV2(mysqli_stmt $stmt) : bool {
         return $this->exeV2($stmt);
     }
 
@@ -98,7 +98,7 @@ class BasicModel {
      *  - cre_at: 28/10/2023
      *  - upd_at: 28/10/20203
      */
-    function delV2(mysqli_stmt $stmt) : bool {
+    protected function delV2(mysqli_stmt $stmt) : bool {
         return $this->exeV2($stmt);
     }
 
@@ -108,7 +108,7 @@ class BasicModel {
      *  - cre_at: 28/10/2023
      *  - upd_at: 28/10/20203
      */
-    function editV2(mysqli_stmt $stmt) : bool {
+    protected function editV2(mysqli_stmt $stmt) : bool {
         return $this->exeV2($stmt);
     }
 
@@ -118,7 +118,7 @@ class BasicModel {
      *  - cre_at: 28/10/2023
      *  - upd_at: 28/10/20203
      */
-    function get(string $sql) : mysqli_result | bool {
+    protected function get(string $sql) : mysqli_result | bool {
         if($result = $this->con->query($sql)) {
             return $result;
         }

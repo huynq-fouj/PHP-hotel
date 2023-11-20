@@ -9,4 +9,11 @@ function checkValidPassWord(string $pass1, string $pass2) : bool {
         }
     return true;
 }
+function checkEmail($email) : bool {
+    if($email == "") {
+        return false;
+    }
+
+    return true;
+}
 ?>

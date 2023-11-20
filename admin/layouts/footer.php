@@ -12,7 +12,6 @@
 
   <!-- Vendor JS Files -->
   <script src="/hostay/assets/vendor/apexcharts/apexcharts.min.js"></script>
-  <script src="/hostay/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="/hostay/assets/vendor/chart.js/chart.umd.js"></script>
   <script src="/hostay/assets/vendor/echarts/echarts.min.js"></script>
   <script src="/hostay/assets/vendor/quill/quill.min.js"></script>

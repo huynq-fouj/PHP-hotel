@@ -26,6 +26,8 @@
   <link href="/hostay/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="/hostay/assets/vendor/simple-datatables/style.css" rel="stylesheet">
 
+  <script src="/hostay/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
   <!-- Template Main CSS File -->
   <link href="/hostay/assets/css/admin_style.css" rel="stylesheet">
 </head>

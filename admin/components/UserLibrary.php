@@ -27,39 +27,45 @@ function UserRow($item) {
     $out .= '<td scope="row" class="align-middle">'.$item->getUser_email().'</td>';
     $out .= '<td scope="row" class="align-middle">'.$item->getUser_phone().'</td>';
     $out .= '<td class="align-middle">
-    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#viewUser"'.$item->getUser_id().'">
+    <a class="btn btn-primary btn-sm" href="/hostay/admin/user.php?id='.$item->getUser_id().'">
         <i class="bi bi-eye"></i>
-    </button>
+    </a>
     </td>';
-    $out .= viewDetail($item);
     $out .= '<td class="align-middle">
-    <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#editUser"'.$item->getUser_id().'">
+    <a class="btn btn-success btn-sm" href="/hostay/admin/user.php?id='.$item->getUser_id().'">
         <i class="bi bi-pencil-square"></i>
-    </button>
+    </a>
     </td>';
-    $out .= viewEdit($item);
-    $out .= '<td class="align-middle">
-    <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#delUser"'.$item->getUser_id().'">
-        <i class="bi bi-trash"></i>
-    </button>
-    </td>';
+    if($_SESSION["user"]["id"] != $item->getUser_id()) {
+        $out .= '<td class="align-middle">
+        <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#delUser'.$item->getUser_id().'">
+            <i class="bi bi-trash"></i>
+        </button>
+        </td>';
+    } else {
+        $out .= '<td class="align-middle">
+        <a class="btn btn-danger btn-sm disabled" href="#">
+            <i class="bi bi-trash"></i>
+        </a>
+        </td>';
+    }
     $out .= viewDel($item);
     $out .= '</tr>';
     return $out;
 }
-function viewDetail($item) {
-    $out = '';
-
-    return $out;
-}
-function viewEdit($item) {
-    $out = '';
-
-    return $out;
-}
 function viewDel($item) {
-    $out = '';
-
+    $out = '<div class="modal fade" id="delUser'.$item->getUser_id().'" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">';
+    $out .= '<div class="modal-dialog">';
+    $out .= '<div class="modal-content">';
+    $out .= '<div class="modal-header">';
+    $out .= '<h1 class="modal-title fs-5" id="staticBackdropLabel">Xóa tài khoản</h1>';
+    $out .= '<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>';
+    $out .= '</div><div class="modal-body">';
+    $out .= 'Bạn có chắc chắn muốn xóa tài khoản: '.$item->getUser_name();
+    $out .= '</div><div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" name="exitDel">Thoát</button>
+                <a href="/hostay/admin/userdr.php?id='.$item->getUser_id().'" class="btn btn-danger" name="delUser">Xóa</a>
+            </div></div></div></div>';
     return $out;
 }
 ?>
