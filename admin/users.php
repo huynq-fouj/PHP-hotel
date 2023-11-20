@@ -11,6 +11,11 @@ if(!isset($_SESSION["user"])) {
 $_SESSION["pos"] = "user";
 $_SESSION["active"] = "urlist";
 //
+require_once __DIR__."/../app/models/UserModel.php";
+require_once __DIR__."/components/UserLibrary.php";
+$um = new UserModel();
+$similar = new UserObject();
+$items = $um->getUsers($similar, 1, 10);
 
 require_once "layouts/header.php";
 ?>
@@ -32,7 +37,7 @@ require_once "layouts/header.php";
             <div class="col-lg-12">
 		        <div class="card">
 		            <div class="card-body">
-                        <h1>Users</h1>
+                        <?=UserTable($items)?>
                     </div>
                 </div>
             </div>
