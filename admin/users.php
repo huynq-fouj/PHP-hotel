@@ -13,13 +13,25 @@ $_SESSION["active"] = "urlist";
 //
 require_once __DIR__."/../app/models/UserModel.php";
 require_once __DIR__."/components/UserLibrary.php";
+require_once __DIR__."/components/Paging.php";
 
 $um = new UserModel();
 $similar = new UserObject();
-$items = $um->getUsers($similar, 1, 10);
+
+$url = "/hostay/admin/users.php?";
+$page = 1;
+$totalperpage = 10;
+$total = $um->countUser($similar);
+if(isset($_GET["page"])) {
+    $savePage = $_GET["page"];
+    if(is_numeric($savePage) && $savePage > 0) {
+        $page = $savePage;
+    }
+}
+$items = $um->getUsers($similar, $page, $totalperpage);
 
 require_once __DIR__."/layouts/header.php";
-require_once __DIR__."/components/ErrorToast.php";
+require_once __DIR__."/components/Toast.php";
 ?>
 <!--Start main page-->
 <main id="main" class="main">
@@ -40,6 +52,7 @@ require_once __DIR__."/components/ErrorToast.php";
 		        <div class="card">
 		            <div class="card-body">
                         <?=UserTable($items)?>
+                        <?=Paging($url, $page, $total, $totalperpage)?>
                     </div>
                 </div>
             </div>

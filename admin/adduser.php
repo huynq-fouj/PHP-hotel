@@ -12,12 +12,50 @@ $_SESSION["pos"] = "user";
 $_SESSION["active"] = "uradd";
 //
 
+require_once __DIR__."/../app/models/UserModel.php";
+require_once __DIR__."/../libraries/Utilities.php";
+
 if(isset($_POST["addUser"])) {
-    
+    $user_name = trim($_POST["txtUsername"]);
+    $user_pass1 = trim($_POST["txtPass1"]);
+    $user_pass2 = trim($_POST["txtPass2"]);
+    $user_fullname = trim($_POST["txtFullname"]);
+    $user_email = trim($_POST["txtEmail"]);
+    $user_permission = $_POST["slcPermis"];
+    if($user_permission < 0) {
+        $user_permission = 0;
+    }
+    $isPermis = is_numeric($user_permission) && ($user_permission <= $_SESSION["user"]["permission"]);
+    if( $user_name != ""
+        && checkValidPassWord($user_pass1, $user_pass2)
+        && $user_fullname != ""
+        && checkEmail($user_email)
+        && $isPermis)
+    {
+        $um = new UserModel();
+        $user = new UserObject();
+        $user->setUser_name($user_name);
+        $user->setUser_password($user_pass1);
+        $user->setUser_fullname($user_fullname);
+        $user->setUser_email($user_email);
+        $user->setUser_permission($user_permission);
+        $user->setUser_phone($_POST["txtPhone"]);
+        if(!$um->isExists($user)) {
+            if($um->addUser($user)) {
+                header("location:/hostay/admin/adduser.php?suc=add");
+            }else {
+                header("location:/hostay/admin/adduser.php?err=add");
+            }
+        } else {
+            header("location:/hostay/admin/adduser.php?err=exist");
+        }
+    } else {
+        header("location:/hostay/admin/adduser.php?err=value");
+    }
 }
 
 require_once __DIR__."/layouts/header.php";
-require_once __DIR__."/components/ErrorToast.php";
+require_once __DIR__."/components/Toast.php";
 ?>
 <!--Start main page-->
 <main id="main" class="main">
@@ -58,7 +96,7 @@ require_once __DIR__."/components/ErrorToast.php";
                                     <input type="text"
                                         class="form-control"
                                         id="username"
-                                        name="txtName"
+                                        name="txtUsername"
                                         placeholder="Username"
                                         required>
                                     <div class="invalid-feedback">
@@ -96,6 +134,7 @@ require_once __DIR__."/components/ErrorToast.php";
                                     <input type="password"
                                         class="form-control"
                                         id="inputPassword"
+                                        placeholder="At least 8 character"
                                         name="txtPass1"
                                         required>
                                     <div class="invalid-feedback">
@@ -113,6 +152,7 @@ require_once __DIR__."/components/ErrorToast.php";
                                         class="form-control"
                                         id="inputPassword1"
                                         name="txtPass2"
+                                        placeholder="At least 8 character"
                                         required>
                                     <div class="invalid-feedback">
                                         Hãy nhập mật khẩu xác nhận

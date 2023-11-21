@@ -23,8 +23,8 @@ $isEdit = $_SESSION["user"]["permission"] >= $user->getUser_permission();
 
 if(isset($_POST["edit"])) {
   if($isEdit) {
-    $fullname = $_POST["txtFullname"];
-    $email = $_POST["txtEmail"];
+    $fullname = trim($_POST["txtFullname"]);
+    $email = trim($_POST["txtEmail"]);
     $permis = $_POST["slcPermis"];
     if($fullname != ""
         && checkEmail($email)
@@ -56,7 +56,7 @@ if(isset($_POST["edit"])) {
 
 
 require_once __DIR__."/layouts/header.php";
-require_once __DIR__."/components/ErrorToast.php";
+require_once __DIR__."/components/Toast.php";
 ?>
 <!--Start main page-->
 <main id="main" class="main">
