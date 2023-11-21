@@ -19,8 +19,17 @@
             case "upd":
                 echo "Cập nhật tài khoản không thành công!";
                 break;
+            case "add":
+                echo "Thêm tài khoản không thành công!";
+                break;
             case "value":
                 echo "Có lỗi trong dữ liệu được gửi đi!";
+                break;
+            case "permis":
+                echo "Không đủ quyền thực hiện hành động!";
+                break;
+            case "noexist":
+                echo "Đối tượng không tồn tại!";
                 break;
             default:
                 echo "Có lỗi trong quá trình thực hiện!";

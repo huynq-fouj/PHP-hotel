@@ -12,13 +12,18 @@ $_SESSION["pos"] = "user";
 $_SESSION["active"] = "uradd";
 //
 
-require_once "layouts/header.php";
+if(isset($_POST["addUser"])) {
+    
+}
+
+require_once __DIR__."/layouts/header.php";
+require_once __DIR__."/components/ErrorToast.php";
 ?>
 <!--Start main page-->
 <main id="main" class="main">
 
     <div class="pagetitle d-flex justify-content-between">
-      <h1>Thêm mới</h1>
+      <h1>Thêm mới người sử dụng</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="/hostay/admin/">Trang chủ</a></li>
@@ -32,7 +37,127 @@ require_once "layouts/header.php";
             <div class="col-lg-12">
 		        <div class="card">
 		            <div class="card-body">
-                        <h1>Adduser</h1>
+                        <form action="" method="post" class="needs-validation" novalidate>
+                            <div class="mb-3 mt-3 row">
+                                <label for="fullname" class="col-sm-3 col-form-label fw-bold">Tên đầy đủ</label>
+                                <div class="col-sm-9">
+                                    <input type="text"
+                                        class="form-control"
+                                        id="fullname"
+                                        name="txtFullname"
+                                        placeholder="Fullname"
+                                        required>
+                                    <div class="invalid-feedback">
+                                        Hãy nhập họ và tên
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="username" class="col-sm-3 col-form-label fw-bold">Tên đăng nhập</label>
+                                <div class="col-sm-9">
+                                    <input type="text"
+                                        class="form-control"
+                                        id="username"
+                                        name="txtName"
+                                        placeholder="Username"
+                                        required>
+                                    <div class="invalid-feedback">
+                                        Hãy nhập tên đăng nhập
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="staticEmail" class="col-sm-3 col-form-label fw-bold">Email</label>
+                                <div class="col-sm-9">
+                                    <input type="text"
+                                        class="form-control"
+                                        id="staticEmail"
+                                        name="txtEmail"
+                                        placeholder="example@gmail.com"
+                                        required>
+                                    <div class="invalid-feedback">
+                                        Hãy nhập email
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="phone" class="col-sm-3 col-form-label fw-bold">Số điện thoại</label>
+                                <div class="col-sm-9">
+                                    <input type="text"
+                                        class="form-control"
+                                        id="phone"
+                                        name="txtPhone"
+                                        placeholder="0123 456 789">
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="inputPassword" class="col-sm-3 col-form-label fw-bold">Mật khẩu</label>
+                                <div class="col-sm-9">
+                                    <input type="password"
+                                        class="form-control"
+                                        id="inputPassword"
+                                        name="txtPass1"
+                                        required>
+                                    <div class="invalid-feedback">
+                                        Hãy nhập mật khẩu
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="inputPassword1"
+                                    class="col-sm-3 col-form-label fw-bold">
+                                    Xác nhận mật khẩu
+                                </label>
+                                <div class="col-sm-9">
+                                    <input type="password"
+                                        class="form-control"
+                                        id="inputPassword1"
+                                        name="txtPass2"
+                                        required>
+                                    <div class="invalid-feedback">
+                                        Hãy nhập mật khẩu xác nhận
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="slcPermis"
+                                    class="col-sm-3 col-form-label fw-bold">
+                                    Vị trí
+                                </label>
+                                <div class="col-sm-9">
+                                    <select type="password"
+                                        class="form-control"
+                                        id="slcPermis"
+                                        name="slcPermis"
+                                        required>
+                                        <option value="0" selected>Khách hàng</option>
+                                        <?php
+                                            if($_SESSION["user"]["permission"] >= 1) {
+                                        ?>
+                                            <option value="1">Nhân viên quản lý</option>
+                                        <?php
+                                            }
+                                            if($_SESSION["user"]["permission"] >= 5) {
+                                        ?>
+                                            <option value="5">Quản trị viên</option>
+                                        <?php
+                                            }
+                                        ?>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Hãy nhập chọn vị trí
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3 row d-flex justify-content-center">
+                                <button type="submit"
+                                class="btn btn-primary col-md-2 col-sm-3 me-sm-3 mt-3"
+                                name="addUser">
+                                    Thêm mới
+                                </button>
+                                <a class="btn btn-secondary col-md-2 col-sm-3 mt-3" href="">Xóa</a>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

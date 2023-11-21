@@ -19,8 +19,10 @@ require_once __DIR__."/../libraries/Utilities.php";
 
 $um = new UserModel();
 $user = $um->getUserById($_GET["id"]);
+$isEdit = $_SESSION["user"]["permission"] >= $user->getUser_permission();
 
 if(isset($_POST["edit"])) {
+  if($isEdit) {
     $fullname = $_POST["txtFullname"];
     $email = $_POST["txtEmail"];
     $permis = $_POST["slcPermis"];
@@ -45,8 +47,11 @@ if(isset($_POST["edit"])) {
             header("location:/hostay/admin/users.php?err=upd");
         }
     } else {
-        header("location:/hostay/admin/users.php?err=value");
+      header("location:/hostay/admin/users.php?err=value");
     }
+  } else {
+    header("location:/hostay/admin/users.php?err=permis");
+  }
 }
 
 
@@ -193,7 +198,7 @@ require_once __DIR__."/components/ErrorToast.php";
                       <label for="permission" class="col-md-4 col-lg-3 col-form-label">vị trí</label>
                       <div class="col-md-8 col-lg-9">
                         <select name="slcPermis" class="form-control">
-                            <option value="0" <?=$user->getUser_permission() < 1 ? "selected": ""?>>Thành viên</option>
+                            <option value="0" <?=$user->getUser_permission() < 1 ? "selected": ""?>>Khách hàng</option>
                             <option value="1" <?=($user->getUser_permission() >= 1
                                 && $user->getUser_permission() < 5) ? "selected" : ""?>>
                                 Nhân viên quản lý
@@ -209,7 +214,17 @@ require_once __DIR__."/components/ErrorToast.php";
                       </div>
                     </div>
                     <div class="text-center">
-                      <button type="submit" class="btn btn-primary" name="edit">Lưu thay đổi</button>
+                      <?php
+                        if($isEdit) {
+                      ?>
+                        <button type="submit" class="btn btn-primary" name="edit">Lưu thay đổi</button>
+                      <?php
+                        } else {
+                      ?>
+                        <button type="button" class="btn btn-primary disabled">Lưu thay đổi</button>
+                      <?php
+                        }
+                      ?>
                     </div>
                   </form><!-- End Profile Edit Form -->
 

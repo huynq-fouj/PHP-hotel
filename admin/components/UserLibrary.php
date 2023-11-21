@@ -36,7 +36,8 @@ function UserRow($item) {
         <i class="bi bi-pencil-square"></i>
     </a>
     </td>';
-    if($_SESSION["user"]["id"] != $item->getUser_id()) {
+    if(($_SESSION["user"]["id"] != $item->getUser_id()) 
+        && ($_SESSION["user"]["id"] >= $item->getUser_permission())) {
         $out .= '<td class="align-middle">
         <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#delUser'.$item->getUser_id().'">
             <i class="bi bi-trash"></i>

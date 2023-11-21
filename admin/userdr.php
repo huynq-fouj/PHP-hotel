@@ -13,16 +13,23 @@ if(!isset($_SESSION["user"])) {
                 require_once __DIR__."/../app/models/UserModel.php";
                 require_once __DIR__."/components/UserLibrary.php";
                 $um = new UserModel();
-                $user = new UserObject();
-                $user->setUser_id($_GET["id"]);
-                $result = $um->delUser($user);
-                if($result) {
-                    header("location:/hostay/admin/users.php");
+                $user = $um->getUserById($_GET["id"]);
+                if($user != null){
+                    if($_SESSION["user"]["permission"] >= $user->getUser_permission()) {
+                        $result = $um->delUser($user);
+                        if($result) {
+                            header("location:/hostay/admin/users.php");
+                        } else {
+                            header("location:/hostay/admin/users.php?err=del");
+                        }
+                    } else {
+                        header("location:/hostay/admin/users.php?err=permis");
+                    }
                 } else {
-                    header("location:/hostay/admin/users.php?err=del");
+                    header("location:/hostay/admin/users.php?err=noexist");
                 }
             } else {
-                header("location:/hostay/admin/users.php?err=del");
+                header("location:/hostay/admin/users.php?err=notok");
             }
         }
     }
