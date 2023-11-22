@@ -47,7 +47,7 @@ if(isset($_GET["page"])) {
 $items = $um->getUsers($similar, $page, $totalperpage);
 
 require_once __DIR__."/layouts/header.php";
-require_once __DIR__."/components/Toast.php";
+require_once __DIR__."/layouts/Toast.php";
 ?>
 <!--Start main page-->
 <main id="main" class="main">

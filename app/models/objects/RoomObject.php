@@ -6,6 +6,7 @@ class RoomObject {
     private $room_number_bed;//int
     private $room_quality;//float
     private $room_type;//string
+    private $room_bed_type;//string
     private $room_price;//float
     private $room_detail;//string
     private $room_title;//string
@@ -13,7 +14,8 @@ class RoomObject {
     private $room_length;//float
     private $room_static;//int
     private $room_image;//string
-    private $room_hotel_id;//int
+    private $room_address;//string
+    private $room_hotel_name;//string
 
 
     function getRoom_id(){
@@ -34,6 +36,10 @@ class RoomObject {
 
     function getRoom_type() {
         return $this->room_type;
+    }
+
+    function getRoom_bed_type() {
+        return $this->room_bed_type;
     }
 
     function getRoom_price() {
@@ -64,8 +70,12 @@ class RoomObject {
         return $this->room_image;
     }
 
-    function getRoom_hotel_id() {
-        return $this->room_hotel_id;
+    function getRoom_address() {
+        return $this->room_address;
+    }
+
+    function getRoom_hotel_name() {
+        return $this->room_hotel_name;
     }
 
     function setRoom_id($room_id) {
@@ -86,6 +96,10 @@ class RoomObject {
 
     function setRoom_type($room_type) {
         $this->room_type = $room_type;
+    }
+
+    function setRoom_bed_type($room_bed_type) {
+        $this->room_bed_type = $room_bed_type;
     }
 
     function setRoom_price($room_price) {
@@ -116,8 +130,12 @@ class RoomObject {
         $this->room_image = $room_image;
     }
 
-    function setRoom_hotel_id($room_hotel_id) {
-        $this->room_hotel_id = $room_hotel_id;
+    function setRoom_address($room_address) {
+        $this->room_address = $room_address;
+    }
+
+    function setRoom_hotel_id($room_hotel_name) {
+        $this->room_hotel_name = $room_hotel_name;
     }
 
 }
