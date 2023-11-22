@@ -18,7 +18,22 @@ require_once __DIR__."/components/Paging.php";
 $um = new UserModel();
 $similar = new UserObject();
 
+//Tìm kiếm
+$saveKey = "";
+$param = "";
+if(isset($_GET["key"])) {
+    $saveKey = $_GET["key"];
+}
+if($saveKey != "") {
+    $similar->setUser_name($saveKey);
+    $param = "key=$saveKey";
+}
+
+//Phân trang
 $url = "/hostay/admin/users.php?";
+if($param != "") {
+    $url .= "$param&";
+}
 $page = 1;
 $totalperpage = 10;
 $total = $um->countUser($similar);
@@ -28,6 +43,7 @@ if(isset($_GET["page"])) {
         $page = $savePage;
     }
 }
+//Lấy danh sách
 $items = $um->getUsers($similar, $page, $totalperpage);
 
 require_once __DIR__."/layouts/header.php";

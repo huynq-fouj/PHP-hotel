@@ -170,6 +170,7 @@ class UserModel extends BasicModel {
         $list = array();
         $at = ($page - 1) * $total;
         $sql = "SELECT * FROM tbluser ";
+        $sql .= $this->createConditions($similar);
         $sql .= "LIMIT $at, $total;";
         $result = $this->get($sql);
         if($result->num_rows > 0) {
@@ -185,6 +186,8 @@ class UserModel extends BasicModel {
      */
     function countUser(UserObject $similar) : int {
         $sql = "SELECT COUNT(*) AS total FROM tbluser ";
+        $sql .= $this->createConditions($similar);
+        $sql .= ";";
         $total = 0;
         if($result = $this->get($sql)){
             if($row = $result->fetch_array()) {
@@ -192,6 +195,18 @@ class UserModel extends BasicModel {
             }
         }
         return $total;
+    }
+
+    private function createConditions(UserObject $similar) {
+        $out = "";
+        if(!empty($similar->getUser_name())) {
+            $search = $similar->getUser_name();
+            $out .= "((user_name LIKE '%$search%') || (user_fullname LIKE '%$search%')) ";
+        }
+        if($out != "") {
+            $out = "WHERE ".$out;
+        }
+        return $out;
     }
 
 }

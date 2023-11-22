@@ -1,3 +1,9 @@
+<?php
+  $key = "";
+  if(isset($_GET["key"])) {
+    $key = $_GET["key"];
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -46,8 +52,8 @@
     </div><!-- End Logo -->
 
     <div class="search-bar">
-      <form class="search-form d-flex align-items-center" method="POST" action="#">
-        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+      <form class="search-form d-flex align-items-center" method="get" action="">
+        <input type="text" name="key" placeholder="Search" title="Enter search keyword" value="<?=$key?>">
         <button type="submit" title="Search"><i class="bi bi-search"></i></button>
       </form>
     </div><!-- End Search Bar -->
