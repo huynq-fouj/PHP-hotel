@@ -1,4 +1,4 @@
-<?=require_once "layouts/header.php"?>
+<?=require_once __DIR__."/layouts/header.php"?>
 
 <!-- ======= Intro Section ======= -->
 <div class="intro intro-carousel swiper position-relative">
@@ -87,4 +87,4 @@
     <div class="swiper-pagination"></div>
 </div><!-- End Intro Section -->
 
-<?=require_once "layouts/footer.php"?>
+<?=require_once __DIR__."/layouts/footer.php"?>

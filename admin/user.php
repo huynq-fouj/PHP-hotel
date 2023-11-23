@@ -241,5 +241,5 @@ require_once __DIR__."/layouts/Toast.php";
 </main>
 <!--End main page-->
 <?php
-require_once "layouts/footer.php";
+require_once __DIR__."/layouts/footer.php";
 ?>

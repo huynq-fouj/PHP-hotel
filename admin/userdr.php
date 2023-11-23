@@ -11,7 +11,6 @@ if(!isset($_SESSION["user"])) {
         } else {
             if($_SESSION["user"]["id"] != $_GET["id"]) {
                 require_once __DIR__."/../app/models/UserModel.php";
-                require_once __DIR__."/components/UserLibrary.php";
                 $um = new UserModel();
                 $user = $um->getUserById($_GET["id"]);
                 if($user != null){

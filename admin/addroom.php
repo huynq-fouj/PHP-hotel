@@ -18,7 +18,7 @@ require_once "layouts/header.php";
 <main id="main" class="main">
 
     <div class="pagetitle d-flex justify-content-between">
-      <h1>Thêm mới</h1>
+      <h1>Thêm phòng</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="/hostay/admin/">Trang chủ</a></li>
@@ -41,5 +41,5 @@ require_once "layouts/header.php";
 </main>
 <!--End main page-->
 <?php
-require_once "layouts/footer.php";
+require_once __DIR__."/layouts/footer.php";
 ?>

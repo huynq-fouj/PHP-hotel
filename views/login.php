@@ -1,5 +1,5 @@
 <?php
-require_once "../app/models/UserModel.php";
+require_once __DIR__."/../app/models/UserModel.php";
 
 session_start();
 if(isset($_POST["login"])) {

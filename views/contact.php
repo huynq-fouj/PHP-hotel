@@ -1,4 +1,4 @@
-<?=require_once "layouts/header.php"?>
+<?=require_once __DIR__."/layouts/header.php"?>
 <main id="main">
 
     <!-- ======= Intro Single ======= -->
@@ -127,4 +127,4 @@
     </section><!-- End Contact Single-->
 
   </main><!-- End #main -->
-<?=require_once "layouts/footer.php"?>
+<?=require_once __DIR__."/layouts/footer.php"?>

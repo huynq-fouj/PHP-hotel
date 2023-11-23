@@ -168,6 +168,9 @@ class UserModel extends BasicModel {
      */
     function getUsers(UserObject $similar, $page, $total) : array {
         $list = array();
+        if($page <= 0) {
+            $page = 1;
+        }
         $at = ($page - 1) * $total;
         $sql = "SELECT * FROM tbluser ";
         $sql .= $this->createConditions($similar);
