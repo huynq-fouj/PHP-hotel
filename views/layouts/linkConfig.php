@@ -10,3 +10,5 @@
 <!-- Template Main CSS File -->
 <link href="/hostay/assets/css/fonts.css" rel="stylesheet">
 <link href="/hostay/assets/css/views_style.css" rel="stylesheet">
+
+<script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

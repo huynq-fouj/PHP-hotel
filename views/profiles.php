@@ -14,6 +14,7 @@ if($user == null) {
 }
 
 require_once __DIR__."/layouts/header.php";
+require_once __DIR__."/layouts/Toaster.php";
 ?>
 <main class="main">
     <div class="intro-single">
