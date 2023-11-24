@@ -6,7 +6,7 @@ $active = "home";
 $title = "Hostay";
 $uri = $_SERVER["REQUEST_URI"];
 if(str_contains($uri, "/views/about")) {
-    $title = "Về chúng tôi";
+    $title = "Giới thiệu";
     $active = "about";
 }
 if(str_contains($uri, "/views/contact")) {
@@ -63,7 +63,7 @@ if(str_contains($uri, "/views/profiles")) {
 
                     <li class="nav-item">
                         <a class="nav-link <?=$active == "about"? "active" : ""?>"
-                        href="/hostay/views/about.php">Về chúng tôi</a>
+                        href="/hostay/views/about.php">Giới thiệu</a>
                     </li>
 
                     <li class="nav-item">

@@ -52,29 +52,29 @@ require_once __DIR__."/layouts/Toaster.php";
 
                             <h5 class="card-title">Chi tiết</h5>
 
-                            <div class="row">
-                            <div class="col-lg-3 col-md-4 label ">Họ tên</div>
-                            <div class="col-lg-9 col-md-8"><?=$user->getUser_fullname()?></div>
+                            <div class="row mt-3">
+                            <div class="col-lg-2 col-md-3 fw-bold label ">Họ tên</div>
+                            <div class="col-lg-10 col-md-9"><?=$user->getUser_fullname()?></div>
                             </div>
 
-                            <div class="row">
-                            <div class="col-lg-3 col-md-4 label">Tên đăng nhập</div>
-                            <div class="col-lg-9 col-md-8"><?=$user->getUser_name()?></div>
+                            <div class="row mt-3">
+                            <div class="col-lg-2 col-md-3 fw-bold label">Tên đăng nhập</div>
+                            <div class="col-lg-10 col-md-9"><?=$user->getUser_name()?></div>
                             </div>
 
-                            <div class="row">
-                            <div class="col-lg-3 col-md-4 label">Số điện thoại</div>
-                            <div class="col-lg-9 col-md-8"><?=$user->getUser_phone()?></div>
+                            <div class="row mt-3">
+                            <div class="col-lg-2 col-md-3 fw-bold label">Số điện thoại</div>
+                            <div class="col-lg-10 col-md-9"><?=$user->getUser_phone()?></div>
                             </div>
 
-                            <div class="row">
-                            <div class="col-lg-3 col-md-4 label">Email</div>
-                            <div class="col-lg-9 col-md-8"><?=$user->getUser_email()?></div>
+                            <div class="row mt-3">
+                            <div class="col-lg-2 col-md-3 fw-bold label">Email</div>
+                            <div class="col-lg-10 col-md-9"><?=$user->getUser_email()?></div>
                             </div>
 
-                            <div class="row">
-                                <div class="col-lg-3 col-md-4 label">Vị trí</div>
-                                <div class="col-lg-9 col-md-8">
+                            <div class="row mt-3">
+                                <div class="col-lg-2 col-md-3 fw-bold label">Vị trí</div>
+                                <div class="col-lg-10 col-md-9">
                                     <?php
                                         $permis = $user->getUser_permission();
                                         if($permis < 1) {
@@ -100,8 +100,8 @@ require_once __DIR__."/layouts/Toaster.php";
                                 class="needs-validation" novalidate>
 
                                 <div class="row mb-3">
-                                    <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Tên đầy đủ</label>
-                                    <div class="col-md-8 col-lg-9">
+                                    <label for="fullName" class="col-md-3 col-lg-2 col-form-label">Tên đầy đủ</label>
+                                    <div class="col-md-9 col-lg-10">
                                         <input name="txtFullname"
                                             type="text"
                                             class="form-control"
@@ -112,8 +112,8 @@ require_once __DIR__."/layouts/Toaster.php";
                                 </div>
 
                                 <div class="row mb-3">
-                                    <label for="emailInput" class="col-md-4 col-lg-3 col-form-label">Email</label>
-                                    <div class="col-md-8 col-lg-9">
+                                    <label for="emailInput" class="col-md-3 col-lg-2 col-form-label">Email</label>
+                                    <div class="col-md-9 col-lg-10">
                                         <input name="txtEmail"
                                             type="text"
                                             class="form-control"
@@ -124,8 +124,8 @@ require_once __DIR__."/layouts/Toaster.php";
                                 </div>
 
                                 <div class="row mb-3">
-                                    <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Số điện thoại</label>
-                                    <div class="col-md-8 col-lg-9">
+                                    <label for="Phone" class="col-md-3 col-lg-2 col-form-label">Số điện thoại</label>
+                                    <div class="col-md-9 col-lg-10">
                                         <input name="txtPhone"
                                             type="text"
                                             class="form-control"
@@ -151,10 +151,10 @@ require_once __DIR__."/layouts/Toaster.php";
 
                             <div class="row mb-3">
                                 <label for="currentPassword"
-                                    class="col-md-4 col-lg-3 col-form-label">
+                                    class="col-md-3 col-lg-2 col-form-label">
                                         Mật khẩu hiện tại
                                 </label>
-                                <div class="col-md-8 col-lg-9">
+                                <div class="col-md-9 col-lg-10">
                                 <input name="txtPass"
                                     type="password"
                                     class="form-control"
@@ -165,10 +165,10 @@ require_once __DIR__."/layouts/Toaster.php";
                             </div>
 
                             <div class="row mb-3">
-                                <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">
+                                <label for="newPassword" class="col-md-3 col-lg-2 col-form-label">
                                     Mật khẩu mới
                                 </label>
-                                <div class="col-md-8 col-lg-9">
+                                <div class="col-md-9 col-lg-10">
                                 <input name="txtPass1"
                                     type="password"
                                     class="form-control"
@@ -179,10 +179,10 @@ require_once __DIR__."/layouts/Toaster.php";
                             </div>
 
                             <div class="row mb-3">
-                                <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">
+                                <label for="renewPassword" class="col-md-3 col-lg-2 col-form-label">
                                     Nhập lại mật khẩu mới
                                 </label>
-                                <div class="col-md-8 col-lg-9">
+                                <div class="col-md-9 col-lg-10">
                                 <input name="txtPass2"
                                     type="password"
                                     class="form-control"
