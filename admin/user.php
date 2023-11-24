@@ -161,7 +161,7 @@ require_once __DIR__."/layouts/Toast.php";
                 <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
                   <!-- Profile Edit Form -->
-                  <form action="" method="post">
+                  <form action="" method="post" class="needs-validation" novalidate>
 
                     <div class="row mb-3">
                       <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Tên đầy đủ</label>
@@ -170,7 +170,8 @@ require_once __DIR__."/layouts/Toast.php";
                             type="text"
                             class="form-control"
                             id="fullName"
-                            value="<?=$user->getUser_fullname()?>">
+                            value="<?=$user->getUser_fullname()?>"
+                            required>
                       </div>
                     </div>
 
@@ -181,7 +182,8 @@ require_once __DIR__."/layouts/Toast.php";
                             type="text"
                             class="form-control"
                             id="emailInput"
-                            value="<?=$user->getUser_email()?>">
+                            value="<?=$user->getUser_email()?>"
+                            required>
                       </div>
                     </div>
 
@@ -197,7 +199,7 @@ require_once __DIR__."/layouts/Toast.php";
                     <div class="row mb-3">
                       <label for="permission" class="col-md-4 col-lg-3 col-form-label">vị trí</label>
                       <div class="col-md-8 col-lg-9">
-                        <select name="slcPermis" class="form-control">
+                        <select name="slcPermis" class="form-control" required>
                             <option value="0" <?=$user->getUser_permission() < 1 ? "selected": ""?>>Khách hàng</option>
                             <option value="1" <?=($user->getUser_permission() >= 1
                                 && $user->getUser_permission() < 5) ? "selected" : ""?>>

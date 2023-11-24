@@ -9,7 +9,7 @@ if(!isset($_SESSION["user"])) {
         if(!isset($_GET["id"]) || $_GET["id"] <= 0 || !is_numeric($_GET["id"])) {
             header("location:/hostay/admin/bills.php?err=value");
         } else {
-            require_once __DIR__."/../app/models/BillModel.php";
+            require_once __DIR__."/../../app/models/BillModel.php";
             $bm = new BillModel();
             $bill = $bm->getBill($_GET["id"]);
             if($bill != null){

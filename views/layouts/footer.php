@@ -146,6 +146,8 @@
             <i class="bi bi-arrow-up-short"></i>
     </a>
 
-    <?=require_once "jsConfig.php";?>
+    <?php
+        require_once __DIR__."/jsConfig.php";
+    ?>
 </body>
 </html>

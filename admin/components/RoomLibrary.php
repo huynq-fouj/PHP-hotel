@@ -16,6 +16,8 @@ function RoomTable($items) {
         $out .= RoomRow($item);
     }
     $out .= '</tbody></table>';
+
+    return $out;
 }
 
 function RoomRow(RoomObject $item) {
@@ -93,7 +95,7 @@ function viewDel($item) {
     $out .= 'Bạn có chắc chắn muốn xóa phòng: '.$item->getRoom_title();
     $out .= '</div><div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" name="exitDel">Thoát</button>
-                <a href="/hostay/admin/roomdr.php?id='.$item->getRoom_id().'" class="btn btn-danger">Xóa</a>
+                <a href="/hostay/admin/actions/roomdr.php?id='.$item->getRoom_id().'" class="btn btn-danger">Xóa</a>
             </div></div></div></div>';
     return $out;
 }

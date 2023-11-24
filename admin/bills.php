@@ -11,6 +11,26 @@ if(!isset($_SESSION["user"])) {
 $_SESSION["pos"] = "bill";
 $_SESSION["active"] = "bilist";
 //
+require_once __DIR__."/../app/models/BillModel.php";
+require_once __DIR__."/components/BillLibrary.php";
+require_once __DIR__."/components/Paging.php";
+//Khởi tạo đối tượng
+$bm = new BillModel();
+$similar = new BillObject();
+
+//Lấy chỉ số cho phân trang
+$url = "/hostay/admin/bills.php?";
+$page = 1;
+$totalperpage = 10;
+$total = $bm->countBill($similar);
+if(isset($_GET["page"])) {
+    $savePage = $_GET["page"];
+    if(is_numeric($savePage) && $savePage > 0) {
+        $page = $savePage;
+    }
+}
+//Lấy danh sách
+$items = $bm->getBills($similar, $page, $totalperpage);
 
 require_once __DIR__."/layouts/header.php";
 require_once __DIR__."/layouts/Toast.php";
@@ -33,7 +53,8 @@ require_once __DIR__."/layouts/Toast.php";
             <div class="col-lg-12">
 		        <div class="card">
 		            <div class="card-body">
-                        <h1>Bills</h1>
+                        <?=BillTable($items)?>
+                        <?=Paging($url, $page, $total, $totalperpage)?>
                     </div>
                 </div>
             </div>

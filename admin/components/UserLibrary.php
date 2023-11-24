@@ -36,8 +36,8 @@ function UserRow($item) {
         <i class="bi bi-pencil-square"></i>
     </a>
     </td>';
-    if(($_SESSION["user"]["id"] != $item->getUser_id()) 
-        && ($_SESSION["user"]["id"] >= $item->getUser_permission())) {
+    if(($_SESSION["user"]["id"] != $item->getUser_id())
+        && ($_SESSION["user"]["permission"] >= $item->getUser_permission())) {
         $out .= '<td class="align-middle">
         <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#delUser'.$item->getUser_id().'">
             <i class="bi bi-trash"></i>
@@ -65,7 +65,7 @@ function viewDel($item) {
     $out .= 'Bạn có chắc chắn muốn xóa tài khoản: '.$item->getUser_name();
     $out .= '</div><div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" name="exitDel">Thoát</button>
-                <a href="/hostay/admin/userdr.php?id='.$item->getUser_id().'" class="btn btn-danger" name="delUser">Xóa</a>
+                <a href="/hostay/admin/actions/userdr.php?id='.$item->getUser_id().'" class="btn btn-danger">Xóa</a>
             </div></div></div></div>';
     return $out;
 }

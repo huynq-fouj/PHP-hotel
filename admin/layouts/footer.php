@@ -21,6 +21,7 @@
 
   <!-- Template Main JS File -->
   <script src="/hostay/assets/js/admin_main.js"></script>
+  <script src="/hostay/assets/js/validation.js"></script>
 
 </body>
 

@@ -9,7 +9,7 @@ if(!isset($_SESSION["user"])) {
         if(!isset($_GET["id"]) || $_GET["id"] <= 0 || !is_numeric($_GET["id"])) {
             header("location:/hostay/admin/rooms.php?err=value");
         } else {
-            require_once __DIR__."/../app/models/RoomModel.php";
+            require_once __DIR__."/../../app/models/RoomModel.php";
             $rm = new RoomModel();
             $room = $rm->getRoom($_GET["id"]);
             if($room != null){

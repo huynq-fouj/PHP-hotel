@@ -1,5 +1,7 @@
 <?php
-session_start();
+if(session_id() === "") {
+    session_start();
+}
 $active = "home";
 $title = "Hostay";
 $uri = $_SERVER["REQUEST_URI"];
@@ -26,10 +28,14 @@ if(str_contains($uri, "/views/profiles")) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?=$title?></title>
-    <?=require_once "linkConfig.php";?>
+    <?php
+        require_once __DIR__."/linkConfig.php";
+    ?>
 </head>
 <body>
-    <?=require_once "searchForm.php"?>
+    <?php
+        require_once __DIR__."/searchForm.php";
+    ?>
     <!-- ======= Header/Navbar ======= -->
     <nav class="navbar navbar-default navbar-trans navbar-expand-lg fixed-top">
         <div class="container">
@@ -62,12 +68,7 @@ if(str_contains($uri, "/views/profiles")) {
 
                     <li class="nav-item">
                         <a class="nav-link <?=$active == "booking"? "active" : ""?>"
-                        href="/hostay/views/">Đặt phòng</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link <?=$active == "blog"? "active" : ""?>"
-                        href="/hostay/views/">Bài viết</a>
+                        href="/hostay/views/booking.php">Đặt phòng</a>
                     </li>
 
                     <li class="nav-item">
