@@ -13,9 +13,9 @@ if(str_contains($uri, "/views/contact")) {
     $title = "Liên hệ";
     $active = "contact";
 }
-if(str_contains($uri, "/views/booking")) {
+if(str_contains($uri, "/views/rooms")) {
     $title = "Đặt phòng";
-    $active = "booking";
+    $active = "rooms";
 }
 if(str_contains($uri, "/views/profiles")) {
     $title = "Thông tin cá nhân";
@@ -67,8 +67,8 @@ if(str_contains($uri, "/views/profiles")) {
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link <?=$active == "booking"? "active" : ""?>"
-                        href="/hostay/views/booking.php">Đặt phòng</a>
+                        <a class="nav-link <?=$active == "rooms"? "active" : ""?>"
+                        href="/hostay/views/rooms.php">Đặt phòng</a>
                     </li>
 
                     <li class="nav-item">

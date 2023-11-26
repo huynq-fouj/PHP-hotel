@@ -50,6 +50,7 @@ if(isset($_POST["register"])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đăng ký</title>
+    <link rel="shortcut icon" href="/hostay/public/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="/hostay/assets/vendor/bootstrap/css/bootstrap.min.css">
     <style>
         body {

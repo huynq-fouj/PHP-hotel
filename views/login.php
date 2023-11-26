@@ -30,6 +30,7 @@ if(isset($_POST["login"])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đăng nhập</title>
+    <link rel="shortcut icon" href="/hostay/public/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="/hostay/assets/vendor/bootstrap/css/bootstrap.min.css">
     <style>
         body {
@@ -63,6 +64,9 @@ if(isset($_POST["login"])) {
                     break;
                 case "value":
                     echo "Vui lòng điền đầy đủ thông tin!";
+                    break;
+                case "login":
+                    echo "Vui lòng đăng nhập để sử dụng dịch vụ!";
                     break;
                 default:
                     break;
