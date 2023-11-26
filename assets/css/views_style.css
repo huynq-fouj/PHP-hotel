@@ -1158,6 +1158,19 @@ a:hover {
 /*--------------------------------------------------------------
 # Card General
 --------------------------------------------------------------*/
+.card-box-a {
+  height: 488px;
+}
+
+.card-box-a .img-box-a {
+  height: 100%;
+}
+
+.card-box-a .img-box-a .img-a {
+  object-fit: cover;
+  min-height: 100%;
+}
+
 @media (max-width: 767px) {
 
   .card-box-a,
@@ -1166,6 +1179,7 @@ a:hover {
   .card-box-d {
     margin-bottom: 2.5rem;
   }
+
 }
 
 .card-box-a span,
@@ -1198,7 +1212,7 @@ a:hover {
 .card-box-a .img-b,
 .card-box-b .img-a,
 .card-box-b .img-b {
-  transition: 0.8s all ease-in-out;
+  transition: 0.4s all ease-in-out;
 }
 
 @media (min-width: 768px) {
@@ -1217,6 +1231,11 @@ a:hover {
   .card-box-b .price-a {
     font-size: 0.9rem;
   }
+
+  .card-box-a {
+    height: 288px;
+  }
+
 }
 
 @media (min-width: 992px) {
@@ -1225,6 +1244,11 @@ a:hover {
   .card-box-b .price-a {
     font-size: 1rem;
   }
+
+  .card-box-a {
+    height: 388px;
+  }
+
 }
 
 .card-overlay {
@@ -1289,7 +1313,7 @@ a:hover {
 }
 
 .card-overlay-a-content {
-  transition: all 0.5s ease-in;
+  transition: all 0.4s ease-in;
   position: absolute;
   width: 100%;
   bottom: 0px;
@@ -1337,7 +1361,7 @@ a:hover {
 
 .card-body-a {
   z-index: 2;
-  transition: all 0.5s ease-in;
+  transition: all 0.4s ease-in;
   padding: 0rem 1rem 2rem 1rem;
 }
 

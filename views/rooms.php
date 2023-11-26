@@ -120,7 +120,7 @@ require_once __DIR__."/layouts/Toaster.php";
       <div class="col-md-4">
         <div class="card-box-a card-shadow">
           <div class="img-box-a">
-            <img src="/hostay/assets/img-views/property-3.jpg" alt="" class="img-a img-fluid">
+            <img src="/hostay/public/images/about-2.jpg" alt="" class="img-a img-fluid">
           </div>
           <div class="card-overlay">
             <div class="card-overlay-a-content">
