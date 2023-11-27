@@ -10,6 +10,7 @@ $similar = new RoomObject();
 $page = 1;
 $url = "/hostay/views/rooms.php?";
 $total = $rm->countRoom($similar);
+$total = 100;
 $totalperpage = 6;
 if(isset($_GET["page"]) && is_numeric($_GET["page"])) {
     $savePage = $_GET["page"];

@@ -218,14 +218,25 @@ a:hover {
 .pagination-a .pagination .page-link {
   margin: 0 0.2rem;
   border-color: transparent;
-  padding: 0.5rem 0.8rem;
+  padding: 0.5rem 0.6rem;
   color: #000000;
+}
+
+.pagination-a .pagination span.page-link {
+  padding: 0.5rem 0.2rem;
 }
 
 .pagination-a .pagination .page-link:hover,
 .pagination-a .pagination .page-link:active,
 .pagination-a .pagination .page-link:focus {
   background-color: #2eca6a;
+}
+
+.pagination-a .pagination span.page-link:hover,
+.pagination-a .pagination span.page-link:active,
+.pagination-a .pagination span.page-link:focus {
+  background-color: transparent;
+  cursor: default;
 }
 
 .pagination-a .pagination .page-link span {

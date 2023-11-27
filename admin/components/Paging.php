@@ -49,7 +49,7 @@ function Paging($url, $page, $total, $totalperpage) {
             }
         }
         if($page < $countPages - 3) {
-            $rightCurrent += "<li class=\"page-item disabled\"><a class=\"page-link\" href=\"#\">...</a></li>";
+            $rightCurrent .= "<li class=\"page-item disabled\"><a class=\"page-link\" href=\"#\">...</a></li>";
         }
         $out .= $rightCurrent;
         //End right current
