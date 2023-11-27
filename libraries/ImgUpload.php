@@ -10,7 +10,7 @@
  * * Upd_at: 05/11/2023
  * ***
  * @param string $target_dir
- * Vị trí lưu file
+ * Vị trí lưu file, Từ root folder (Ví dụ: $target = "/hostay/public/images/example.png")
  * @param mixed $img
  * Nhận giá trị là $_FILE["name của input nhận file"]
  * @param int $max_size
@@ -30,9 +30,10 @@ function ImgUpload($target_dir, $img, $max_size = 15728640) {
     if(getimagesize($tmp_name) !== false
     && in_array($file_type, $ext_type)
     && $img['size'] < $max_size) {
-        return move_uploaded_file($tmp_name, $target_file);
+        if(move_uploaded_file($tmp_name, $_SERVER["DOCUMENT_ROOT"].$target_file)) {
+            return $target_file;
+        }
     }
-
     return false;
 }
 ?>
