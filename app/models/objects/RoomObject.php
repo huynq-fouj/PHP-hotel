@@ -9,7 +9,6 @@ class RoomObject {
     private $room_bed_type;//string
     private $room_price;//float
     private $room_detail;//string
-    private $room_title;//string
     private $room_area;//float
     private $room_static;//int
     private $room_image;//string
@@ -47,10 +46,6 @@ class RoomObject {
 
     function getRoom_detail() {
         return $this->room_detail;
-    }
-
-    function getRoom_title() {
-        return $this->room_title;
     }
 
     function getRoom_area() {
@@ -103,10 +98,6 @@ class RoomObject {
 
     function setRoom_detail($room_detail) {
         $this->room_detail = $room_detail;
-    }
-
-    function setRoom_title($room_title) {
-        $this->room_title = $room_title;
     }
 
     function setRoom_area($room_area) {

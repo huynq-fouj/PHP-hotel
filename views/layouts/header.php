@@ -13,7 +13,7 @@ if(str_contains($uri, "/views/contact")) {
     $title = "Liên hệ";
     $active = "contact";
 }
-if(str_contains($uri, "/views/rooms")) {
+if(str_contains($uri, "/views/room")) {
     $title = "Đặt phòng";
     $active = "rooms";
 }

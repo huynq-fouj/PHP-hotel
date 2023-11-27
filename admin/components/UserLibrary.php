@@ -65,7 +65,7 @@ function viewDel($item) {
     $out .= 'Bạn có chắc chắn muốn xóa tài khoản: '.$item->getUser_name();
     $out .= '</div><div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" name="exitDel">Thoát</button>
-                <a href="/hostay/admin/actions/userdr.php?id='.$item->getUser_id().'" class="btn btn-danger">Xóa</a>
+                <a href="/hostay/actions/userdr.php?id='.$item->getUser_id().'" class="btn btn-danger">Xóa</a>
             </div></div></div></div>';
     return $out;
 }

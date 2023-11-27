@@ -89,11 +89,18 @@ return "collapsed";
   </li>
 
   <li class="nav-item">
-    <a class="nav-link collapsed" href="/hostay/views/profiles.php">
-      <i class="bi bi-person"></i>
-      <span>Thông tin cá nhân</span>
+    <a class="nav-link collapsed" href="/hostay/views/about.php">
+      <i class="bi bi-exclamation-circle"></i>
+      <span>Giới thiệu</span>
     </a>
-  </li><!-- End Profile Page Nav -->
+  </li>
+
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="/hostay/views/rooms.php">
+      <i class="bi bi-send"></i>
+      <span>Đặt phòng</span>
+    </a>
+  </li>
 
   <li class="nav-item">
     <a class="nav-link collapsed" href="/hostay/views/contact.php">
@@ -101,6 +108,13 @@ return "collapsed";
       <span>Liên hệ</span>
     </a>
   </li><!-- End Contact Page Nav -->
+
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="/hostay/views/profiles.php">
+      <i class="bi bi-person"></i>
+      <span>Thông tin cá nhân</span>
+    </a>
+  </li><!-- End Profile Page Nav -->
 
   <li class="nav-item">
     <a class="nav-link collapsed" href="/hostay/logout.php?redirect=admin">

@@ -4,7 +4,6 @@ function RoomTable($items) {
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
-                        <th scope="col">Tiêu đề</th>
                         <th scope="col">Kiểu phòng</th>
                         <th scope="col">Khách sạn</th>
                         <th scope="col">Trạng thái</th>
@@ -24,7 +23,6 @@ function RoomRow(RoomObject $item) {
     $out = '<tr>';
 
     $out .= '<th scope="row" class="align-middle">'.$item->getRoom_id().'</th>';
-    $out .= '<td scope="row" class="align-middle">'.$item->getRoom_title().'</td>';
     $out .= '<td scope="row" class="align-middle">'.$item->getRoom_type().'</td>';
     $out .= '<td scope="row" class="align-middle">'.$item->getRoom_hotel_name().'</td>';
     $out .= '<td scope="row" class="align-middle">'.getStatic($item->getRoom_static()).'</td>';
@@ -37,7 +35,7 @@ function RoomRow(RoomObject $item) {
     $out .= viewDetail($item);
     //edit
     $out .= '<td class="align-middle">
-    <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#editRoom'.$item->getRoom_id().'">
+    <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#editRoom'.$item->getRoom_id().'">
         <i class="bi bi-pencil-square"></i>
     </button>
     </td>';
@@ -92,10 +90,12 @@ function viewDel($item) {
     $out .= '<h1 class="modal-title fs-5" id="staticBackdropLabel">Xóa phòng</h1>';
     $out .= '<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>';
     $out .= '</div><div class="modal-body">';
-    $out .= 'Bạn có chắc chắn muốn xóa phòng: '.$item->getRoom_title();
+    $out .= '<p>Bạn có chắc chắn muốn xóa phòng:</p>';
+    $out .= '<p><b>Khách sạn: </b>'.$item->getRoom_hotel_name().'</p>';
+    $out .= '<p><b>Loại: </b>'.$item->getRoom_type().'</p>';
     $out .= '</div><div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" name="exitDel">Thoát</button>
-                <a href="/hostay/admin/actions/roomdr.php?id='.$item->getRoom_id().'" class="btn btn-danger">Xóa</a>
+                <a href="/hostay/actions/roomdr.php?id='.$item->getRoom_id().'" class="btn btn-danger">Xóa</a>
             </div></div></div></div>';
     return $out;
 }

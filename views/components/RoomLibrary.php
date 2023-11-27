@@ -32,7 +32,7 @@ function RoomBox(RoomObject $item) {
     $out .= '<div class="price-box d-flex">';
     $out .= '<span class="price-a">Giá | $ '.$item->getRoom_price().'</span>';
     $out .= '</div>';
-    $out .= '<a href="/hostay/views/room.php?id='.$item->getRoom_id().'" class="link-a">Click here to view';
+    $out .= '<a href="/hostay/views/room.php?id='.$item->getRoom_id().'" class="link-a">Click để xem';
     $out .= '<span class="bi bi-chevron-right"></span>';
     $out .= '</a>';
     $out .= '</div>';
