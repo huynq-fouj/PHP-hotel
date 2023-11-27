@@ -58,10 +58,10 @@ function getStatic($static) {
     $out = '';
     switch($static) {
         case 1:
-            $out = '<span class="text-success">Phòng trống</span>';
+            $out = '<span class="text-success">Còn phòng trống</span>';
             break;
         case 2:
-            $out = '<span class="text-danger">Đang sử dụng</span>';
+            $out = '<span class="text-danger">Hết phòng</span>';
             break;
         case 3:
             $out = '<span class="text-warning">Đang sửa chữa</span>';

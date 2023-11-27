@@ -5,13 +5,12 @@ class RoomObject {
     private $room_number_people;//int
     private $room_number_bed;//int
     private $room_quality;//float
-    private $room_type;//string
+    private $room_type;//string: Standard, Superior, Deluxe, Suite, Villa
     private $room_bed_type;//string
     private $room_price;//float
     private $room_detail;//string
     private $room_title;//string
-    private $room_width;//float
-    private $room_length;//float
+    private $room_area;//float
     private $room_static;//int
     private $room_image;//string
     private $room_address;//string
@@ -54,12 +53,8 @@ class RoomObject {
         return $this->room_title;
     }
 
-    function getRoom_width() {
-        return $this->room_width;
-    }
-
-    function getRoom_length() {
-        return $this->room_length;
+    function getRoom_area() {
+        return $this->room_area;
     }
 
     function getRoom_static() {
@@ -114,12 +109,8 @@ class RoomObject {
         $this->room_title = $room_title;
     }
 
-    function setRoom_width($room_width) {
-        $this->room_width = $room_width;
-    }
-
-    function setRoom_length($room_length) {
-        $this->room_length = $room_length;
+    function setRoom_area($room_area) {
+        $this->room_area = $room_area;
     }
 
     function setRoom_static($room_static) {

@@ -1,58 +1,83 @@
 <?php
 function RoomGrid($items) {
-    $out = '';
+    $out = '<div class="row">';
+    //Grid option
+    $out .= GridOption();
+    if(count($items) > 0) {
+        foreach($items as $item) {
+            $out .= RoomBox($item);
+        }
+    } else {
+        $out .= '<div class="col-sm-12">Không tìm được dữ liệu!</div>';
+    }
+    $out .= '</div>';
 
     return $out;
 }
+
 function RoomBox(RoomObject $item) {
-    $out = '';
+    $out = '<div class="col-md-4">';
+    $out .= '<div class="card-box-a card-shadow">';
+    $out .= '<div class="img-box-a">';
+    $out .= '<img src="'.$item->getRoom_image().'" alt="" class="img-a img-fluid">';
+    $out .= '</div>';
+    $out .= '<div class="card-overlay">';
+    $out .= '<div class="card-overlay-a-content">';
+    $out .= '<div class="card-header-a">';
+    $out .= '<h2 class="card-title-a">';
+    $out .= '<a href="/hostay/views/room.php?id='.$item->getRoom_id().'">'.$item->getRoom_type().'</a>';
+    $out .= '</h2>';
+    $out .= '</div>';
+    $out .= '<div class="card-body-a">';
+    $out .= '<div class="price-box d-flex">';
+    $out .= '<span class="price-a">Giá | $ '.$item->getRoom_price().'</span>';
+    $out .= '</div>';
+    $out .= '<a href="/hostay/views/room.php?id='.$item->getRoom_id().'" class="link-a">Click here to view';
+    $out .= '<span class="bi bi-chevron-right"></span>';
+    $out .= '</a>';
+    $out .= '</div>';
+    $out .= '<div class="card-footer-a">';
+    $out .= '<ul class="card-info d-flex justify-content-around">';
+    $out .= '<li>';
+    $out .= '<h4 class="card-info-title">Area</h4>';
+    $out .= '<span>'.$item->getRoom_area().'m<sup>2</sup></span>';
+    $out .= '</li>';
+    $out .= '<li>';
+    $out .= '<h4 class="card-info-title">Beds</h4>';
+    $out .= '<span>'.$item->getRoom_number_bed().'</span>';
+    $out .= '</li>';
+    $out .= '<li>';
+    $out .= '<h4 class="card-info-title">People</h4>';
+    $out .= '<span>'.$item->getRoom_number_people().'</span>';
+    $out .= '</li>';
+    $out .= '<li>';
+    $out .= '<h4 class="card-info-title">Quality</h4>';
+    $out .= '<span>'.$item->getRoom_quality().'</span>';
+    $out .= '</li>';
+    $out .= '</ul>';
+    $out .= '</div>';
+    $out .= '</div>';
+    $out .= '</div>';
+    $out .= '</div>';
+    $out .= '</div>';
+
+    return $out;
+}
+
+function GridOption() {
+    $out = '<div class="col-sm-12">
+        <div class="grid-option">
+          <form>
+            <select class="custom-select">
+              <option selected>All</option>
+              <option value="1">New to Old</option>
+              <option value="2">For Rent</option>
+              <option value="3">For Sale</option>
+            </select>
+          </form>
+        </div>
+      </div>';
 
     return $out;
 }
 ?>
-<!-- <div class="col-md-4">
-    <div class="card-box-a card-shadow">
-        <div class="img-box-a">
-            <img src="/hostay/assets/img-views/property-8.jpg" alt="" class="img-a img-fluid">
-        </div>
-        <div class="card-overlay">
-            <div class="card-overlay-a-content">
-                <div class="card-header-a">
-                    <h2 class="card-title-a">
-                        <a href="#">204 Mount<br/> Olive Road Two</a>
-                    </h2>
-                </div>
-                <div class="card-body-a">
-                    <div class="price-box d-flex">
-                        <span class="price-a">rent | $ 12.000</span>
-                    </div>
-                    <a href="property-single.html" class="link-a">Click here to view
-                        <span class="bi bi-chevron-right"></span>
-                    </a>
-                </div>
-                <div class="card-footer-a">
-                    <ul class="card-info d-flex justify-content-around">
-                        <li>
-                            <h4 class="card-info-title">Area</h4>
-                            <span>340m
-                                <sup>2</sup>
-                            </span>
-                        </li>
-                        <li>
-                            <h4 class="card-info-title">Beds</h4>
-                            <span>2</span>
-                        </li>
-                        <li>
-                            <h4 class="card-info-title">Baths</h4>
-                            <span>4</span>
-                        </li>
-                        <li>
-                            <h4 class="card-info-title">Garages</h4>
-                            <span>1</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> -->

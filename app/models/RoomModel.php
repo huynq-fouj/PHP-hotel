@@ -8,26 +8,25 @@ class RoomModel extends BasicModel {
         $sql = "INSERT INTO tblroom(
             room_number_people,room_number_bed,room_quality,
             room_type,room_bed_type,room_price,room_detail,
-            room_title,room_width,room_length,
+            room_title,room_area,
             room_static,room_image,room_address,room_hotel_name
-            ) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            ) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
         if($stmt = $this->con->prepare($sql)) {
             $number_people = $item->getRoom_number_people();//int
             $number_bed = $item->getRoom_number_bed();//int
             $quality = $item->getRoom_quality();//float
             $type = $item->getRoom_type();//string
-            $bed_type = $item->getRoom_bed_type();//string
+            $bed_type = $item->getRoom_bed_type();//int
             $price = $item->getRoom_price();//float
             $detail = $item->getRoom_detail();//string
             $title = $item->getRoom_title();//string
-            $width = $item->getRoom_width();//float
-            $length = $item->getRoom_length();//float
+            $area = $item->getRoom_area();//float
             $static = $item->getRoom_static();//int
             $image = $item->getRoom_image();//string
             $address = $item->getRoom_address();//string
             $hotel_name = $item->getRoom_hotel_name();//string
 
-            $stmt->bind_param("iidssdssddisss",
+            $stmt->bind_param("iidsidssdisss",
                                 $number_people,
                                 $number_bed,
                                 $quality,
@@ -36,8 +35,7 @@ class RoomModel extends BasicModel {
                                 $price,
                                 $detail,
                                 $title,
-                                $width,
-                                $length,
+                                $area,
                                 $static,
                                 $image,
                                 $address,
@@ -60,25 +58,24 @@ class RoomModel extends BasicModel {
     function editRoom(RoomObject $item) : bool {
         $sql = "UPDATE tblroom SET room_number_people=?,room_number_bed=?,
             room_quality=?,room_type=?,room_bed_type=?,room_price=?,room_detail=?,
-            room_title=?,room_width=?,room_length=?,room_static=?,
+            room_title=?,room_area=?,room_static=?,
             room_image=?,room_address=?,room_hotel_name=? WHERE room_id=?";
         if($stmt = $this->con->prepare($sql)) {
             $number_people = $item->getRoom_number_people();//int
             $number_bed = $item->getRoom_number_bed();//int
             $quality = $item->getRoom_quality();//float
             $type = $item->getRoom_type();//string
-            $bed_type = $item->getRoom_bed_type();//string
+            $bed_type = $item->getRoom_bed_type();//int
             $price = $item->getRoom_price();//float
             $detail = $item->getRoom_detail();//string
             $title = $item->getRoom_title();//string
-            $width = $item->getRoom_width();//float
-            $length = $item->getRoom_length();//float
+            $area = $item->getRoom_area();//float
             $static = $item->getRoom_static();//int
             $image = $item->getRoom_image();//string
             $address = $item->getRoom_address();//string
             $hotel_name = $item->getRoom_hotel_name();//string
             $id = $item->getRoom_id();//int
-            $stmt->bind_param("iidssdssddisssi",
+            $stmt->bind_param("iidsidssdisssi",
                                 $number_people,
                                 $number_bed,
                                 $quality,
@@ -87,8 +84,7 @@ class RoomModel extends BasicModel {
                                 $price,
                                 $detail,
                                 $title,
-                                $width,
-                                $length,
+                                $area,
                                 $static,
                                 $image,
                                 $address,
