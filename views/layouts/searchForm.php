@@ -35,10 +35,16 @@
                         <label class="pb-2" for="city">Địa điểm</label>
                         <select name="sla" class="form-control form-select form-control-a" id="city">
                             <option value="" selected>Tất cả</option>
-                            <option value="">Alabama</option>
-                            <option value="">Arizona</option>
-                            <option value="">California</option>
-                            <option value="">Colorado</option>
+                            <option value="Hà Nội">Hà Nội</option>
+                            <option value="Hồ Chí Minh">Tp.Hồ Chí Minh</option>
+                            <option value="Cát Bà">Cát Bà</option>
+                            <option value="Nha Trang">Nha Trang</option>
+                            <option value="Hạ Long">Hạ Long</option>
+                            <option value="Đà Lạt">Đà Lạt</option>
+                            <option value="Đà Nẵng">Đà nẵng</option>
+                            <option value="Vũng Tàu">Vũng Tàu</option>
+                            <option value="Thanh Hóa">Thanh Hóa</option>
+                            <option value="Cần Thơ">Cần Thơ</option>
                         </select>
                     </div>
                 </div>

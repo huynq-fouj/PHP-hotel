@@ -95,7 +95,7 @@ require_once __DIR__."/layouts/Toaster.php";
                         <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
                             <!-- Profile Edit Form -->
-                            <form action="/hostay/actions/edituser.php"
+                            <form action="/hostay/actions/userupd.php"
                                 method="post"
                                 class="needs-validation" novalidate>
 
