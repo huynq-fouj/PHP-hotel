@@ -116,7 +116,7 @@ class RoomObject {
         $this->room_address = $room_address;
     }
 
-    function setRoom_hotel_id($room_hotel_name) {
+    function setRoom_hotel_name($room_hotel_name) {
         $this->room_hotel_name = $room_hotel_name;
     }
 

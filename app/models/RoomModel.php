@@ -108,6 +108,7 @@ class RoomModel extends BasicModel {
         $at = ($page - 1) * $total;
         $sql = "SELECT * FROM tblroom ";
         $sql .= $this->createConditions($similar);
+        $sql .= "ORDER BY room_id DESC ";
         $sql .= "LIMIT $at, $total;";
         $result = $this->get($sql);
         if($result->num_rows > 0) {

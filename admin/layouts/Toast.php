@@ -26,10 +26,13 @@
                     echo "Cập nhật tài khoản không thành công!";
                     break;
                 case "add":
-                    echo "Thêm tài khoản không thành công!";
+                    echo "Thêm mới không thành công!";
                     break;
                 case "value":
                     echo "Có lỗi trong dữ liệu được gửi đi!";
+                    break;
+                case "lack":
+                    echo "Vui lòng điền đầy đủ thông tin!";
                     break;
                 case "permis":
                     echo "Không đủ quyền thực hiện hành động!";
@@ -39,6 +42,27 @@
                     break;
                 case "noexist":
                     echo "Đối tượng không tồn tại!";
+                    break;
+                case "upload":
+                    echo "Lỗi trong quá trình sử lý ảnh!";
+                    break;
+                case "img":
+                    echo "Lỗi trong quá trình nhận ảnh!";
+                    break;
+                case "np":
+                    echo "Số người phải là số tự nhiên từ 1 đến 10!";
+                    break;
+                case "nb":
+                    echo "Số phòng phải là số tự nhiên từ 1 đến 10!";
+                    break;
+                case "fq":
+                    echo "Đánh giá phải là số nguyên từ 1 đến 5!";
+                    break;
+                case "fp":
+                    echo "Đơn giá phải là số nguyên lớn hơn 0!";
+                    break;
+                case "fa":
+                    echo "Diện tích là số nguyên lớn hơn 0!";
                     break;
                 default:
                     echo "Có lỗi trong quá trình thực hiện!";
@@ -63,14 +87,17 @@
         if(isset($_GET["suc"])) {
             switch($_GET["suc"]) {
                 case "del":
-                    echo "Xóa tài khoản thành công!";
+                    echo "Xóa thành công!";
                     break;
                 case "upd":
-                    echo "Cập nhật tài khoản thành công!";
+                    echo "Cập nhật thành công!";
                     break;
                 case "add":
                     echo "Thêm tài khoản thành công!";
                     break;
+                case "addr":
+                        echo "Thêm phòng thành công!";
+                        break;
                 default:
                     break;
             }
