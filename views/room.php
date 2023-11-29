@@ -100,32 +100,36 @@ require_once __DIR__."/layouts/Toaster.php";
               </div>
               <div class="summary-list">
                 <ul class="list">
-                  <li class="d-flex justify-content-between">
-                    <strong>ID:</strong>
+                  <li class="d-flex">
+                    <strong class="me-2">ID:</strong>
                     <span><?=$item->getRoom_id()?></span>
                   </li>
-                  <li class="d-flex justify-content-between">
-                    <strong>Địa chỉ:</strong>
+                  <li class="d-flex">
+                    <strong class="me-2">Địa chỉ:</strong>
                     <span><?=$item->getRoom_address()?></span>
                   </li>
-                  <li class="d-flex justify-content-between">
-                    <strong>Loại:</strong>
+                  <li class="d-flex">
+                    <strong class="me-2">Loại:</strong>
                     <span><?=$item->getRoom_type()?></span>
                   </li>
-                  <li class="d-flex justify-content-between">
-                    <strong>Trạng thái:</strong>
+                  <li class="d-flex">
+                    <strong class="me-2">Loại giường ngủ:</strong>
+                    <span><?=$item->getRoom_bed_type()?></span>
+                  </li>
+                  <li class="d-flex">
+                    <strong class="me-2">Trạng thái:</strong>
                     <?=$state?>
                   </li>
-                  <li class="d-flex justify-content-between">
-                    <strong>Diện tích:</strong>
+                  <li class="d-flex">
+                    <strong class="me-2">Diện tích:</strong>
                     <span><?=$item->getRoom_area()?>m<sup>2</sup></span>
                   </li>
-                  <li class="d-flex justify-content-between">
-                    <strong>Giường ngủ:</strong>
+                  <li class="d-flex">
+                    <strong class="me-2">Giường ngủ:</strong>
                     <span><?=$item->getRoom_number_bed()?></span>
                   </li>
-                  <li class="d-flex justify-content-between">
-                    <strong>Đánh giá:</strong>
+                  <li class="d-flex">
+                    <strong class="me-2">Đánh giá:</strong>
                     <span><?=$item->getRoom_quality()?><i class="bi bi-star-fill text-warning ms-1"></i></span>
                   </li>
                 </ul>

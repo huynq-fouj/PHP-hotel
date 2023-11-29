@@ -15,7 +15,7 @@ class RoomModel extends BasicModel {
             $number_bed = $item->getRoom_number_bed();//int
             $quality = $item->getRoom_quality();//float
             $type = $item->getRoom_type();//string
-            $bed_type = $item->getRoom_bed_type();//int
+            $bed_type = $item->getRoom_bed_type();//string
             $price = $item->getRoom_price();//float
             $detail = $item->getRoom_detail();//string
             $area = $item->getRoom_area();//float
@@ -24,7 +24,7 @@ class RoomModel extends BasicModel {
             $address = $item->getRoom_address();//string
             $hotel_name = $item->getRoom_hotel_name();//string
 
-            $stmt->bind_param("iidsidsdisss",
+            $stmt->bind_param("iidssdsdisss",
                                 $number_people,
                                 $number_bed,
                                 $quality,
@@ -62,7 +62,7 @@ class RoomModel extends BasicModel {
             $number_bed = $item->getRoom_number_bed();//int
             $quality = $item->getRoom_quality();//float
             $type = $item->getRoom_type();//string
-            $bed_type = $item->getRoom_bed_type();//int
+            $bed_type = $item->getRoom_bed_type();//string
             $price = $item->getRoom_price();//float
             $detail = $item->getRoom_detail();//string
             $area = $item->getRoom_area();//float
@@ -71,7 +71,7 @@ class RoomModel extends BasicModel {
             $address = $item->getRoom_address();//string
             $hotel_name = $item->getRoom_hotel_name();//string
             $id = $item->getRoom_id();//int
-            $stmt->bind_param("iidsidsdisssi",
+            $stmt->bind_param("iidssdsdisssi",
                                 $number_people,
                                 $number_bed,
                                 $quality,

@@ -9,13 +9,26 @@ if(!isset($_SESSION["user"])) {
 }
 //
 $_SESSION["pos"] = "room";
-$_SESSION["active"] = "roadd";
+$_SESSION["active"] = "rolist";
 //
+if(!isset($_GET["id"]) || !is_numeric($_GET["id"]) || $_GET["id"] < 1) {
+    header("location:/hostay/admin/rooms.php");
+}
 require_once __DIR__."/../app/models/RoomModel.php";
 require_once __DIR__."/../libraries/ImgUpload.php";
 require_once __DIR__."/../libraries/DeleteFile.php";
 
+$id = $_GET["id"];
+$rm = new RoomModel();
+$item = $rm->getRoom($id);
+
+if($item == null) {
+    header("location:/hostay/admin/rooms.php?err=noexist");
+}
+
 $target_dir = "/hostay/public/images";
+$new_img = "";
+$old_img = $item->getRoom_image();
 
 if(isset($_POST["addRoom"])) {
     $hotelname = trim($_POST["txtHotelName"]);
@@ -42,53 +55,57 @@ if(isset($_POST["addRoom"])) {
     && $price != ""
     && $area != "") {
         if(!is_numeric($numpeople) || $numpeople < 1 || $numpeople > 10) {
-            header("location:/hostay/admin/addroom.php?err=np");
+            header("location:/hostay/admin/editroom.php?id=$id&err=np");
         }
         if(!is_numeric($numbed) || $numbed < 1 || $numbed > 10) {
-            header("location:/hostay/admin/addroom.php?err=nb");
+            header("location:/hostay/admin/editroom.php?id=$id&err=nb");
         }
         if(!is_numeric($quality) || $quality < 1 || $quality > 5) {
-            header("location:/hostay/admin/addroom.php?err=fq");
+            header("location:/hostay/admin/editroom.php?id=$id&err=fq");
         }
         if(!is_numeric($price) || $quality < 0) {
-            header("location:/hostay/admin/addroom.php?err=fp");
+            header("location:/hostay/admin/editroom.php?id=$id&err=fp");
         }
         if(!is_numeric($area) || $quality < 0) {
-            header("location:/hostay/admin/addroom.php?err=fa");
+            header("location:/hostay/admin/editroom.php?id=$id&err=fa");
         }
         if(isset($_FILES["roomImage"])
         && file_exists($_FILES["roomImage"]["tmp_name"])
         && is_uploaded_file($_FILES["roomImage"]["tmp_name"])) {
             if($target_file = ImgUpload($target_dir, $_FILES["roomImage"])) {
-                $detail = $_POST["txtDetail"];
-                $rm = new RoomModel();
-                $item = new RoomObject();
-                $item->setRoom_address($address);
-                $item->setRoom_hotel_name($hotelname);
-                $item->setRoom_type($roomtype);
-                $item->setRoom_bed_type($bedtype);
-                $item->setRoom_number_people((int) $numpeople);
-                $item->setRoom_number_bed((int) $numbed);
-                $item->setRoom_price((float) $price);
-                $item->setRoom_quality((float) $quality);
-                $item->setRoom_area((float) $area);
-                $item->setRoom_static((int) $static);
-                $item->setRoom_image($target_file);
-                $item->setRoom_detail($detail);
-                if($rm->addRoom($item)) {
-                    header("location:/hostay/admin/addroom.php?suc=addr");
-                } else {
-                    DeleteFile($target_file);
-                    header("location:/hostay/admin/addroom.php?err=add");
-                }
+                $new_img = $target_file;
             } else {
-                header("location:/hostay/admin/addroom.php?err=upload");
+                header("location:/hostay/admin/editroom.php?id=$id&err=upload");
             }
+        }
+        $detail = $_POST["txtDetail"];
+        $item->setRoom_address($address);
+        $item->setRoom_hotel_name($hotelname);
+        $item->setRoom_type($roomtype);
+        $item->setRoom_bed_type($bedtype);
+        $item->setRoom_number_people((int) $numpeople);
+        $item->setRoom_number_bed((int) $numbed);
+        $item->setRoom_price((float) $price);
+        $item->setRoom_quality((float) $quality);
+        $item->setRoom_area((float) $area);
+        $item->setRoom_static((int) $static);
+        if($new_img != "") {
+            $item->setRoom_image($new_img);
+        }
+        $item->setRoom_detail($detail);
+        if($rm->editRoom($item)) {
+            if($new_img != "") {
+                DeleteFile($old_img);
+            }
+            header("location:/hostay/admin/rooms.php?suc=upd");
         } else {
-            header("location:/hostay/admin/addroom.php?err=img");
+            if($new_img != "") {
+                DeleteFile($new_img);
+            }
+            header("location:/hostay/admin/rooms.php?err=upd");
         }
     } else {
-        header("location:/hostay/admin/addroom.php?err=lack");
+        header("location:/hostay/admin/editroom.php?id=$id&err=lack");
     }
 }
 
@@ -99,7 +116,7 @@ require_once __DIR__."/layouts/Toast.php";
 <main id="main" class="main">
 
     <div class="pagetitle d-flex justify-content-between">
-      <h1>Thêm phòng</h1>
+      <h1>Sửa phòng</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="/hostay/admin/">Trang chủ</a></li>
@@ -122,7 +139,7 @@ require_once __DIR__."/layouts/Toast.php";
                                 <label for="" class="col-form-label fw-bold">Ảnh hiển thị</label>
                                 <label for="roomImage"
                                     class="btn-uploaded">
-                                    <img src="" class="img-uploaded" alt="">
+                                    <img src="<?=$item->getRoom_image()?>" class="img-uploaded" alt="">
                                 </label>
                                 <input type="file"
                                     id="roomImage"
@@ -137,6 +154,7 @@ require_once __DIR__."/layouts/Toast.php";
                                         id="hotelName"
                                         name="txtHotelName"
                                         placeholder="Hotel name"
+                                        value="<?=$item->getRoom_hotel_name()?>"
                                         required>
                                     <div class="invalid-feedback">
                                         Hãy nhập tên khách sạn
@@ -151,6 +169,7 @@ require_once __DIR__."/layouts/Toast.php";
                                         id="address"
                                         name="txtAddress"
                                         placeholder="Address"
+                                        value="<?=$item->getRoom_address()?>"
                                         required>
                                     <div class="invalid-feedback">
                                         Hãy nhập địa chỉ
@@ -166,6 +185,7 @@ require_once __DIR__."/layouts/Toast.php";
                                         name="txtRoomType"
                                         placeholder="Type of room"
                                         list="roomTypeSlc"
+                                        value="<?=$item->getRoom_type()?>"
                                         required>
                                     <datalist id="roomTypeSlc">
                                         <option value="Standard">
@@ -188,6 +208,7 @@ require_once __DIR__."/layouts/Toast.php";
                                         list="roomBedTypeSlc"
                                         class="form-control"
                                         placeholder="Type of bed"
+                                        value="<?=$item->getRoom_bed_type()?>"
                                         required>
                                     <datalist id="roomBedTypeSlc">
                                         <option value="Giường đơn nhỏ">
@@ -210,7 +231,7 @@ require_once __DIR__."/layouts/Toast.php";
                                         placeholder="Number of people"
                                         min="1"
                                         max="10"
-                                        value="1"
+                                        value="<?=$item->getRoom_number_people()?>"
                                         required>
                                     <div class="invalid-feedback">
                                         Hãy nhập số người ở
@@ -227,7 +248,7 @@ require_once __DIR__."/layouts/Toast.php";
                                         placeholder="Number of bed"
                                         min="1"
                                         max="10"
-                                        value="1"
+                                        value="<?=$item->getRoom_number_bed()?>"
                                         required>
                                     <div class="invalid-feedback">
                                         Hãy nhập số giường ngủ
@@ -242,6 +263,7 @@ require_once __DIR__."/layouts/Toast.php";
                                         id="roomQuality"
                                         name="txtQuality"
                                         placeholder="Từ 1 đến 5 sao"
+                                        value="<?=$item->getRoom_quality()?>"
                                         required>
                                     <div class="invalid-feedback">
                                         Hãy nhập đánh giá
@@ -256,6 +278,7 @@ require_once __DIR__."/layouts/Toast.php";
                                         id="roomPrice"
                                         name="txtPrice"
                                         placeholder="Price ($)/Night > 0"
+                                        value="<?=$item->getRoom_price()?>"
                                         required>
                                     <div class="invalid-feedback">
                                         Hãy nhập giá phòng
@@ -270,6 +293,7 @@ require_once __DIR__."/layouts/Toast.php";
                                         id="roomArea"
                                         name="txtArea"
                                         placeholder="Area (m²) > 0"
+                                        value="<?=$item->getRoom_area()?>"
                                         required>
                                     <div class="invalid-feedback">
                                         Hãy nhập diện tích
@@ -279,10 +303,13 @@ require_once __DIR__."/layouts/Toast.php";
                             <div class="mb-3 row">
                                 <label for="roomStatic" class="col-sm-2 col-form-label fw-bold">Trạng thái</label>
                                 <div class="col-sm-10">
+                                    <?php
+                                        $cs = $item->getRoom_static();
+                                    ?>
                                     <select name="slcStatic" id="roomStatic" class="form-control" required>
-                                        <option value="1" selected>Còn phòng trống</option>
-                                        <option value="2">Hết phòng</option>
-                                        <option value="3">Đang sửa chữa</option>
+                                        <option value="1" <?=$cs == 1 ? 'selected' : ''?>>Còn phòng trống</option>
+                                        <option value="2" <?=$cs == 2 ? 'selected' : ''?>>Hết phòng</option>
+                                        <option value="3" <?=$cs == 3 ? 'selected' : ''?>>Đang sửa chữa</option>
                                     </select>
                                     <div class="invalid-feedback">
                                         Hãy nhập chọn trạng thái
@@ -296,14 +323,14 @@ require_once __DIR__."/layouts/Toast.php";
                                         id="detail"
                                         rows="6"
                                         class="form-control"
-                                        placeholder="Description"></textarea>
+                                        placeholder="Description"><?=$item->getRoom_detail()?></textarea>
                                 </div>
                             </div>
                             <div class="mb-3 row d-flex justify-content-center">
                                 <button type="submit"
                                 class="btn btn-primary col-md-2 col-sm-3 me-sm-3 mt-3"
                                 name="addRoom">
-                                    Thêm mới
+                                    Cập nhật thay đổi
                                 </button>
                                 <a class="btn btn-secondary col-md-2 col-sm-3 mt-3" href="">Xóa</a>
                             </div>

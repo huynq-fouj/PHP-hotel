@@ -35,11 +35,10 @@ function RoomRow(RoomObject $item) {
     $out .= viewDetail($item);
     //edit
     $out .= '<td class="align-middle">
-    <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#editRoom'.$item->getRoom_id().'">
+    <a class="btn btn-success btn-sm" href="/hostay/admin/editroom.php?id='.$item->getRoom_id().'">
         <i class="bi bi-pencil-square"></i>
-    </button>
+    </a>
     </td>';
-    $out .= viewEdit($item);
     //del
     $out .= '<td class="align-middle">
     <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#delRoom'.$item->getRoom_id().'">
@@ -70,20 +69,87 @@ function getStatic($static) {
     return $out;
 }
 
-function viewDetail($item) {
-    $out = '';
-
-    return $out;
-}
-
-function viewEdit($item) {
-    $out = '';
-
+function viewDetail(RoomObject $item) {
+    $out = '<div class="modal fade"
+        id="viewRoom'.$item->getRoom_id().'"
+        data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="staticBackdropLabel"
+        aria-hidden="true">';
+    $out .= '<div class="modal-dialog">';
+    $out .= '<div class="modal-content">';
+    $out .= '<div class="modal-header">';
+    $out .= '<h1 class="modal-title fs-5" id="staticBackdropLabel">Thông tin phòng</h1>';
+    $out .= '<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>';
+    $out .= '</div><div class="modal-body">';
+    $out .= '<div class="row">
+                <div class="col-sm-12 d-flex justify-content-center">
+                    <img src="'.$item->getRoom_image().'"
+                        alt="" class="room-img"
+                        style="
+                            width: 100%;
+                            object-fit: contain;
+                            max-height:300px;
+                        ">
+                </div>
+            </div>';
+    $out .= '<div class="row mt-3">
+                <div class="col-sm-12 fw-bold">Tên khách sạn</div>
+                <div class="col-sm-12">'.$item->getRoom_hotel_name().'</div>
+            </div>';
+    $out .= '<div class="row mt-3">
+                <div class="col-sm-12 fw-bold">Tên địa chỉ</div>
+                <div class="col-sm-12">'.$item->getRoom_address().'</div>
+            </div>';
+    $out .= '<div class="row mt-3">
+                <div class="col-sm-12 fw-bold">Kiểu phòng</div>
+                <div class="col-sm-12">'.$item->getRoom_type().'</div>
+            </div>';
+     $out .= '<div class="row mt-3">
+                <div class="col-sm-12 fw-bold">Kiểu giường ngủ</div>
+                <div class="col-sm-12">'.$item->getRoom_bed_type().'</div>
+            </div>';
+    $out .= '<div class="row mt-3">
+                <div class="col-sm-12 fw-bold">Số người ở</div>
+                <div class="col-sm-12">'.$item->getRoom_number_people().'</div>
+            </div>';
+    $out .= '<div class="row mt-3">
+                <div class="col-sm-12 fw-bold">Số giường ngủ</div>
+                <div class="col-sm-12">'.$item->getRoom_number_bed().'</div>
+            </div>';
+    $out .= '<div class="row mt-3">
+                <div class="col-sm-12 fw-bold">Đánh giá</div>
+                <div class="col-sm-12">'.$item->getRoom_quality().'
+                    <i class="bi bi-star-fill text-warning ms-1"></i>
+                </div>
+            </div>';
+    $out .= '<div class="row mt-3">
+                <div class="col-sm-12 fw-bold">Đơn giá</div>
+                <div class="col-sm-12">'.$item->getRoom_price().'</div>
+            </div>';
+    $out .= '<div class="row mt-3">
+                <div class="col-sm-12 fw-bold">Diện tích</div>
+                <div class="col-sm-12">'.$item->getRoom_area().'m<sup>2</sup></div>
+            </div>';
+    $out .= '<div class="row mt-3">
+                <div class="col-sm-12 fw-bold">Trạng thái</div>
+                <div class="col-sm-12">'.getStatic($item->getRoom_static()).'</div>
+            </div>';
+    $out .= '<div class="row mt-3">
+                <div class="col-sm-12 fw-bold">Chi tiết</div>
+                <div class="col-sm-12">'.$item->getRoom_detail().'</div>
+            </div>';
+    $out .= '</div><div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Thoát</button>
+            </div></div></div></div>';
     return $out;
 }
 
 function viewDel($item) {
-    $out = '<div class="modal fade" id="delRoom'.$item->getRoom_id().'" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">';
+    $out = '<div class="modal fade"
+        id="delRoom'.$item->getRoom_id().'"
+        data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="staticBackdropLabel"
+        aria-hidden="true">';
     $out .= '<div class="modal-dialog">';
     $out .= '<div class="modal-content">';
     $out .= '<div class="modal-header">';

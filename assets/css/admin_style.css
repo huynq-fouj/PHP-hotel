@@ -1236,7 +1236,8 @@ h6 {
   display: none;
 }
 
-.btn-uploaded {
+.btn-uploaded,
+.btn-upd-uploaded {
   position: relative;
   cursor: pointer;
   height: 446px;
@@ -1247,6 +1248,10 @@ h6 {
   border: 2px dashed;
   border-color: #a1abff;
   transition: all 0.5s ease;
+}
+
+.btn-upd-uploaded {
+  height: 300px;
 }
 
 @media (max-width: 767px) {
@@ -1267,7 +1272,8 @@ h6 {
   }
 }
 
-.btn-uploaded::before {
+.btn-uploaded::before,
+.btn-upd-uploaded::before {
   content: "";
   position: absolute;
   width: 50px;
@@ -1285,15 +1291,18 @@ h6 {
   z-index: 1;
 }
 
-.btn-uploaded:hover {
+.btn-uploaded:hover,
+.btn-upd-uploaded:hover {
   border-color: #4154f1;
 }
 
-.btn-uploaded .img-uploaded[src=""] {
+.btn-uploaded .img-uploaded[src=""],
+.btn-upd-uploaded .img-uploaded[src=""] {
   display: none;
 }
 
-.btn-uploaded .img-uploaded {
+.btn-uploaded .img-uploaded,
+.btn-upd-uploaded .img-uploaded {
   position: absolute;
   height: 100%;
   width: 100%;
