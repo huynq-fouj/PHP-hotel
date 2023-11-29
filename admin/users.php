@@ -22,7 +22,7 @@ $similar = new UserObject();
 $saveKey = "";
 $param = "";
 if(isset($_GET["key"])) {
-    $saveKey = $_GET["key"];
+    $saveKey = trim($_GET["key"]);
 }
 if($saveKey != "") {
     $similar->setUser_name($saveKey);

@@ -16,9 +16,21 @@ require_once __DIR__."/components/RoomLibrary.php";
 require_once __DIR__."/components/Paging.php";
 $rm = new RoomModel();
 $similar = new RoomObject();
-
+//Search
+$saveKey = "";
+$param = "";
+if(isset($_GET["key"])) {
+    $saveKey = trim($_GET["key"]);
+}
+if($saveKey != "") {
+    $similar->setRoom_hotel_name($saveKey);
+    $param = "key=$saveKey";
+}
 //Phân trang
-$url = "";
+$url = "/hostay/admin/rooms.php?";
+if($param != "") {
+    $url .= "$param&";
+}
 $total = $rm->countRoom($similar);
 $page = 1;
 $totalperpage = 10;

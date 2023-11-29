@@ -100,7 +100,7 @@ class RoomModel extends BasicModel {
         return $item;
     }
 
-    function getRooms(RoomObject $similar, $page, $total) : array {
+    function getRooms(RoomObject $similar, $page, $total, $sort_type = "lastest") : array {
         $list = array();
         if($page <= 0) {
             $page = 1;
@@ -108,13 +108,27 @@ class RoomModel extends BasicModel {
         $at = ($page - 1) * $total;
         $sql = "SELECT * FROM tblroom ";
         $sql .= $this->createConditions($similar);
-        $sql .= "ORDER BY room_id DESC ";
+        switch($sort_type) {
+            case "pricet":
+                $sql .= "ORDER BY room_price ASC ";
+                break;
+            case "priceg":
+                $sql .= "ORDER BY room_price DESC ";
+                break;
+            default:
+                $sql .= "ORDER BY room_id DESC ";
+                break;
+        }
         $sql .= "LIMIT $at, $total;";
-        $result = $this->get($sql);
-        if($result->num_rows > 0) {
-            while($item = $result->fetch_object('RoomObject')) {
-                array_push($list, $item);
+        try {
+            $result = $this->get($sql);
+            if($result->num_rows > 0) {
+                while($item = $result->fetch_object('RoomObject')) {
+                    array_push($list, $item);
+                }
             }
+        } catch(Exception $e) {
+            exit($sql."</br>".$e->getMessage()."</br>".$e->getTraceAsString());
         }
         return $list;
     }
@@ -124,17 +138,48 @@ class RoomModel extends BasicModel {
         $sql .= $this->createConditions($similar);
         $sql .= ";";
         $total = 0;
-        if($result = $this->get($sql)){
-            if($row = $result->fetch_array()) {
-                $total = $row[0];
+        try {
+            if($result = $this->get($sql)){
+                if($row = $result->fetch_array()) {
+                    $total = $row[0];
+                }
             }
+        } catch(Exception $e) {
+            exit($sql."</br>".$e->getMessage()."</br>".$e->getTraceAsString());
         }
         return $total;
     }
 
     private function createConditions(RoomObject $similar) {
         $out = "";
-
+        if($similar->getRoom_hotel_name() != null) {
+            $key = $similar->getRoom_hotel_name();
+            $out .= "((LOWER(room_hotel_name) LIKE '%$key%')
+                     OR (LOWER(room_address) LIKE '%$key%')
+                     OR (LOWER(room_type) LIKE '%$key%')
+                     OR (LOWER(room_bed_type) LIKE '%$key%')) ";
+        }
+        if($similar->getRoom_type() != null) {
+            if($out != "") {
+                $out .= " AND ";
+            }
+            $type = $similar->getRoom_type();
+            $out .= "(LOWER(room_type) LIKE '%$type%') ";
+        }
+        if($similar->getRoom_address() != null) {
+            if($out != "") {
+                $out .= " AND ";
+            }
+            $address = $similar->getRoom_address();
+            $out .= "(LOWER(room_address) LIKE '%$address%') ";
+        }
+        if($similar->getRoom_price() != null) {
+            if($out != "") {
+                $out .= " AND ";
+            }
+            $price = $similar->getRoom_price();
+            $out .= "(room_price < $price) ";
+        }
         if($out != "") {
             $out = "WHERE ".$out;
         }

@@ -1,8 +1,6 @@
 <?php
 function RoomGrid($items) {
     $out = '<div class="row">';
-    //Grid option
-    $out .= GridOption();
     if(count($items) > 0) {
         foreach($items as $item) {
             $out .= RoomBox($item);
@@ -60,23 +58,6 @@ function RoomBox(RoomObject $item) {
     $out .= '</div>';
     $out .= '</div>';
     $out .= '</div>';
-
-    return $out;
-}
-
-function GridOption() {
-    $out = '<div class="col-sm-12">
-        <div class="grid-option">
-          <form>
-            <select class="custom-select">
-              <option selected>All</option>
-              <option value="1">New to Old</option>
-              <option value="2">For Rent</option>
-              <option value="3">For Sale</option>
-            </select>
-          </form>
-        </div>
-      </div>';
 
     return $out;
 }

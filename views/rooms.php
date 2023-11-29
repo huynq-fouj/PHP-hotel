@@ -5,9 +5,50 @@ require_once __DIR__."/components/Paging.php";
 
 $rm = new RoomModel();
 $similar = new RoomObject();
+$param = "";
+if(isset($_GET["key"]) && trim($_GET["key"]) != "") {
+  $saveKey = strtolower(trim($_GET["key"]));
+  $similar->setRoom_hotel_name($saveKey);
+  $param = "key=".$saveKey;
+}
+if(isset($_GET["slt"]) && trim($_GET["slt"]) != "") {
+  if($param != "") {
+    $param .= "&";
+  }
+  $saveType = strtolower(trim($_GET["slt"]));
+  $similar->setRoom_type($saveType);
+  $param .= "slt=".$saveType;
+}
+if(isset($_GET["sla"]) && trim($_GET["sla"]) != "") {
+  if($param != "") {
+    $param .= "&";
+  }
+  $saveAddress = strtolower(trim($_GET["sla"]));
+  $similar->setRoom_address($saveAddress);
+  $param .= "sla=".$saveAddress;
+}
+if(isset($_GET["slp"]) && trim($_GET["slp"]) != "" && is_numeric($_GET["slp"])) {
+  if($param != "") {
+    $param .= "&";
+  }
+  $savePrice = trim($_GET["slp"]);
+  $similar->setRoom_price((float)$savePrice);
+  $param .= "slp=".$savePrice;
+}
+$sortType = "";
+if(isset($_GET["sort"]) && trim($_GET["sort"]) != "") {
+  if($param != "") {
+    $param .= "&";
+  }
+  $sortType = trim($_GET["sort"]);
+  $param .= "sort=".$sortType;
+}
 //Dữ liệu phân trang
 $page = 1;
 $url = "/hostay/views/rooms.php?";
+if($param != "") {
+  $url .= $param."&";
+}
 $total = $rm->countRoom($similar);
 $totalperpage = 6;
 if(isset($_GET["page"]) && is_numeric($_GET["page"])) {
@@ -17,7 +58,7 @@ if(isset($_GET["page"]) && is_numeric($_GET["page"])) {
     }
 }
 //Lấy danh sách
-$rooms = $rm->getRooms($similar, $page, $totalperpage);
+$rooms = $rm->getRooms($similar, $page, $totalperpage, $sortType);
 
 require_once __DIR__."/layouts/header.php";
 require_once __DIR__."/layouts/Toaster.php";
