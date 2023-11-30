@@ -62,6 +62,16 @@ if(!isset($_SESSION["user"])) {
                                         $item->setBill_static(1);
                                         $item->setBill_created_at(date("Y-m-d"));
                                         if($bm->addBill($item)) {
+                                            require_once __DIR__."/../libraries/Sendmail.php";
+                                            $subject = "Đăng ký đặt phòng thành công!";
+                                            $mesage = "Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi;
+                                            Đơn đăng ký đặt phòng của bạn đang được xư lý.
+                                            Vui lòng kiểm tra email và các cuộc gọi để nhận đc thông báo từ chúng tôi.";
+                                            try {
+                                                SendMail($email, $subject, $mesage);
+                                            } catch(Exception $e) {
+                                                exit($e->getMessage()."</br>".$e->getTraceAsString());
+                                            }
                                             header("location:/hostay/views/room.php?id=$id&suc=bia");
                                         } else {
                                             header("location:/hostay/views/room.php?id=$id&err=bia");

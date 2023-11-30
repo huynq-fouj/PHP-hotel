@@ -1,4 +1,8 @@
 <?php
+require_once __DIR__."/PHPMailer/src/PHPMailer.php";
+require_once __DIR__."/PHPMailer/src/Exception.php";
+require_once __DIR__."/PHPMailer/src/SMTP.php";
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -6,7 +10,7 @@ function SendMail($to, $subject, $message) {
     $ini_file = parse_ini_file(__DIR__."/../php.config.ini");
     $senderName = $ini_file["smtp_sendername"];
     $name = $ini_file["smtp_username"];
-    $pass = $ini_file["smtp_userpass"];
+    $pass = $ini_file["smtp_password"];
     $host = $ini_file["smtp_host"];
     $port = $ini_file["smtp_port"];
     $mail = new PHPMailer(true);
