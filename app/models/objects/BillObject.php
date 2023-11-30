@@ -4,12 +4,12 @@ class BillObject {
     private $bill_id;//int
     private $bill_room_id;//int
     private $bill_customer_id;//int
-    private $bill_created_at;//string
+    private $bill_created_at;//date
     private $bill_fullname;//string
     private $bill_email;//string
     private $bill_phone;//string
-    private $bill_start_date;//string
-    private $bill_end_date;//string
+    private $bill_start_date;//date
+    private $bill_end_date;//date
     private $bill_number_adult;//int
     private $bill_number_children;//int
     private $bill_number_room;//int

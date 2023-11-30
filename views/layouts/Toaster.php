@@ -43,6 +43,30 @@
                 case "noexist":
                     echo "Đối tượng không tồn tại!";
                     break;
+                case "noexistr":
+                    echo "Phòng không tồn tại!";
+                    break;
+                case "lack":
+                    echo "Vui lòng điền đầy đủ thông tin!";
+                    break;
+                case "nr":
+                    echo "Số phòng phải là số từ 1 đến 5!";
+                    break;
+                case "na":
+                    echo "Số người lớn là số từ 0 đến 10!";
+                    break;
+                case "nc":
+                    echo "Số trẻ nhỏ là số từ 0 đến 10!";
+                    break;
+                case "np":
+                    echo "Phải có ít nhất 1 người đặt phòng!";
+                    break;
+                case "date":
+                    echo "Không đúng định dạng hoặc có lỗi khi nhập ngày tháng năm!";
+                    break;
+                case "bia":
+                    echo "Đặt phòng không thành công!";
+                    break;
                 default:
                     echo "Có lỗi trong quá trình thực hiện!";
                     break;
@@ -73,6 +97,9 @@
                     break;
                 case "add":
                     echo "Thêm tài khoản thành công!";
+                    break;
+                case "bia":
+                    echo "Đặt phòng thành công!";
                     break;
                 default:
                     break;

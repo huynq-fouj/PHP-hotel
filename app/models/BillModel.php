@@ -85,12 +85,17 @@ class BillModel extends BasicModel {
         $at = ($page - 1) * $total;
         $sql = "SELECT * FROM tblbill ";
         $sql .= $this->createConditions($similar);
+        $sql .= "ORDER BY bill_id DESC ";
         $sql .= "LIMIT $at, $total;";
-        $result = $this->get($sql);
-        if($result->num_rows > 0) {
-            while($item = $result->fetch_object('BillObject')) {
-                array_push($list, $item);
+        try {
+            $result = $this->get($sql);
+            if($result->num_rows > 0) {
+                while($item = $result->fetch_object('BillObject')) {
+                    array_push($list, $item);
+                }
             }
+        } catch(Exception $e) {
+            exit($sql."</br>".$e->getMessage()."</br>".$e->getTraceAsString());
         }
         return $list;
     }

@@ -11,13 +11,24 @@ function checkValidPassWord(string $pass1, string $pass2) : bool {
     return true;
 }
 function checkEmail($email) : bool {
-    if($email != "" && str_contains($email, "@") && str_contains($email, ".")) {
+    if($email != "" && str_contains($email, "@")) {
         $arr = explode("@", $email);
-        $str = $arr[0];
-        if(strlen($str) >= 5) {
-            return true;
+        if(strlen($arr[0]) >= 5 && str_contains($arr[1], ".")) {
+            $arr1 = explode(".",$arr[1]);
+            if(strlen($arr1[0]) >= 2 && strlen($arr1[1]) >= 2) {
+                return true;
+            }
         }
     }
     return false;
 }
-?>
+
+function checkValidDate($start, $end) {
+    $cd = date("Ymd");
+    if(($sd = date("Ymd", strtotime($start))) && ($ed = date("Ymd", strtotime($end)))) {
+        if(($ed >= $sd) && ($ed >= $cd) && ($sd >= $cd)) {
+            return true;
+        }
+    }
+    return false;
+}?>

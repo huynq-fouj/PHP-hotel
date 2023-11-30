@@ -205,7 +205,7 @@ require_once __DIR__."/layouts/Toaster.php";
         <div class="row">
           <div class="col-sm-12">
             <div class="property-contact">
-                <form class="form-a needs-validation" method="post" action="/hostay/actions/book.php" novalidate>
+                <form class="form-a needs-validation" method="post" action="/hostay/actions/billadd.php" novalidate>
                     <div class="row">
                         <div class="form-group col-md-6 mb-3">
                         <label for="txtFullname" class="form-label">Họ và tên</label>
@@ -289,6 +289,7 @@ require_once __DIR__."/layouts/Toaster.php";
                                     id="txtStartDate"
                                     name="txtStartDate"
                                     placeholder="Start date"
+                                    value="<?=date("Y-m-d")?>"
                                     required>
                             <div class="invalid-feedback">Vui lòng nhập ngày bắt đầu</div>
                         </div>
@@ -299,6 +300,7 @@ require_once __DIR__."/layouts/Toaster.php";
                                     id="txtEndDate"
                                     name="txtEndDate"
                                     placeholder="End date"
+                                    value="<?=date("Y-m-d")?>"
                                     required>
                             <div class="invalid-feedback">Vui lòng nhập ngày kết thúc</div>
                         </div>
@@ -315,6 +317,7 @@ require_once __DIR__."/layouts/Toaster.php";
                             ></textarea>
                         </div>
                     </div>
+                    <input type="hidden" name="idForPost" value="<?=$item->getRoom_id()?>">
                     <div class="row mt-3 d-flex justify-content-center">
                         <div class="col-lg-3">
                             <button type="submit" class="btn btn-a"><i class="bi bi-send me-1"></i>Đặt phòng</button>
