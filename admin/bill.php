@@ -17,6 +17,8 @@ if(!isset($_GET["id"]) || !is_numeric($_GET["id"]) || $_GET["id"] < 1) {
 //
 require_once __DIR__."/../app/models/BillModel.php";
 require_once __DIR__."/../app/models/RoomModel.php";
+require_once __DIR__."/components/BillLibrary.php";
+require_once __DIR__."/../libraries/Utilities.php";
 
 $id = $_GET["id"];
 $bm = new BillModel();
@@ -24,8 +26,15 @@ $bill = $bm->getBill($id);
 if($bill == null) {
     header("location:/hostay/admin/bills.php?err=noexist");
 }
+
+$diff = getDateDiff($bill->getBill_start_date(), $bill->getBill_end_date());
+
 $rm = new RoomModel();
 $room = $rm->getRoom($bill->getBill_room_id());
+$price = 0;
+if($room != null) {
+    $price = $room->getRoom_price();
+}
 
 require_once __DIR__."/layouts/header.php";
 require_once __DIR__."/layouts/Toast.php";
@@ -38,7 +47,7 @@ require_once __DIR__."/layouts/Toast.php";
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="/hostay/admin/">Trang chủ</a></li>
-          <li class="breadcrumb-item active">Đơn đặt phòng</li>
+          <li class="breadcrumb-item active"><a href="/hostay/admin/bills.php">Đơn đặt phòng</a></li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -86,8 +95,67 @@ require_once __DIR__."/layouts/Toast.php";
                         <!-- End preview room -->
                         <!-- Start bill detail -->
                         <div class="row mb-3">
-                            
+                            <div class="col-md-3 fw-bold">Họ và tên</div>
+                            <div class="col-md-9"><?=$bill->getBill_fullname()?></div>
                         </div>
+                        <div class="row mb-3">
+                            <div class="col-md-3 fw-bold">Email</div>
+                            <div class="col-md-9"><?=$bill->getBill_email()?></div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-3 fw-bold">Số điện thoại</div>
+                            <div class="col-md-9"><?=$bill->getBill_phone()?></div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-3 fw-bold">Số phòng</div>
+                            <div class="col-md-9"><?=$bill->getBill_number_room()?></div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-3 fw-bold">Số người trưởng thành</div>
+                            <div class="col-md-9"><?=$bill->getBill_number_adult()?></div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-3 fw-bold">Số trẻ nhỏ</div>
+                            <div class="col-md-9"><?=$bill->getBill_number_children()?></div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-3 fw-bold">Ngày tạo</div>
+                            <div class="col-md-9"><?=date("d/m/Y", strtotime($bill->getBill_created_at()))?></div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-3 fw-bold">Ngày nhận phòng</div>
+                            <div class="col-md-9"><?=date("d/m/Y", strtotime($bill->getBill_start_date()))?></div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-3 fw-bold">Ngày trả phòng</div>
+                            <div class="col-md-9"><?=date("d/m/Y", strtotime($bill->getBill_end_date()))?></div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-3 fw-bold">Lợi nhuận ước tính</div>
+                            <div class="col-md-9"><?=$price * $diff?>$</div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-12 fw-bold">Ghi chú</div>
+                            <div class="col-sm-12"><?=$bill->getBill_notes()?></div>
+                        </div>
+                        <form action="/hostay/actions/billupd.php" method="post">
+                            <div class="row mb-3">
+                                <label class="col-md-3 fw-bold" for="slcSta">Trạng thái</label>
+                                <div class="col-md-9">
+                                    <select class="form-control" name="slcStatic" id="slcSta">
+                                        <?=generateOption($bill->getBill_static())?>
+                                    </select>
+                                </div>
+                            </div>
+                            <input type="hidden" name="idForPost" value="<?=$bill->getBill_id()?>">
+                            <div class="row mb-3 d-flex justify-content-center">
+                                <button class="col-md-3 btn btn-primary disabled btn-updsta"
+                                    type="submit"
+                                    name="updSta">
+                                    Cập nhật trạng thái
+                                </button>
+                            </div>
+                        </form>
                         <!-- End bill detail -->
                     </div>
                 </div>
@@ -96,6 +164,16 @@ require_once __DIR__."/layouts/Toast.php";
     </section>
 </main>
 <!--End main page-->
+<script>
+    let slc = document.querySelector("#slcSta")
+    slc.addEventListener("change", () => {
+        if(slc.value == <?=$bill->getBill_static()?>) {
+            document.querySelector(".btn-updsta").classList.add("disabled");
+        } else {
+            document.querySelector(".btn-updsta").classList.remove("disabled");
+        }
+    });
+</script>
 <?php
 require_once __DIR__."/layouts/footer.php";
 ?>

@@ -20,13 +20,13 @@
         if(isset($_GET["err"])) {
             switch($_GET["err"]) {
                 case "del":
-                    echo "Xóa tài khoản không thành công!";
+                    echo "Thực hiện xóa không thành công!";
                     break;
                 case "upd":
-                    echo "Cập nhật tài khoản không thành công!";
+                    echo "Thực hiện cập nhật không thành công!";
                     break;
                 case "add":
-                    echo "Thêm mới không thành công!";
+                    echo "Thực hiện thêm mới không thành công!";
                     break;
                 case "value":
                     echo "Có lỗi trong dữ liệu được gửi đi!";

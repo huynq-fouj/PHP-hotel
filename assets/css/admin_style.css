@@ -1232,6 +1232,7 @@ h6 {
   color: #012970;
 }
 
+/*  */
 .upload-img-input {
   display: none;
 }
@@ -1303,6 +1304,43 @@ h6 {
 
 .btn-uploaded .img-uploaded,
 .btn-upd-uploaded .img-uploaded {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+  z-index: 2;
+}
+/*  */
+.room-img-container {
+  position: relative;
+  cursor: pointer;
+  height: 446px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.5s ease;
+}
+
+@media (max-width: 767px) {
+  .room-img-container {
+      height: 388px;
+  }
+}
+
+@media (max-width: 540px) {
+  .room-img-container {
+      height: 300px;
+  }
+}
+
+@media (max-width: 420px) {
+  .room-img-container {
+      height: 240px;
+  }
+}
+
+.room-img-container .room-img {
   position: absolute;
   height: 100%;
   width: 100%;

@@ -97,4 +97,34 @@ function getStatic($static) {
     }
     return $out;
 }
+
+function generateOption($static) {
+    $out = '';
+    switch($static) {
+        case 1:
+            $out .= '<option value="1">Chờ xử lý</option>';
+            $out .= '<option value="2">Xác nhận đơn</option>';
+            $out .= '<option value="3">Hủy đơn</option>';
+            break;
+        case 2:
+            $out .= '<option value="2">Xác nhận đơn</option>';
+            $out .= '<option value="4">Đã nhận phòng</option>';
+            $out .= '<option value="3">Hủy đơn</option>';
+            break;
+        case 3:
+            $out .= '<option value="3">Hủy đơn</option>';
+            break;
+        case 4:
+            $out .= '<option value="4">Đã nhận phòng</option>';
+            $out .= '<option value="5">Đã trả phòng</option>';
+            $out .= '<option value="3">Hủy đơn</option>';
+            break;
+        case 5:
+            $out .= '<option value="5">Đã trả phòng</option>';
+            break;
+        default:
+            break;
+    }
+    return $out;
+}
 ?>

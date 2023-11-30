@@ -31,4 +31,16 @@ function checkValidDate($start, $end) {
         }
     }
     return false;
-}?>
+}
+
+function getDateDiff($start, $end) {
+    try {
+        $startD = date_create($start);
+        $endD = date_create($end);
+        $diff = date_diff($startD, $endD);
+        return $diff->format("%a");
+    } catch(Exception $e) {
+        return 0;
+    }
+}
+?>
