@@ -622,8 +622,8 @@ a:hover {
 .navbar-default {
   transition: all 0.5s ease-in-out;
   background-color: #ffffff;
-  padding-top: 28px;
-  padding-bottom: 28px;
+  padding-top: 16px;
+  padding-bottom: 16px;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   box-shadow: 1px 2px 15px rgba(100, 100, 100, 0.3);
@@ -726,8 +726,8 @@ a:hover {
 
 .navbar-default.navbar-reduce {
   transition: all 0.5s ease-in-out;
-  padding-top: 19px;
-  padding-bottom: 19px;
+  padding-top: 0px;
+  padding-bottom: 0px;
 }
 
 .navbar-default.navbar-reduce .nav-link {

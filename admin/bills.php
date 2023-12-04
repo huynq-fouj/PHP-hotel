@@ -11,9 +11,9 @@ if(!isset($_SESSION["user"])) {
 $_SESSION["pos"] = "bill";
 $_SESSION["active"] = "bilist";
 //
-require_once __DIR__."/../app/models/BillModel.php";
-require_once __DIR__."/components/BillLibrary.php";
-require_once __DIR__."/components/Paging.php";
+require_once("../app/models/BillModel.php");
+require_once("components/BillLibrary.php");
+require_once("components/Paging.php");
 //Khởi tạo đối tượng
 $bm = new BillModel();
 $similar = new BillObject();
@@ -32,8 +32,8 @@ if(isset($_GET["page"])) {
 //Lấy danh sách
 $items = $bm->getBills($similar, $page, $totalperpage);
 
-require_once __DIR__."/layouts/header.php";
-require_once __DIR__."/layouts/Toast.php";
+require_once("layouts/header.php");
+require_once("layouts/Toast.php");
 ?>
 <!--Start main page-->
 <main id="main" class="main">
@@ -63,5 +63,5 @@ require_once __DIR__."/layouts/Toast.php";
 </main>
 <!--End main page-->
 <?php
-require_once __DIR__."/layouts/footer.php";
+require_once("layouts/footer.php");
 ?>

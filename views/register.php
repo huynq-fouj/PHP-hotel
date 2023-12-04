@@ -1,6 +1,6 @@
 <?php
-require_once "../app/models/UserModel.php";
-require_once "../libraries/Utilities.php";
+require_once("../app/models/UserModel.php");
+require_once("../libraries/Utilities.php");
 
 session_start();
 if(isset($_POST["register"])) {

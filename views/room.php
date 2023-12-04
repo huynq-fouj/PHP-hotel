@@ -10,10 +10,10 @@ if(!isset($_GET["id"]) || !is_numeric($_GET["id"]) || $_GET["id"] <= 0) {
 //
 $id = $_GET["id"];
 //
-require_once __DIR__."/../app/models/RoomModel.php";
-require_once __DIR__."/../app/models/BillModel.php";
-require_once __DIR__."/../libraries/Utilities.php";
-require_once __DIR__."/../libraries/Sendmail.php";
+require_once("../app/models/RoomModel.php");
+require_once("../app/models/BillModel.php");
+require_once("../libraries/Utilities.php");
+require_once("../libraries/Sendmail.php");
 
 $rm = new RoomModel();
 $item = $rm->getRoom($id);
@@ -35,8 +35,8 @@ switch($item->getRoom_static()) {
         break;
 }
 
-require_once __DIR__."/layouts/header.php";
-require_once __DIR__."/layouts/Toaster.php";
+require_once("layouts/header.php");
+require_once("layouts/Toaster.php");
 ?>
 <main id="main">
 
@@ -334,5 +334,5 @@ require_once __DIR__."/layouts/Toaster.php";
 
 </main><!-- End #main -->
 <?php
-require_once __DIR__."/layouts/footer.php"
+require_once("layouts/footer.php");
 ?>

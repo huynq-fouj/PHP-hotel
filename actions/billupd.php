@@ -8,7 +8,7 @@ if(!isset($_SESSION["user"])) {
     } else {
         if(isset($_POST["updSta"])) {
             if(isset($_POST["idForPost"]) && is_numeric($_POST["idForPost"])) {
-                require_once __DIR__."/../app/models/BillModel.php";
+                require_once("../app/models/BillModel.php");
 
                 $id = trim($_POST["idForPost"]);
                 $arrSta = array(1,2,3,4,5);

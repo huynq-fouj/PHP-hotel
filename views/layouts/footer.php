@@ -147,7 +147,7 @@
     </a>
 
     <?php
-        require_once __DIR__."/jsConfig.php";
+        require_once("jsConfig.php");
     ?>
 </body>
 </html>

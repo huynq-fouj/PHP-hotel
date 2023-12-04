@@ -1,5 +1,5 @@
 <?php
-require_once(__DIR__."/../lib/connection.php");
+require_once($_SERVER["DOCUMENT_ROOT"]."/hostay/app/lib/connection.php");
 
 class BasicModel {
     

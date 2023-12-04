@@ -11,9 +11,9 @@ if(!isset($_SESSION["user"])) {
 $_SESSION["pos"] = "room";
 $_SESSION["active"] = "roadd";
 //
-require_once __DIR__."/../app/models/RoomModel.php";
-require_once __DIR__."/../libraries/ImgUpload.php";
-require_once __DIR__."/../libraries/DeleteFile.php";
+require_once("../app/models/RoomModel.php");
+require_once("../libraries/ImgUpload.php");
+require_once("../libraries/DeleteFile.php");
 
 $target_dir = "/hostay/public/images";
 
@@ -92,8 +92,8 @@ if(isset($_POST["addRoom"])) {
     }
 }
 
-require_once __DIR__."/layouts/header.php";
-require_once __DIR__."/layouts/Toast.php";
+require_once("layouts/header.php");
+require_once("layouts/Toast.php");
 ?>
 <!--Start main page-->
 <main id="main" class="main">
@@ -323,5 +323,5 @@ require_once __DIR__."/layouts/Toast.php";
     });
 </script>
 <?php
-require_once __DIR__."/layouts/footer.php";
+require_once("layouts/footer.php");
 ?>

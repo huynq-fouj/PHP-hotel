@@ -12,7 +12,7 @@ $_SESSION["pos"] = "dashboard";
 $_SESSION["active"] = "";
 //
 
-require_once __DIR__."/layouts/header.php";
+require_once("layouts/header.php");
 ?>
 <!--Start main page-->
 <main id="main" class="main">
@@ -41,5 +41,5 @@ require_once __DIR__."/layouts/header.php";
 </main>
 <!--End main page-->
 <?php
-require_once __DIR__."/layouts/footer.php";
+require_once("layouts/footer.php");
 ?>

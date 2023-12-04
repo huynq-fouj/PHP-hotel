@@ -7,9 +7,9 @@ if(!isset($_SESSION["user"])) {
         header("location:/hostay/views/login.php?err=login");
     } else {
         if(isset($_POST["idForPost"]) && is_numeric($_POST["idForPost"])) {
-            require_once __DIR__."/../app/models/RoomModel.php";
-            require_once __DIR__."/../app/models/BillModel.php";
-            require_once __DIR__."/../libraries/Utilities.php";
+            require_once("../app/models/RoomModel.php");
+            require_once("../app/models/BillModel.php");
+            require_once("../libraries/Utilities.php");
             $id = $_POST["idForPost"];
             $rm = new RoomModel();
             if($rm->getRoom($id) != null) {
@@ -62,7 +62,7 @@ if(!isset($_SESSION["user"])) {
                                         $item->setBill_static(1);
                                         $item->setBill_created_at(date("Y-m-d"));
                                         if($bm->addBill($item)) {
-                                            require_once __DIR__."/../libraries/Sendmail.php";
+                                            require_once("../libraries/Sendmail.php");
                                             $subject = "Đăng ký đặt phòng thành công!";
                                             $mesage = "Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi;
                                             Đơn đăng ký đặt phòng của bạn đang được xư lý.

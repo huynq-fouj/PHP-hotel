@@ -1,7 +1,7 @@
 <?php
-require_once __DIR__."/../app/models/RoomModel.php";
-require_once __DIR__."/components/RoomLibrary.php";
-require_once __DIR__."/components/Paging.php";
+require_once("../app/models/RoomModel.php");
+require_once("components/RoomLibrary.php");
+require_once("components/Paging.php");
 
 $rm = new RoomModel();
 $similar = new RoomObject();
@@ -60,8 +60,8 @@ if(isset($_GET["page"]) && is_numeric($_GET["page"])) {
 //Lấy danh sách
 $rooms = $rm->getRooms($similar, $page, $totalperpage, $sortType);
 
-require_once __DIR__."/layouts/header.php";
-require_once __DIR__."/layouts/Toaster.php";
+require_once("layouts/header.php");
+require_once("layouts/Toaster.php");
 ?>
 <main id="main">
 
@@ -103,5 +103,5 @@ require_once __DIR__."/layouts/Toaster.php";
 
 </main><!-- End #main -->
 <?php
-require_once __DIR__."/layouts/footer.php"
+require_once("layouts/footer.php");
 ?>

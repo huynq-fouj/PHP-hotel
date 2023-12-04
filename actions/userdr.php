@@ -10,7 +10,7 @@ if(!isset($_SESSION["user"])) {
             header("location:/hostay/admin/users.php?err=value");
         } else {
             if($_SESSION["user"]["id"] != $_GET["id"]) {
-                require_once __DIR__."/../app/models/UserModel.php";
+                require_once("../app/models/UserModel.php");
                 $um = new UserModel();
                 $user = $um->getUserById($_GET["id"]);
                 if($user != null){

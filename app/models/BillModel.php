@@ -1,6 +1,6 @@
 <?php
-require_once "BasicModel.php";
-require_once "objects/BillObject.php";
+require_once("BasicModel.php");
+require_once("objects/BillObject.php");
 
 class BillModel extends BasicModel {
     

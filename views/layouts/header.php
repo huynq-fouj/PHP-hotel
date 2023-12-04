@@ -29,12 +29,12 @@ if(str_contains($uri, "/views/profiles")) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?=$title?></title>
     <?php
-        require_once __DIR__."/linkConfig.php";
+        require_once("linkConfig.php");
     ?>
 </head>
 <body>
     <?php
-        require_once __DIR__."/searchForm.php";
+        require_once("searchForm.php");
     ?>
     <!-- ======= Header/Navbar ======= -->
     <nav class="navbar navbar-default navbar-trans navbar-expand-lg fixed-top">

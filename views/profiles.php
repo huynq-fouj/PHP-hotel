@@ -4,7 +4,7 @@ if(!isset($_SESSION["user"]) || !isset($_SESSION["user"]["id"])) {
     header("location:/hostay/views");
 }
 //
-require_once __DIR__."/../app/models/UserModel.php";
+require_once("../app/models/UserModel.php");
 //Khởi tạo đối tượng
 $um = new UserModel();
 //Lấy thông tin User
@@ -13,8 +13,8 @@ if($user == null) {
     header("location:/hostay/views/login.php?err=notok");
 }
 
-require_once __DIR__."/layouts/header.php";
-require_once __DIR__."/layouts/Toaster.php";
+require_once("layouts/header.php");
+require_once("layouts/Toaster.php");
 ?>
 <main class="main">
     <div class="intro-single">
@@ -210,5 +210,5 @@ require_once __DIR__."/layouts/Toaster.php";
     </div>
 </main>
 <?php
-require_once __DIR__."/layouts/footer.php";
+require_once("layouts/footer.php");
 ?>

@@ -14,9 +14,9 @@ $_SESSION["active"] = "rolist";
 if(!isset($_GET["id"]) || !is_numeric($_GET["id"]) || $_GET["id"] < 1) {
     header("location:/hostay/admin/rooms.php");
 }
-require_once __DIR__."/../app/models/RoomModel.php";
-require_once __DIR__."/../libraries/ImgUpload.php";
-require_once __DIR__."/../libraries/DeleteFile.php";
+require_once("../app/models/RoomModel.php");
+require_once("../libraries/ImgUpload.php");
+require_once("../libraries/DeleteFile.php");
 
 $id = $_GET["id"];
 $rm = new RoomModel();
@@ -109,8 +109,8 @@ if(isset($_POST["addRoom"])) {
     }
 }
 
-require_once __DIR__."/layouts/header.php";
-require_once __DIR__."/layouts/Toast.php";
+require_once("layouts/header.php");
+require_once("layouts/Toast.php");
 ?>
 <!--Start main page-->
 <main id="main" class="main">
@@ -350,5 +350,5 @@ require_once __DIR__."/layouts/Toast.php";
     });
 </script>
 <?php
-require_once __DIR__."/layouts/footer.php";
+require_once("layouts/footer.php");
 ?>

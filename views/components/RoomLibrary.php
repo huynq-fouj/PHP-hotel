@@ -50,7 +50,7 @@ function RoomBox(RoomObject $item) {
     $out .= '</li>';
     $out .= '<li>';
     $out .= '<h4 class="card-info-title">Quality</h4>';
-    $out .= '<span>'.$item->getRoom_quality().'</span>';
+    $out .= '<span>'.$item->getRoom_quality().'<i class="bi bi-star-fill text-warning ms-1"></i></span>';
     $out .= '</li>';
     $out .= '</ul>';
     $out .= '</div>';

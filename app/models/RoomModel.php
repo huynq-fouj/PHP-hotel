@@ -1,6 +1,6 @@
 <?php
-require_once "BasicModel.php";
-require_once "objects/RoomObject.php";
+require_once("BasicModel.php");
+require_once("objects/RoomObject.php");
 
 class RoomModel extends BasicModel {
 
