@@ -1,6 +1,6 @@
 <?php
 function getConnection() : mysqli {
-    $db_ini = parse_ini_file(__DIR__."/../../php.config.ini");
+    $db_ini = parse_ini_file($_SERVER["DOCUMENT_ROOT"]."/hostay/php.config.ini");
     $con = new mysqli($db_ini["db_host"],
                     $db_ini["db_user"],
                     $db_ini["db_pass"],
