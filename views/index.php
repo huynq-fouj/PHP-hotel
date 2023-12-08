@@ -1,6 +1,4 @@
 <?php
-
-
 require_once __DIR__."/layouts/header.php";
 ?>
 
@@ -79,12 +77,57 @@ require_once __DIR__."/layouts/header.php";
     <div class="swiper-pagination"></div>
 </div><!-- End Intro Section -->
 <main id="main">
-    <!-- ======= Latest Properties Section ======= -->
-    <section class="section-property section-t8">
+
+    <!--  -->
+    <section class="section-property section-t8 pt-5">
       <div class="container">
         <div class="row">
           <div class="col-md-12">
-            <div class="title-wrap d-flex justify-content-between">
+            <div class="title-wrap d-flex justify-content-between pb-5">
+              <div class="title-box">
+                <h2 class="title-a">Ưu đãi</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+
+          <div class="card col-md-6 border-0 rounded-0 my-1">
+            <div class="card-body rounded text-white" style="
+                background-image: url(/hostay/public/uu-dai/img-3.jpg);
+                background-size: cover;
+                background-position: center;">
+              <h5 class="card-title">Năm mới hành trình mới</h5>
+              <p class="card-text">
+                Tiết kiệm từ 15% khi đặt và lưu trú trước 1/4/2024
+              </p>
+              <a href="/hostay/views/rooms.php" class="card-link btn btn-primary mb-0 mt-auto">Khám phá</a>
+            </div>
+          </div>
+
+          <div class="card col-md-6 border-0 rounded-0 my-1">
+            <div class="card-body rounded text-white" style="
+                background-image: url(/hostay/public/uu-dai/img-4.jpg);
+                background-size: cover;
+                background-position: center;">
+              <h5 class="card-title">Làm việc thư giãn hay cả 2</h5>
+              <p class="card-text">
+                Khám phá các chỗ nghỉ cho phép lưu trú dài ngày với giá theo tháng tiết kiệm hơn
+              </p>
+              <a href="/hostay/views/rooms.php" class="card-link btn btn-primary mb-0 mt-auto">Khám phá</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section><!--  -->
+
+    <!-- ======= Latest Properties Section ======= -->
+    <section class="section-property section-t8 pt-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="title-wrap d-flex justify-content-between pb-5">
               <div class="title-box">
                 <h2 class="title-a">Mới nhất</h2>
               </div>
@@ -172,14 +215,94 @@ require_once __DIR__."/layouts/header.php";
       </div>
     </section><!-- End Latest Properties Section -->
 
-    <!-- ======= Testimonials Section ======= -->
-    <section class="section-testimonials section-t8 nav-arrow-a">
+    <!-- Loaction section -->
+    <section class="section-property section-t8 pt-5">
       <div class="container">
         <div class="row">
           <div class="col-md-12">
-            <div class="title-wrap d-flex justify-content-between">
+            <div class="title-wrap d-flex justify-content-between pb-5">
               <div class="title-box">
-                <h2 class="title-a">Testimonials</h2>
+                <h2 class="title-a">Địa điểm phổ biến</h2>
+              </div>
+              <div class="title-link">
+                <a href="/hostay/views/rooms.php">Tất cả phòng
+                  <span class="bi bi-chevron-right"></span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+
+          <a href="/hostay/views/rooms.php?sla=H%E1%BA%A1+Long" class="card border-0 py-0 col-md-3 col-sm-6">
+            <img src="/hostay/public/location-img/ha-long.jpg"
+              class="card-img-top loc-img" alt="" style="object-fit: cover;">
+            <div class="card-body p-1">
+              <p class="card-text mb-0 fw-bold">Hạ Long</p>
+              <p class="card-text" style="font-size: 14px;">
+                <?php
+                  $similar = new RoomObject();
+                  $similar->setRoom_address('hạ long');
+                  echo $rm->countRoom($similar)." điểm dừng";
+                ?>
+              </p>
+            </div>
+          </a>
+
+          <a href="/hostay/views/rooms.php?sla=Nha+Trang" class="card border-0 py-0 col-md-3 col-sm-6">
+            <img src="/hostay/public/location-img/nha-trang.jpg"
+              class="card-img-top loc-img" alt="" style="object-fit: cover;">
+            <div class="card-body p-1">
+              <p class="card-text mb-0 fw-bold">Nha Trang</p>
+              <p class="card-text" style="font-size: 14px;">
+                <?php
+                  $similar->setRoom_address('nha trang');
+                  echo $rm->countRoom($similar)." điểm dừng";
+                ?>
+              </p>
+            </div>
+          </a>
+
+          <a href="/hostay/views/rooms.php?sla=H%C3%A0+N%E1%BB%99i" class="card border-0 py-0 col-md-3 col-sm-6">
+            <img src="/hostay/public/location-img/ha-noi.jpg"
+              class="card-img-top loc-img" alt="" style="object-fit: cover;">
+            <div class="card-body p-1">
+              <p class="card-text mb-0 fw-bold">Hà Nội</p>
+              <p class="card-text" style="font-size: 14px;">
+                <?php
+                  $similar->setRoom_address('hà nội');
+                  echo $rm->countRoom($similar)." điểm dừng";
+                ?>
+              </p>
+            </div>
+          </a>
+
+          <a href="/hostay/views/rooms.php?sla=%C4%90%C3%A0+N%E1%BA%B5ng" class="card border-0 py-0 col-md-3 col-sm-6">
+            <img src="/hostay/public/location-img/da-nang.jpg"
+              class="card-img-top loc-img" alt="" style="object-fit: cover;">
+            <div class="card-body p-1">
+              <p class="card-text mb-0 fw-bold">Đà Nẵng</p>
+              <p class="card-text" style="font-size: 14px;">
+                <?php
+                  $similar->setRoom_address('đà nẵng');
+                  echo $rm->countRoom($similar)." điểm dừng";
+                ?>
+              </p>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </section><!-- End loaction section -->
+    <!-- ======= Testimonials Section ======= -->
+    <section class="section-testimonials section-t8 pt-5 nav-arrow-a">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="title-wrap d-flex justify-content-between pb-5">
+              <div class="title-box">
+                <h2 class="title-a">Đánh giá</h2>
               </div>
             </div>
           </div>
@@ -193,7 +316,7 @@ require_once __DIR__."/layouts/header.php";
                 <div class="row">
                   <div class="col-sm-12 col-md-6">
                     <div class="testimonial-img">
-                      <img src="/hostay/assets/img-views/testimonial-1.jpg" alt="" class="img-fluid">
+                      <img src="/hostay/public/testimonials/t1.jpg" alt="" class="img-fluid">
                     </div>
                   </div>
                   <div class="col-sm-12 col-md-6">
@@ -202,14 +325,12 @@ require_once __DIR__."/layouts/header.php";
                     </div>
                     <div class="testimonials-content">
                       <p class="testimonial-text">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, cupiditate ea nam praesentium
-                        debitis hic ber quibusdam
-                        voluptatibus officia expedita corpori.
+                        Tốc độ truy cập trang web Hostay rất nhanh, giúp tôi có trải nghiệm tốt khi sử dụng.
                       </p>
                     </div>
                     <div class="testimonial-author-box">
-                      <img src="/hostay/assets/img-views/mini-testimonial-1.jpg" alt="" class="testimonial-avatar">
-                      <h5 class="testimonial-author">Albert & Erika</h5>
+                      <img src="/hostay/public/testimonials/t1-avatar.jpg" alt="" class="testimonial-avatar">
+                      <h5 class="testimonial-author">Elisa</h5>
                     </div>
                   </div>
                 </div>
@@ -221,7 +342,7 @@ require_once __DIR__."/layouts/header.php";
                 <div class="row">
                   <div class="col-sm-12 col-md-6">
                     <div class="testimonial-img">
-                      <img src="/hostay/assets/img-views/testimonial-2.jpg" alt="" class="img-fluid">
+                      <img src="/hostay/public/testimonials/t2.jpg" alt="" class="img-fluid">
                     </div>
                   </div>
                   <div class="col-sm-12 col-md-6">
@@ -230,14 +351,13 @@ require_once __DIR__."/layouts/header.php";
                     </div>
                     <div class="testimonials-content">
                       <p class="testimonial-text">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, cupiditate ea nam praesentium
-                        debitis hic ber quibusdam
-                        voluptatibus officia expedita corpori.
+                        Tôi đánh giá cao dịch vụ khách hàng của Hostay,
+                        với đội ngũ nhân viên nhiệt tình, sẵn sàng hỗ trợ khách hàng 24/7.
                       </p>
                     </div>
                     <div class="testimonial-author-box">
-                      <img src="/hostay/assets/img-views/mini-testimonial-2.jpg" alt="" class="testimonial-avatar">
-                      <h5 class="testimonial-author">Pablo & Emma</h5>
+                      <img src="/hostay/public/testimonials/t2-avatar.jpg" alt="" class="testimonial-avatar">
+                      <h5 class="testimonial-author">Pablo</h5>
                     </div>
                   </div>
                 </div>
@@ -251,6 +371,19 @@ require_once __DIR__."/layouts/header.php";
       </div>
     </section><!-- End Testimonials Section -->
 </main>
+<script>
+  let arrLoc = document.querySelectorAll(".loc-img");
+
+  function update() {
+    window.requestAnimationFrame(update);
+    let imgHeight = arrLoc[0].offsetHeight;
+    arrLoc.forEach(item => {
+      item.style.height = imgHeight + "px";
+    });
+  }
+
+  update();
+</script>
 <?php
     require_once __DIR__."/layouts/footer.php";
 ?>

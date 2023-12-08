@@ -32,11 +32,6 @@ a {
   transition: all 0.5s ease;
 }
 
-a:hover {
-  color: #2eca6a;
-  text-decoration: none;
-}
-
 .link-two {
   color: #000000;
   transition: all 0.5s ease;
@@ -2021,11 +2016,34 @@ a:hover {
   margin-top: 2rem;
 }
 
+.testimonial-author-box img {
+  width: 80px;
+  height: 80px;
+}
+
 .testimonial-author {
   margin-left: 1rem;
   display: inline-flex;
   font-size: 1.2rem;
   color: #000000;
+}
+
+.testimonial-img {
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.testimonial-img img {
+  object-fit: cover;
+}
+
+@media (min-width: 576px) {
+  .testimonial-img {
+    height: 400px;
+  }
 }
 
 /*--------------------------------------------------------------
