@@ -243,7 +243,7 @@ require_once __DIR__."/layouts/header.php";
               <p class="card-text" style="font-size: 14px;">
                 <?php
                   $similar = new RoomObject();
-                  $similar->setRoom_address('hạ long');
+                  $similar->setRoom_address('Hạ Long');
                   echo $rm->countRoom($similar)." điểm dừng";
                 ?>
               </p>
@@ -257,21 +257,21 @@ require_once __DIR__."/layouts/header.php";
               <p class="card-text mb-0 fw-bold">Nha Trang</p>
               <p class="card-text" style="font-size: 14px;">
                 <?php
-                  $similar->setRoom_address('nha trang');
+                  $similar->setRoom_address('Nha Trang');
                   echo $rm->countRoom($similar)." điểm dừng";
                 ?>
               </p>
             </div>
           </a>
 
-          <a href="/hostay/views/rooms.php?sla=H%C3%A0+N%E1%BB%99i" class="card border-0 py-0 col-md-3 col-sm-6">
-            <img src="/hostay/public/location-img/ha-noi.jpg"
+          <a href="/hostay/views/rooms.php?sla=%C4%90%C3%A0+L%E1%BA%A1t" class="card border-0 py-0 col-md-3 col-sm-6">
+            <img src="/hostay/public/location-img/da-lat.jpg"
               class="card-img-top loc-img" alt="" style="object-fit: cover;">
             <div class="card-body p-1">
-              <p class="card-text mb-0 fw-bold">Hà Nội</p>
+              <p class="card-text mb-0 fw-bold">Đà Lạt</p>
               <p class="card-text" style="font-size: 14px;">
                 <?php
-                  $similar->setRoom_address('hà nội');
+                  $similar->setRoom_address('Đà Lạt');
                   echo $rm->countRoom($similar)." điểm dừng";
                 ?>
               </p>
@@ -285,7 +285,7 @@ require_once __DIR__."/layouts/header.php";
               <p class="card-text mb-0 fw-bold">Đà Nẵng</p>
               <p class="card-text" style="font-size: 14px;">
                 <?php
-                  $similar->setRoom_address('đà nẵng');
+                  $similar->setRoom_address('Đà Nẵng');
                   echo $rm->countRoom($similar)." điểm dừng";
                 ?>
               </p>
@@ -373,13 +373,14 @@ require_once __DIR__."/layouts/header.php";
 </main>
 <script>
   let arrLoc = document.querySelectorAll(".loc-img");
-
   function update() {
     window.requestAnimationFrame(update);
     let imgHeight = arrLoc[0].offsetHeight;
-    arrLoc.forEach(item => {
-      item.style.height = imgHeight + "px";
-    });
+    if(imgHeight > 0) {
+      arrLoc.forEach(item => {
+        item.style.height = imgHeight + "px";
+      });
+    }
   }
 
   update();

@@ -154,10 +154,10 @@ class RoomModel extends BasicModel {
         $out = "";
         if($similar->getRoom_hotel_name() != null) {
             $key = $similar->getRoom_hotel_name();
-            $out .= "((LOWER(room_hotel_name) LIKE '%$key%')
-                     OR (LOWER(room_address) LIKE '%$key%')
-                     OR (LOWER(room_type) LIKE '%$key%')
-                     OR (LOWER(room_bed_type) LIKE '%$key%')) ";
+            $out .= "(room_hotel_name LIKE '%$key%')
+                     OR (room_address LIKE '%$key%')
+                     OR (room_type LIKE '%$key%')
+                     OR (room_bed_type LIKE '%$key%') ";
         }
         if($similar->getRoom_type() != null) {
             if($out != "") {
@@ -171,7 +171,7 @@ class RoomModel extends BasicModel {
                 $out .= " AND ";
             }
             $address = $similar->getRoom_address();
-            $out .= "(LOWER(room_address) LIKE '%$address%') ";
+            $out .= "(room_address LIKE '%$address%') ";
         }
         if($similar->getRoom_price() != null) {
             if($out != "") {

@@ -7,7 +7,7 @@ $rm = new RoomModel();
 $similar = new RoomObject();
 $param = "";
 if(isset($_GET["key"]) && trim($_GET["key"]) != "") {
-  $saveKey = strtolower(trim($_GET["key"]));
+  $saveKey = trim($_GET["key"]);
   $similar->setRoom_hotel_name($saveKey);
   $param = "key=".$saveKey;
 }
@@ -23,7 +23,7 @@ if(isset($_GET["sla"]) && trim($_GET["sla"]) != "") {
   if($param != "") {
     $param .= "&";
   }
-  $saveAddress = strtolower(trim($_GET["sla"]));
+  $saveAddress = trim($_GET["sla"]);
   $similar->setRoom_address($saveAddress);
   $param .= "sla=".$saveAddress;
 }
