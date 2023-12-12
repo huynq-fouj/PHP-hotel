@@ -370,9 +370,46 @@ require_once __DIR__."/layouts/header.php";
 
       </div>
     </section><!-- End Testimonials Section -->
+    
+    <!-- Gallery -->
+    <section class="section-property section-t8 pt-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="title-wrap d-flex justify-content-between pb-5">
+              <div class="title-box">
+                <h2 class="title-a">Albums</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row lightgallery" id="lightgallery">
+          <?php
+            $items = $rm->getRooms(new RoomObject, 1, 30);
+            $count = 0;
+            foreach($items as $item) {
+              if($count < 6) {
+                $count++;
+                echo '
+                  <a class="col-4 gallery-show" href="'.$item->getRoom_image().'">
+                    <div class="gallery-icon" data-number="+'.(count($items)-5).'"></div>
+                    <img src="'.$item->getRoom_image().'" alt="">
+                  </a>
+                ';
+              } else {
+                echo '<a class="" href="'.$item->getRoom_image().'"></a>';
+              }
+            }
+          ?>
+        </div>
+      </div>
+    </section><!-- End Gallery -->
+
 </main>
-<script>
+<script type="module">
   let arrLoc = document.querySelectorAll(".loc-img");
+  let gall = document.querySelectorAll(".gallery-show");
   function update() {
     window.requestAnimationFrame(update);
     let imgHeight = arrLoc[0].offsetHeight;
@@ -381,9 +418,20 @@ require_once __DIR__."/layouts/header.php";
         item.style.height = imgHeight + "px";
       });
     }
+
+    let gallW = gall[0].offsetWidth;
+    if(gallW > 0) {
+      gall.forEach(item => {
+        item.style.height = gallW + "px";
+      });
+    }
   }
 
   update();
+
+  lightGallery(document.getElementById('lightgallery'), {
+    pause: 3000,
+  });
 </script>
 <?php
     require_once __DIR__."/layouts/footer.php";

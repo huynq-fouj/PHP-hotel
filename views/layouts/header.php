@@ -28,9 +28,29 @@ if(str_contains($uri, "/views/profiles")) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?=$title?></title>
-    <?php
-        require_once("linkConfig.php");
-    ?>
+    <!-- Favicons -->
+    <link rel="shortcut icon" href="/hostay/public/favicon.png" type="image/x-icon">
+    <link rel="apple-touch-icon" href="/hostay/public/favicon.png" type="image/x-icon">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/hostay/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="/hostay/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/hostay/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/hostay/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="/hostay/assets/vendor/lightgallery.js/src/css/lightgallery.css"/>
+    <!-- Template Main CSS File -->
+    <link href="/hostay/assets/css/fonts.css" rel="stylesheet">
+    <link href="/hostay/assets/css/views_style.css" rel="stylesheet">
+
+    <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- lightgallery -->
+    <script type="module" src="../assets/vendor/lightgallery.js/src/js/lightgallery.js"></script>
+    <!-- lightgallery plugins -->
+    <script type="module" src="../assets/vendor/lightgallery.js/src/js/lg-autoplay.min.js"></script>
+    <script type="module" src="../assets/vendor/lightgallery.js/src/js/lg-share.min.js"></script>
+    <script type="module" src="../assets/vendor/lightgallery.js/src/js/lg-zoom.min.js"></script>
+    <script type="module" src="../assets/vendor/lightgallery.js/src/js/lg-fullscreen.min.js"></script>
 </head>
 <body>
     <?php

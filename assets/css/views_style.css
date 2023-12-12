@@ -2222,3 +2222,58 @@ footer .credits {
 .avatar-profile .avatar-profile-img {
   width: 100%;
 }
+
+.gallery-show {
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  padding: 0;
+}
+
+.gallery-show img {
+  object-fit: cover;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.gallery-show .gallery-icon {
+  background-color: #000;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.gallery-show .gallery-icon::before {
+  content: "";
+  position: absolute;
+  background-image: url("/hostay/public/search.svg");
+  background-size: cover;
+  background-position: center;
+  width: 25px;
+  height: 25px;
+  z-index: 2;
+}
+
+.gallery-show:hover > .gallery-icon{
+  opacity: 0.6;
+}
+
+.gallery-show:nth-child(6) > .gallery-icon {
+  opacity: 0.6;
+}
+
+.gallery-show:nth-child(6) .gallery-icon::before {
+  background-image: none;
+  width: max-content;
+  height: max-content;
+  content: attr(data-number);
+  color: #fff;
+  font-size: 25px;
+}
