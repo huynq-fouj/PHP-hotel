@@ -1,5 +1,6 @@
 <?php
-class BillObject {
+require_once("BillstaticObject.php");
+class BillObject extends BillstaticObject {
 
     private $bill_id;//int
     private $bill_room_id;//int
@@ -15,6 +16,7 @@ class BillObject {
     private $bill_number_room;//int
     private $bill_notes;//string
     private $bill_static;//int
+    private $bill_is_paid;//int;
 
     function getBill_id () {
         return $this->bill_id;
@@ -72,6 +74,10 @@ class BillObject {
         return $this->bill_static;
     }
 
+    function getBill_is_paid() {
+        return $this->bill_is_paid;
+    }
+
     function setBill_id ($bill_id) {
         $this->bill_id = $bill_id;
     }
@@ -126,6 +132,10 @@ class BillObject {
 
     function setBill_static ($bill_static) {
         $this->bill_static = $bill_static;
+    }
+
+    function setBill_is_paid ($bill_is_paid) {
+        $this->bill_is_paid = $bill_is_paid;
     }
 
 }

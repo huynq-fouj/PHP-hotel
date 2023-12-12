@@ -41,6 +41,7 @@ CREATE TABLE `tblbill` (
   `bill_number_room` int(10) unsigned DEFAULT '1',
   `bill_notes` text COLLATE utf8mb4_unicode_ci,
   `bill_static` int(10) unsigned DEFAULT '0',
+  `bill_is_paid` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`bill_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -49,11 +50,37 @@ CREATE TABLE `tblbill` (
 --
 
 /*!40000 ALTER TABLE `tblbill` DISABLE KEYS */;
-INSERT INTO `tblbill` (`bill_id`,`bill_room_id`,`bill_customer_id`,`bill_created_at`,`bill_fullname`,`bill_email`,`bill_phone`,`bill_start_date`,`bill_end_date`,`bill_number_adult`,`bill_number_children`,`bill_number_room`,`bill_notes`,`bill_static`) VALUES 
- (2,17,15,'2023-11-15 00:00:00','Triệu Thị khánh Linh','linhnhi2243@gmail.com','0267312746','2024-01-01 00:00:00','2024-01-10 00:00:00',1,0,1,'Kiếm chỗ nghỉ trong dịp tết Tây',5),
- (3,29,28,'2023-12-12 00:00:00','Nguyễn Đức An','nguyenducan20384@gmail.com','0973263849','2023-12-12 00:00:00','2023-12-14 00:00:00',2,0,1,'',5),
- (4,28,23,'2023-12-12 00:00:00','Zenomi','zenomiarrtak2049@gmail.com','0238742343','2023-12-12 00:00:00','2023-12-20 00:00:00',1,0,1,'',4);
+INSERT INTO `tblbill` (`bill_id`,`bill_room_id`,`bill_customer_id`,`bill_created_at`,`bill_fullname`,`bill_email`,`bill_phone`,`bill_start_date`,`bill_end_date`,`bill_number_adult`,`bill_number_children`,`bill_number_room`,`bill_notes`,`bill_static`,`bill_is_paid`) VALUES 
+ (2,17,15,'2023-11-15 00:00:00','Triệu Thị khánh Linh','linhnhi2243@gmail.com','0267312746','2024-01-01 00:00:00','2024-01-10 00:00:00',1,0,1,'Kiếm chỗ nghỉ trong dịp tết Tây',5,1),
+ (3,29,28,'2023-12-12 00:00:00','Nguyễn Đức An','nguyenducan20384@gmail.com','0973263849','2023-12-12 00:00:00','2023-12-14 00:00:00',2,0,1,'',5,1),
+ (4,28,23,'2023-12-12 00:00:00','Zenomi','zenomiarrtak2049@gmail.com','0238742343','2023-12-12 00:00:00','2023-12-20 00:00:00',1,0,1,'',4,1);
 /*!40000 ALTER TABLE `tblbill` ENABLE KEYS */;
+
+
+--
+-- Definition of table `tblbillstatic`
+--
+
+DROP TABLE IF EXISTS `tblbillstatic`;
+CREATE TABLE `tblbillstatic` (
+  `billstatic_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `billstatic_name` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `billstatic_notes` text COLLATE utf8mb4_unicode_ci,
+  PRIMARY KEY (`billstatic_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `tblbillstatic`
+--
+
+/*!40000 ALTER TABLE `tblbillstatic` DISABLE KEYS */;
+INSERT INTO `tblbillstatic` (`billstatic_id`,`billstatic_name`,`billstatic_notes`) VALUES 
+ (1,'Chờ xử lý','Đơn đăng ký đã tạo thành công và chờ người quản lý xem xét.\r\n'),
+ (2,'Thành công - chờ nhận phòng','Đơn đặt phòng đã được duyệt và chờ người đăng ký nhận phòng'),
+ (3,'Bị hủy','Đơn đặt phòng bị hủy vì một lý do nào đó'),
+ (4,'Đã nhận phòng',NULL),
+ (5,'Đã trả phòng',NULL);
+/*!40000 ALTER TABLE `tblbillstatic` ENABLE KEYS */;
 
 
 --
@@ -100,6 +127,26 @@ INSERT INTO `tblroom` (`room_id`,`room_number_people`,`room_number_bed`,`room_qu
  (29,2,1,4,'Superior','Giường đôi lớn','13','Tọa lạc tại thành phố Nha Trang, cách Bãi biển Hòn Chồng 200 m, Putin Nha Trang Hotel cung cấp chỗ nghỉ với hồ bơi ngoài trời, chỗ đỗ xe riêng miễn phí, sảnh khách chung và sân hiên. Chỗ nghỉ này nằm trong bán kính khoảng 2,9 km từ Bãi biển Nha Trang, 3,5 km từ Bảo tàng Khánh Hòa và 3,5 km từ Trung tâm suối khoáng nóng Tháp Bà. Nơi đây có lễ tân 24 giờ, dịch vụ đưa đón sân bay, dịch vụ phòng và WiFi miễn phí.\r\n</br></br>\r\nTất cả phòng nghỉ tại khách sạn đều được bố trí máy điều hòa, khu vực ghế ngồi, TV truyền hình vệ tinh màn hình phẳng, két an toàn và phòng tắm riêng với vòi xịt/chậu rửa vệ sinh, đồ vệ sinh cá nhân miễn phí cùng máy sấy tóc. Các phòng được trang bị ấm đun nước. Một số phòng còn có ban công trong khi các phòng khác nhìn ra quang cảnh thành phố. Các phòng tại Putin Nha Trang Hotel đi kèm ga trải giường và khăn tắm.\r\n</br></br>\r\nNhà hàng tại chỗ nghỉ phục vụ ẩm thực châu Phi, Mỹ và Argentina. Du khách cũng có thể yêu cầu thực đơn chay, các món ăn không chứa sữa và halal (dành cho người theo đạo Hồi).\r\n</br></br>\r\nKhu vực này nổi tiếng với hoạt động đi xe đạp và du khách cũng có thể thuê xe đạp/xe hơi tại Putin Nha Trang Hotel.\r\n</br></br>\r\nKhách sạn nằm gần các địa danh nổi tiếng như Bãi tắm Ba Làng, Hòn Chồng và Tháp Bà Po Nagar. Sân bay gần nhất là sân bay quốc tế Cam Ranh, cách Putin Nha Trang Hotel 40 km.',14,2,'/hostay/public/images/1702109397_50878.jpg','Bãi Dương 6B, Nha Trang, Việt Nam','Putin Nha Trang Hotel'),
  (30,2,1,4,'Standard','Giường đôi lớn','13','Nằm trong bán kính 30 m từ Bãi biển Nha Trang, khách sạn La Sera Hotel ở thành phố Nha Trang này có tầm nhìn ra toàn cảnh từ quán sky pool bar. Du khách có thể dùng bữa tại nhà hàng ngay trong khuôn viên.\r\n</br></br>\r\nMỗi phòng nghỉ theo phong cách hiện đại tại khách sạn này đều có khu vực tiếp khách, TV màn hình phẳng với các kênh truyền hình cáp và phòng tắm riêng. Một số phòng nhìn ra quang cảnh bãi biển, thành phố hoặc núi non.\r\n</br></br>\r\nLễ tân 24 giờ cung cấp rất nhiều dịch vụ trong đó có dịch vụ thu đổi ngoại tệ, sắp xếp tour du lịch, đặt vé cũng như trợ giúp đặc biệt. Khách sạn còn có cửa hàng quà tặng và cho thuê xe đạp.\r\n</br></br>\r\nLa Sera Hotel nằm trong bán kính 300 m từ CLB Thuyền buồm và 700 m từ Chợ Đầm. Sân bay gần nhất là Sân bay Quốc tế Cam Ranh, cách khách sạn 35 km.',18,1,'/hostay/public/images/1702109519_21612.jpg','98A/7 Tran Phu Street, Loc Tho Ward, Nha Trang, Việt Nam','La Sera Hotel');
 /*!40000 ALTER TABLE `tblroom` ENABLE KEYS */;
+
+
+--
+-- Definition of table `tblroomtype`
+--
+
+DROP TABLE IF EXISTS `tblroomtype`;
+CREATE TABLE `tblroomtype` (
+  `roomtype_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `roomtype_name` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `roomtype_notes` text COLLATE utf8mb4_unicode_ci,
+  PRIMARY KEY (`roomtype_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `tblroomtype`
+--
+
+/*!40000 ALTER TABLE `tblroomtype` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tblroomtype` ENABLE KEYS */;
 
 
 --

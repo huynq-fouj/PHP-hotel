@@ -93,7 +93,7 @@
                     echo "Cập nhật thành công!";
                     break;
                 case "add":
-                    echo "Thêm tài khoản thành công!";
+                    echo "Thêm thành công!";
                     break;
                 case "addr":
                         echo "Thêm phòng thành công!";

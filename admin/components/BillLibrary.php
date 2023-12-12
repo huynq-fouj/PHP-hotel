@@ -5,8 +5,8 @@ function BillTable($items) {
                     <tr>
                         <th scope="col">ID</th>
                         <th scope="col">Họ tên</th>
-                        <th scope="col">Số điện thoại</th>
                         <th scope="col">Ngày tạo</th>
+                        <th scope="col">Thanh toán</th>
                         <th scope="col">Trạng thái</th>
                         <th scope="col" colspan="3">Thực hiện</th>
                     </tr>
@@ -22,12 +22,11 @@ function BillTable($items) {
 
 function BillRow(BillObject $item) {
     $out = '<tr>';
-
     $out .= '<th scope="row" class="align-middle">'.$item->getBill_id().'</th>';
     $out .= '<td scope="row" class="align-middle">'.$item->getBill_fullname().'</td>';
-    $out .= '<td scope="row" class="align-middle">'.$item->getBill_phone().'</td>';
     $out .= '<td scope="row" class="align-middle">'.date("d/m/Y", strtotime($item->getBill_created_at())).'</td>';
-    $out .= '<td scope="row" class="align-middle">'.getStatic($item->getBill_static()).'</td>';
+    $out .= '<td scope="row" class="align-middle">'.($item->getBill_is_paid() != 0 ? "Đã thanh toán" : "Chưa thanh toán").'</td>';
+    $out .= '<td scope="row" class="align-middle">'.$item->getBillstatic_name().'</td>';
     //detail
     $out .= '<td class="align-middle">
     <a class="btn btn-primary btn-sm" href="/hostay/admin/bill.php?id='.$item->getBill_id().'">
@@ -66,65 +65,11 @@ function viewDel(BillObject $item) {
     $out .= '<p>Bạn có chắc chắn muốn xóa đơn này:</p>';
     $out .= '<p><b>Khách hàng: </b>'.$item->getBill_fullname().'</p>';
     $out .= '<p><b>Ngày tạo: </b>'.date("d/m/Y", strtotime($item->getBill_created_at())).'</p>';
-    $out .= '<p><b>Trạng thái: </b>'.getStatic($item->getBill_static()).'</p>';
+    $out .= '<p><b>Trạng thái: </b>'.$item->getBillstatic_name().'</p>';
     $out .= '</div><div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" name="exitDel">Thoát</button>
                 <a href="/hostay/actions/billdr.php?id='.$item->getBill_id().'" class="btn btn-danger">Xóa</a>
             </div></div></div></div>';
-    return $out;
-}
-
-function getStatic($static) {
-    $out = '';
-    switch($static) {
-        case 1:
-            $out = '<span class="text-warning">Chờ xử lý</span>';
-            break;
-        case 2:
-            $out = '<span class="text-success">Thành công - chờ nhận phòng</span>';
-            break;
-        case 3:
-            $out = '<span class="text-danger">Bị hủy</span>';
-            break;
-        case 4:
-            $out = '<span class="text-primary">Đã nhận phòng</span>';
-            break;
-        case 5:
-            $out = '<span class="text-primary-emphasis">Đã trả phòng</span>';
-            break;
-        default:
-            break;
-    }
-    return $out;
-}
-
-function generateOption($static) {
-    $out = '';
-    switch($static) {
-        case 1:
-            $out .= '<option value="1">Chờ xử lý</option>';
-            $out .= '<option value="2">Xác nhận đơn</option>';
-            $out .= '<option value="3">Hủy đơn</option>';
-            break;
-        case 2:
-            $out .= '<option value="2">Xác nhận đơn</option>';
-            $out .= '<option value="4">Đã nhận phòng</option>';
-            $out .= '<option value="3">Hủy đơn</option>';
-            break;
-        case 3:
-            $out .= '<option value="3">Hủy đơn</option>';
-            break;
-        case 4:
-            $out .= '<option value="4">Đã nhận phòng</option>';
-            $out .= '<option value="5">Đã trả phòng</option>';
-            $out .= '<option value="3">Hủy đơn</option>';
-            break;
-        case 5:
-            $out .= '<option value="5">Đã trả phòng</option>';
-            break;
-        default:
-            break;
-    }
     return $out;
 }
 ?>

@@ -17,7 +17,6 @@ if(!isset($_GET["id"]) || !is_numeric($_GET["id"]) || $_GET["id"] < 1) {
 //
 require_once("../app/models/BillModel.php");
 require_once("../app/models/RoomModel.php");
-require_once("components/BillLibrary.php");
 require_once("../libraries/Utilities.php");
 
 $id = $_GET["id"];
@@ -140,10 +139,35 @@ require_once("layouts/Toast.php");
                         </div>
                         <form action="/hostay/actions/billupd.php" method="post">
                             <div class="row mb-3">
+                                <label class="col-md-3 fw-bold" for="slcSta">Thanh toán</label>
+                                <div class="col-md-9">
+                                    <select class="form-control" name="slcPaid" id="slcPaid">
+                                        <option value="0" <?=$bill->getBill_is_paid() == 0 ? "selected" : ""?>>
+                                            Chưa thanh toán
+                                        </option>
+                                        <option value="1" <?=$bill->getBill_is_paid() != 0 ? "selected" : ""?>>
+                                            Đã thanh toán
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
                                 <label class="col-md-3 fw-bold" for="slcSta">Trạng thái</label>
                                 <div class="col-md-9">
                                     <select class="form-control" name="slcStatic" id="slcSta">
-                                        <?=generateOption($bill->getBill_static())?>
+                                        <?php
+                                            require_once("../app/models/BillstaticModel.php");
+                                            $bsm = new BillstaticModel();
+                                            $statics = $bsm->getBillstatics(new BillstaticObject,1, 100);
+                                            foreach($statics as $bs) {
+                                                $out = '<option value="'.$bs->getBillstatic_id().'" ';
+                                                if($bs->getBillstatic_id() == $bill->getBill_static()) {
+                                                    $out .= 'selected';
+                                                }
+                                                $out .= '>'.$bs->getBillstatic_name().'</option>';
+                                                echo $out;
+                                            }
+                                        ?>
                                     </select>
                                 </div>
                             </div>
@@ -165,12 +189,21 @@ require_once("layouts/Toast.php");
 </main>
 <!--End main page-->
 <script>
-    let slc = document.querySelector("#slcSta")
-    slc.addEventListener("change", () => {
-        if(slc.value == <?=$bill->getBill_static()?>) {
-            document.querySelector(".btn-updsta").classList.add("disabled");
+    let slc1 = document.querySelector("#slcSta");
+    let slc2 = document.querySelector("#slcPaid");
+    let btnsta = document.querySelector(".btn-updsta");
+    slc1.addEventListener("change", () => {
+        if(slc1.value == <?=$bill->getBill_static()?> && slc2.value == <?=$bill->getBill_is_paid()?>) {
+            btnsta.classList.add("disabled");
         } else {
-            document.querySelector(".btn-updsta").classList.remove("disabled");
+            btnsta.classList.remove("disabled");
+        }
+    });
+    slc2.addEventListener("change", () => {
+        if(slc1.value == <?=$bill->getBill_static()?> && slc2.value == <?=$bill->getBill_is_paid()?>) {
+            btnsta.classList.add("disabled");
+        } else {
+            btnsta.classList.remove("disabled");
         }
     });
 </script>

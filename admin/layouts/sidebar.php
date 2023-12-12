@@ -58,6 +58,11 @@ return "collapsed";
           <i class="bi bi-circle"></i><span>Danh sách</span>
         </a>
       </li>
+      <li>
+        <a href="/hostay/admin/billstatics.php" class="<?=getActive("bista")?>">
+          <i class="bi bi-circle"></i><span>Trạng thái</span>
+        </a>
+      </li>
     </ul>
   </li><!-- End Forms Nav -->
 

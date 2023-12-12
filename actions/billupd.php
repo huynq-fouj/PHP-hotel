@@ -9,16 +9,24 @@ if(!isset($_SESSION["user"])) {
         if(isset($_POST["updSta"])) {
             if(isset($_POST["idForPost"]) && is_numeric($_POST["idForPost"])) {
                 require_once("../app/models/BillModel.php");
-
+                require_once("../app/models/BillstaticModel.php");
                 $id = trim($_POST["idForPost"]);
-                $arrSta = array(1,2,3,4,5);
+                $bsm = new BillstaticModel();
                 $bm = new BillModel();
+                $statics = $bsm->getBillstatics(new BillstaticObject, 1, 100);
+                $arrStaid = array();
+                foreach($statics as $it) {
+                    array_push($arrStaid, $it->getBillstatic_id());
+                }
                 $item = $bm->getBill($id);
                 if($item != null) {
                     $static = trim($_POST["slcStatic"]);
                     if($static != ""
                     && is_numeric($static)
-                    && in_array((int)$static, $arrSta)) {
+                    && in_array((int)$static, $arrStaid)) {
+                        $txtIsPaid = trim($_POST["slcPaid"]);
+                        $isPaid = (($txtIsPaid != "") && is_numeric($txtIsPaid) && ($txtIsPaid != 0)) ? 1 : 0;
+                        $item->setBill_is_paid($isPaid);
                         $item->setBill_static((int) $static);
                         if($bm->editBill($item)) {
                             header("location:/hostay/admin/bill.php?id=$id&suc=upd");

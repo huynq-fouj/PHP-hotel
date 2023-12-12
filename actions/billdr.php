@@ -17,10 +17,10 @@ if(!isset($_SESSION["user"])) {
                 if($result) {
                     header("location:/hostay/admin/bills.php?suc=del");
                 } else {
-                    header("location:/hostay/admin/users.php?err=del");
+                    header("location:/hostay/admin/bills.php?err=del");
                 }
             } else {
-                header("location:/hostay/admin/users.php?err=noexist");
+                header("location:/hostay/admin/bills.php?err=noexist");
             }
         }
     }

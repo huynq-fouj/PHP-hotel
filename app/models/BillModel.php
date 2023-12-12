@@ -9,8 +9,8 @@ class BillModel extends BasicModel {
             bill_room_id,bill_customer_id,bill_created_at,
             bill_fullname,bill_email,bill_phone,bill_start_date,
             bill_end_date,bill_number_adult,bill_number_children,
-            bill_number_room,bill_notes,bill_static
-            ) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            bill_number_room,bill_notes,bill_static,bill_is_paid
+            ) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         if($stmt = $this->con->prepare($sql)) {
 
             $room_id = $item->getBill_room_id();
@@ -26,8 +26,9 @@ class BillModel extends BasicModel {
             $number_room = $item->getBill_number_room();
             $notes = $item->getBill_notes();
             $static = $item->getBill_static();
+            $isPaid = $item->getBill_is_paid();
             
-            $stmt->bind_param("iissssssiiisi",
+            $stmt->bind_param("iissssssiiisii",
                                 $room_id,
                                 $customer_id,
                                 $created_at,
@@ -40,7 +41,8 @@ class BillModel extends BasicModel {
                                 $number_children,
                                 $number_room,
                                 $notes,
-                                $static);
+                                $static,
+                                $isPaid);
             return $this->addV2($stmt);
         }
         return false;
@@ -57,11 +59,12 @@ class BillModel extends BasicModel {
     }
 
     function editBill(BillObject $item) : bool {
-        $sql = "UPDATE tblbill SET bill_static=? WHERE bill_id=?";
+        $sql = "UPDATE tblbill SET bill_static=?,bill_is_paid=? WHERE bill_id=?";
         if($stmt = $this->con->prepare($sql)) {
             $static = $item->getBill_static();
+            $isPaid = $item->getBill_is_paid();
             $id = $item->getBill_id();
-            $stmt->bind_param("ii",$static,$id);
+            $stmt->bind_param("iii", $static, $isPaid, $id);
             return $this->editV2($stmt);
         }
         return false;
@@ -69,7 +72,9 @@ class BillModel extends BasicModel {
 
     function getBill($id) {
         $item = null;
-        $sql = "SELECT * FROM tblbill WHERE bill_id=$id";
+        $sql = "SELECT * FROM tblbill ";
+        $sql .= "INNER JOIN tblbillstatic ON tblbill.bill_static = tblbillstatic.billstatic_id ";
+        $sql .= "WHERE bill_id=$id";
         $result = $this->get($sql);
         if($result->num_rows > 0) {
             $item = $result->fetch_object("BillObject");
@@ -83,7 +88,7 @@ class BillModel extends BasicModel {
             $page = 1;
         }
         $at = ($page - 1) * $total;
-        $sql = "SELECT * FROM tblbill ";
+        $sql = "SELECT * FROM tblbill INNER JOIN tblbillstatic ON tblbill.bill_static = tblbillstatic.billstatic_id ";
         $sql .= $this->createConditions($similar);
         $sql .= "ORDER BY bill_id DESC ";
         $sql .= "LIMIT $at, $total;";
@@ -177,7 +182,7 @@ class BillModel extends BasicModel {
                 break;
         }
         if($isPaid) {
-            $sql .= " AND (bill_static = 4 OR bill_static = 5)";
+            $sql .= " AND bill_is_paid!=0";
         }
         $sql .= ";";
         try {
