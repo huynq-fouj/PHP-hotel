@@ -21,6 +21,7 @@ if(isset($_POST["register"])) {
         $user->setUser_fullname($user_fullname);
         $user->setUser_email($user_email);
         $user->setUser_permission(0);
+        $user->setUser_created_at(date("Y-m-d"));
         if(!$um->isExists($user)) {
             if($um->addUser($user)) {
                 if($user_register = $um->getUser($user_name, $user_pass1)) {

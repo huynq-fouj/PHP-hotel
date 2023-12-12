@@ -40,6 +40,7 @@ if(isset($_POST["addUser"])) {
         $user->setUser_email($user_email);
         $user->setUser_permission($user_permission);
         $user->setUser_phone($_POST["txtPhone"]);
+        $user->setUser_created_at(date("Y-m-d"));
         if(!$um->isExists($user)) {
             if($um->addUser($user)) {
                 header("location:/hostay/admin/adduser.php?suc=add");

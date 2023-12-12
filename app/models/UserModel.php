@@ -14,8 +14,8 @@ class UserModel extends BasicModel {
         if(!$this->isExists($item)) {
             $sql = "INSERT INTO tbluser(
                     user_name,user_password,user_fullname,
-                    user_email,user_phone,user_permission
-                    ) VALUES(?,md5(?),?,?,?,?)";
+                    user_email,user_phone,user_permission,user_created_at
+                    ) VALUES(?,md5(?),?,?,?,?,?)";
             $stmt = $this->con->prepare($sql);
             if($stmt) {
                 $user_name = $item->getUser_name();
@@ -24,15 +24,17 @@ class UserModel extends BasicModel {
                 $user_fullname = $item->getUser_fullname();
                 $user_phone = $item->getUser_phone();
                 $user_permission = $item->getUser_permission();
+                $user_ca = $item->getUser_created_at();
 
                 $stmt->bind_param(
-                    "sssssi",
+                    "sssssis",
                     $user_name,
                     $user_password,
                     $user_fullname,
                     $user_email,
                     $user_phone,
-                    $user_permission);
+                    $user_permission,
+                    $user_ca);
                 
                 return $this->addV2($stmt);
             }
@@ -210,6 +212,39 @@ class UserModel extends BasicModel {
             $out = "WHERE ".$out;
         }
         return $out;
+    }
+
+    /**
+     * @param int $time
+     * @param string $option  'DAY' / 'MONTH' / 'YEAR'
+     */
+    function countByTime($time, $option = "DAY") {
+        $sql = "SELECT COUNT(*) AS total FROM tbluser ";
+        switch($option) {
+            case "DAY":
+                $sql .= "WHERE DAY(user_created_at) = $time";
+                break;
+            case "MONTH":
+                $sql .= "WHERE MONTH(user_created_at) = $time";
+                break;
+            case "YEAR":
+                $sql .= "WHERE YEAR(user_created_at) = $time";
+                break;
+            default:
+                break;
+        }
+        $sql .= ";";
+        $total = 0;
+        try {
+            if($result = $this->get($sql)){
+                if($row = $result->fetch_array()) {
+                    $total = $row[0];
+                }
+            }
+        } catch(Exception $e) {
+            echo $sql."</br>".$e->getMessage()."</br>";
+        }
+        return $total;
     }
 
 }

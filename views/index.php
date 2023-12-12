@@ -79,7 +79,7 @@ require_once __DIR__."/layouts/header.php";
 <main id="main">
 
     <!--  -->
-    <section class="section-property section-t8 pt-5">
+    <section class="section-property section-t8 pt-5" id="uu-dai">
       <div class="container">
         <div class="row">
           <div class="col-md-12">
@@ -123,7 +123,7 @@ require_once __DIR__."/layouts/header.php";
     </section><!--  -->
 
     <!-- ======= Latest Properties Section ======= -->
-    <section class="section-property section-t8 pt-5">
+    <section class="section-property section-t8 pt-5" id="moi-nhat">
       <div class="container">
         <div class="row">
           <div class="col-md-12">
@@ -216,7 +216,7 @@ require_once __DIR__."/layouts/header.php";
     </section><!-- End Latest Properties Section -->
 
     <!-- Loaction section -->
-    <section class="section-property section-t8 pt-5">
+    <section class="section-property section-t8 pt-5" id="dia-diem">
       <div class="container">
         <div class="row">
           <div class="col-md-12">
@@ -296,7 +296,7 @@ require_once __DIR__."/layouts/header.php";
       </div>
     </section><!-- End loaction section -->
     <!-- ======= Testimonials Section ======= -->
-    <section class="section-testimonials section-t8 pt-5 nav-arrow-a">
+    <section class="section-testimonials section-t8 pt-5 nav-arrow-a" id="danh-gia">
       <div class="container">
         <div class="row">
           <div class="col-md-12">
@@ -372,7 +372,7 @@ require_once __DIR__."/layouts/header.php";
     </section><!-- End Testimonials Section -->
     
     <!-- Gallery -->
-    <section class="section-property section-t8 pt-5">
+    <section class="section-property section-t8 pt-5" id="albums">
       <div class="container">
         <div class="row">
           <div class="col-md-12">

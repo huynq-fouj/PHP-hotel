@@ -119,5 +119,78 @@ class BillModel extends BasicModel {
         return $out;
     }
 
+    /**
+     * @param int $time
+     * @param string $option  'DAY' / 'MONTH' / 'YEAR'
+     */
+    function countByTime($time, $option = "DAY") {
+        $sql = "SELECT COUNT(*) AS total FROM tblbill ";
+        switch($option) {
+            case "DAY":
+                $sql .= "WHERE DAY(bill_created_at) = $time";
+                break;
+            case "MONTH":
+                $sql .= "WHERE MONTH(bill_created_at) = $time";
+                break;
+            case "YEAR":
+                $sql .= "WHERE YEAR(bill_created_at) = $time";
+                break;
+            default:
+                break;
+        }
+        $sql .= ";";
+        $total = 0;
+        try {
+            if($result = $this->get($sql)){
+                if($row = $result->fetch_array()) {
+                    $total = $row[0];
+                }
+            }
+        } catch(Exception $e) {
+            echo $sql."</br>".$e->getMessage()."</br>";
+        }
+        return $total;
+
+    }
+
+    /**
+     * @param int $day
+     * @param int $month
+     * @param int $year
+     * @param string $option  'DAY' / 'MONTH' / 'YEAR'
+     * @return array
+     */
+    function getByTime($day, $month, $year, $option = "DAY") {
+        $list = array();
+        $sql = "SELECT * FROM tblbill ";
+        switch($option) {
+            case "DAY":
+                $sql .= "WHERE DAY(bill_created_at) = $day AND MONTH(bill_created_at) = $month AND YEAR(bill_created_at) = $year";
+                break;
+            case "MONTH":
+                $sql .= "WHERE MONTH(bill_created_at) = $month AND YEAR(bill_created_at) = $year";
+                break;
+            case "YEAR":
+                $sql .= "WHERE YEAR(bill_created_at) = $year";
+                break;
+            default:
+                break;
+        }
+        $sql .= ";";
+        try {
+            $result = $this->get($sql);
+            if($result->num_rows > 0) {
+                while($item = $result->fetch_object('BillObject')) {
+                    array_push($list, $item);
+                }
+            }
+        } catch(Exception $e) {
+            echo $sql."</br>".$e->getMessage()."</br>";
+        }
+        return $list;
+
+    }
+
+
 }
 ?>

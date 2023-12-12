@@ -7,6 +7,7 @@ class UserObject {
     private $user_email;//string
     private $user_phone;//string
     private $user_permission;//int
+    private $user_created_at;//string
 
     function setUser_id($user_id) {
         $this->user_id = $user_id;
@@ -38,6 +39,14 @@ class UserObject {
 
     function getUser_fullname() {
         return $this->user_fullname;
+    }
+
+    function setUser_created_at($user_created_at) {
+        $this->user_created_at = $user_created_at;
+    }
+
+    function getUser_created_at() {
+        return $this->user_created_at;
     }
 
     function setUser_email($user_email) {

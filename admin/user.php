@@ -156,6 +156,11 @@ require_once("layouts/Toast.php");
                     </div>
                   </div>
 
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Ngày tạo</div>
+                    <div class="col-lg-9 col-md-8"><?=date("d-m-Y", strtotime($user->getUser_created_at()))?></div>
+                  </div>
+
                 </div>
 
                 <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
