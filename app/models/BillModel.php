@@ -160,7 +160,7 @@ class BillModel extends BasicModel {
      * @param string $option  'DAY' / 'MONTH' / 'YEAR'
      * @return array
      */
-    function getByTime($day, $month, $year, $option = "DAY") {
+    function getByTime($day, $month, $year, $option = "DAY", $isPaid = true) {
         $list = array();
         $sql = "SELECT * FROM tblbill ";
         switch($option) {
@@ -175,6 +175,9 @@ class BillModel extends BasicModel {
                 break;
             default:
                 break;
+        }
+        if($isPaid) {
+            $sql .= " AND (bill_static = 4 OR bill_static = 5)";
         }
         $sql .= ";";
         try {

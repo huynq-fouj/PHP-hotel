@@ -180,8 +180,8 @@ require_once("layouts/header.php");
                                             require_once("../app/models/RoomModel.php");
                                             require_once("../libraries/Utilities.php");
                                             $rm = new RoomModel();
-                                            $listCur = $bm->getByTime(0,date("m"), date("Y"), "MONTH");
-                                            $listPre = $bm->getByTime(0,date("m") - 1, date("Y"), "MONTH");
+                                            $listCur = $bm->getByTime(0,date("m"), date("Y"), "MONTH", true);
+                                            $listPre = $bm->getByTime(0,date("m") - 1, date("Y"), "MONTH", true);
                                             $countCCur = 0;
                                             $countCPre = 0;
                                             foreach($listCur as $item) {
