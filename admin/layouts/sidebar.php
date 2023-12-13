@@ -81,6 +81,11 @@ return "collapsed";
           <i class="bi bi-circle"></i><span>Thêm mới</span>
         </a>
       </li>
+      <li>
+        <a href="/hostay/admin/roomtypes.php" class="<?=getActive("rotype")?>">
+          <i class="bi bi-circle"></i><span>Loại phòng</span>
+        </a>
+      </li>
     </ul>
   </li><!-- End Tables Nav -->
 
