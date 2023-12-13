@@ -11,12 +11,12 @@ if(isset($_GET["key"]) && trim($_GET["key"]) != "") {
   $similar->setRoom_hotel_name($saveKey);
   $param = "key=".$saveKey;
 }
-if(isset($_GET["slt"]) && trim($_GET["slt"]) != "") {
+if(isset($_GET["slt"]) && trim($_GET["slt"]) != "" && is_numeric(trim($_GET["slt"]))) {
   if($param != "") {
     $param .= "&";
   }
-  $saveType = strtolower(trim($_GET["slt"]));
-  $similar->setRoom_type($saveType);
+  $saveType = trim($_GET["slt"]);
+  $similar->setRoom_type_id($saveType);
   $param .= "slt=".$saveType;
 }
 if(isset($_GET["sla"]) && trim($_GET["sla"]) != "") {

@@ -19,14 +19,17 @@
                 </div>
                 <div class="col-md-6 mb-2">
                     <div class="form-group mt-3">
-                        <label class="pb-2" for="Type">Type</label>
+                        <label class="pb-2" for="Type">Loại phòng</label>
                         <select name="slt" class="form-control form-select form-control-a" id="Type">
                             <option value="" selected>Tất cả</option>
-                            <option value="Standard">Standard</option>
-                            <option value="Superior">Superior</option>
-                            <option value="Deluxe">Deluxe</option>
-                            <option value="Suite">Suite</option>
-                            <option value="Villa">Villa</option>
+                            <?php
+                                require_once($_SERVER["DOCUMENT_ROOT"]."/hostay/app/models/RoomtypeModel.php");
+                                $rtm = new RoomtypeModel();
+                                $roomtypes = $rtm->getRoomtypes(new RoomtypeObject(), 1, 100);
+                                foreach($roomtypes as $type) {
+                                    echo '<option value="'.$type->getRoomtype_id().'">'.$type->getRoomtype_name().'</option>';
+                                }
+                            ?>
                         </select>
                     </div>
                 </div>

@@ -159,7 +159,7 @@ require_once __DIR__."/layouts/header.php";
                                 <div class="card-header-a">
                                     <h2 class="card-title-a">
                                         <a href="/hostay/views/room.php?id=<?=$item->getRoom_id()?>">
-                                            <?=$item->getRoom_type()?>
+                                            <?=$item->getRoomtype_name()?>
                                         </a>
                                     </h2>
                                 </div>

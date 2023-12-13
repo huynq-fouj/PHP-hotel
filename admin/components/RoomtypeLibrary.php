@@ -7,7 +7,7 @@ function RoomtypeTable($items) {
     $out .= '<table class="table table-striped table-sm">
         <thead>
             <tr>
-                <th scope="col">ID</th>
+                <th scope="col" width="1">ID</th>
                 <th scope="col">Tên loại</th>
                 <th scope="col">Ghi chú</th>
                 <th scope="col" colspan="3">Thực hiện</th>
@@ -28,21 +28,21 @@ function RoomtypeRow(RoomtypeObject $item) {
     $out .= '<td scope="row" class="align-middle">'.$item->getRoomtype_name().'</td>';
     $out .= '<td scope="row" class="align-middle">'.$item->getRoomtype_notes().'</td>';
     //detail
-    $out .= '<td class="align-middle">
+    $out .= '<td class="align-middle" width="1">
     <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#viewRoomtype'.$item->getRoomtype_id().'">
         <i class="bi bi-eye"></i>
     </button>';
     $out .= viewDetail($item);
     $out .= '</td>';
     //edit
-    $out .= '<td class="align-middle">
+    $out .= '<td class="align-middle" width="1">
     <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#editRoomtype'.$item->getRoomtype_id().'">
         <i class="bi bi-pencil-square"></i>
     </button>';
     $out .= viewEdit($item);
     $out .= '</td>';
     //del
-    $out .= '<td class="align-middle">
+    $out .= '<td class="align-middle" width="1">
     <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#delRoomtype'.$item->getRoomtype_id().'">
         <i class="bi bi-trash"></i>
     </button>';
