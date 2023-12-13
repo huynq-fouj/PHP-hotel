@@ -76,7 +76,7 @@ require_once("layouts/Toast.php");
                                 </div>
                                 <div class="col-md-6 row mb-3">
                                     <div class="col-sm-12 fw-bold">Loại phòng</div>
-                                    <div class="col-sm-12"><?=$room->getRoom_type()?></div>
+                                    <div class="col-sm-12"><?=$room->getRoomtype_name()?></div>
                                 </div>
                                 <div class="col-sm-12 row mb-3">
                                     <div class="col-sm-12 fw-bold">Địa chỉ</div>

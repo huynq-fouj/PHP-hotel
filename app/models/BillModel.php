@@ -73,7 +73,7 @@ class BillModel extends BasicModel {
     function getBill($id) {
         $item = null;
         $sql = "SELECT * FROM tblbill ";
-        $sql .= "INNER JOIN tblbillstatic ON tblbill.bill_static = tblbillstatic.billstatic_id ";
+        $sql .= "LEFT JOIN tblbillstatic ON tblbill.bill_static = tblbillstatic.billstatic_id ";
         $sql .= "WHERE bill_id=$id";
         $result = $this->get($sql);
         if($result->num_rows > 0) {
@@ -88,7 +88,7 @@ class BillModel extends BasicModel {
             $page = 1;
         }
         $at = ($page - 1) * $total;
-        $sql = "SELECT * FROM tblbill INNER JOIN tblbillstatic ON tblbill.bill_static = tblbillstatic.billstatic_id ";
+        $sql = "SELECT * FROM tblbill LEFT JOIN tblbillstatic ON tblbill.bill_static = tblbillstatic.billstatic_id ";
         $sql .= $this->createConditions($similar);
         $sql .= "ORDER BY bill_id DESC ";
         $sql .= "LIMIT $at, $total;";
@@ -106,7 +106,7 @@ class BillModel extends BasicModel {
     }
 
     function countBill(BillObject $similar) : int {
-        $sql = "SELECT COUNT(*) AS total FROM tblbill ";
+        $sql = "SELECT COUNT(*) AS total FROM tblbill LEFT JOIN tblbillstatic ON tblbill.bill_static = tblbillstatic.billstatic_id ";
         $sql .= $this->createConditions($similar);
         $sql .= ";";
         $total = 0;

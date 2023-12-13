@@ -17,7 +17,8 @@ if(!isset($_GET["id"]) || !is_numeric($_GET["id"]) || $_GET["id"] < 1) {
 require_once("../app/models/RoomModel.php");
 require_once("../libraries/ImgUpload.php");
 require_once("../libraries/DeleteFile.php");
-
+require_once("../app/models/RoomtypeModel.php");
+$rtm = new RoomtypeModel();
 $id = $_GET["id"];
 $rm = new RoomModel();
 $item = $rm->getRoom($id);
@@ -33,7 +34,7 @@ $old_img = $item->getRoom_image();
 if(isset($_POST["addRoom"])) {
     $hotelname = trim($_POST["txtHotelName"]);
     $address = trim($_POST["txtAddress"]);
-    $roomtype = trim($_POST["txtRoomType"]);
+    $roomtype = trim($_POST["slcRoomType"]);
     $bedtype = trim($_POST["txtBedType"]);
     $numpeople = trim($_POST["txtNumberPeople"]);
     $numbed = trim($_POST["txtNumberBed"]);
@@ -47,7 +48,8 @@ if(isset($_POST["addRoom"])) {
     //
     if($hotelname != ""
     && $address != ""
-    && $roomtype != ""
+    && is_numeric($roomtype)
+    && $rtm->getRoomtype($roomtype) != null
     && $bedtype != ""
     && $numbed != ""
     && $numpeople != ""
@@ -81,7 +83,7 @@ if(isset($_POST["addRoom"])) {
         $detail = $_POST["txtDetail"];
         $item->setRoom_address($address);
         $item->setRoom_hotel_name($hotelname);
-        $item->setRoom_type($roomtype);
+        $item->setRoom_type_id($roomtype);
         $item->setRoom_bed_type($bedtype);
         $item->setRoom_number_people((int) $numpeople);
         $item->setRoom_number_bed((int) $numbed);
@@ -179,24 +181,19 @@ require_once("layouts/Toast.php");
                             <div class="mb-3 row">
                                 <label for="roomType" class="col-sm-2 col-form-label fw-bold">Loại phòng</label>
                                 <div class="col-sm-10">
-                                    <input type="text"
-                                        class="form-control"
-                                        id="roomType"
-                                        name="txtRoomType"
-                                        placeholder="Type of room"
-                                        list="roomTypeSlc"
-                                        value="<?=$item->getRoom_type()?>"
-                                        required>
-                                    <datalist id="roomTypeSlc">
-                                        <option value="Standard">
-                                        <option value="Superior">
-                                        <option value="Deluxe">
-                                        <option value="Suite">
-                                        <option value="Villa">
-                                    </datalist>
-                                    <div class="invalid-feedback">
-                                        Hãy nhập kiểu phòng
-                                    </div>
+                                    <select name="slcRoomType" id="" class="form-control" required>
+                                        <?php
+                                            $rtypes = $rtm->getRoomtypes(new RoomtypeObject, 1, 100);
+                                            foreach($rtypes as $rtype) {
+                                                $out = '<option value="'.$rtype->getRoomtype_id().'" ';
+                                                if($item->getRoom_type_id() == $rtype->getRoomtype_id()) {
+                                                    $out .= "selected";
+                                                }
+                                                $out .= '>'.$rtype->getRoomtype_name().'</option>';
+                                                echo $out;
+                                            }
+                                        ?>
+                                    </select>
                                 </div>
                             </div>
                             <div class="mb-3 row">

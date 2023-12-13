@@ -23,7 +23,7 @@ function RoomBox(RoomObject $item) {
     $out .= '<div class="card-overlay-a-content">';
     $out .= '<div class="card-header-a">';
     $out .= '<h2 class="card-title-a">';
-    $out .= '<a href="/hostay/views/room.php?id='.$item->getRoom_id().'">'.$item->getRoom_type().'</a>';
+    $out .= '<a href="/hostay/views/room.php?id='.$item->getRoom_id().'">'.$item->getRoomtype_name().'</a>';
     $out .= '</h2>';
     $out .= '</div>';
     $out .= '<div class="card-body-a">';

@@ -23,7 +23,7 @@ function RoomRow(RoomObject $item) {
     $out = '<tr>';
 
     $out .= '<th scope="row" class="align-middle">'.$item->getRoom_id().'</th>';
-    $out .= '<td scope="row" class="align-middle">'.$item->getRoom_type().'</td>';
+    $out .= '<td scope="row" class="align-middle">'.$item->getRoomtype_name().'</td>';
     $out .= '<td scope="row" class="align-middle">'.$item->getRoom_hotel_name().'</td>';
     $out .= '<td scope="row" class="align-middle">'.getStatic($item->getRoom_static()).'</td>';
     //detail
@@ -102,7 +102,7 @@ function viewDetail(RoomObject $item) {
             </div>';
     $out .= '<div class="row mt-3">
                 <div class="col-sm-12 fw-bold">Kiểu phòng</div>
-                <div class="col-sm-12">'.$item->getRoom_type().'</div>
+                <div class="col-sm-12">'.$item->getRoomtype_name().'</div>
             </div>';
      $out .= '<div class="row mt-3">
                 <div class="col-sm-12 fw-bold">Kiểu giường ngủ</div>
@@ -158,7 +158,7 @@ function viewDel($item) {
     $out .= '</div><div class="modal-body">';
     $out .= '<p>Bạn có chắc chắn muốn xóa phòng:</p>';
     $out .= '<p><b>Khách sạn: </b>'.$item->getRoom_hotel_name().'</p>';
-    $out .= '<p><b>Loại: </b>'.$item->getRoom_type().'</p>';
+    $out .= '<p><b>Loại: </b>'.$item->getRoomtype_name().'</p>';
     $out .= '</div><div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" name="exitDel">Thoát</button>
                 <a href="/hostay/actions/roomdr.php?id='.$item->getRoom_id().'" class="btn btn-danger">Xóa</a>

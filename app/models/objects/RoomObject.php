@@ -1,11 +1,11 @@
 <?php
-class RoomObject {
+require_once("RoomtypeObject.php");
+class RoomObject extends RoomtypeObject {
     
     private $room_id;//int
     private $room_number_people;//int
     private $room_number_bed;//int
     private $room_quality;//float
-    private $room_type;//string: Standard, Superior, Deluxe, Suite, Villa
     private $room_bed_type;//string
     private $room_price;//float
     private $room_detail;//string
@@ -14,6 +14,7 @@ class RoomObject {
     private $room_image;//string
     private $room_address;//string
     private $room_hotel_name;//string
+    private $room_type_id;//int
 
 
     function getRoom_id(){
@@ -32,8 +33,8 @@ class RoomObject {
         return $this->room_quality;
     }
 
-    function getRoom_type() {
-        return $this->room_type;
+    function getRoom_type_id() {
+        return $this->room_type_id;
     }
 
     function getRoom_bed_type() {
@@ -84,8 +85,8 @@ class RoomObject {
         $this->room_quality = $room_quality;
     }
 
-    function setRoom_type($room_type) {
-        $this->room_type = $room_type;
+    function setRoom_type_id($room_type_id) {
+        $this->room_type_id = $room_type_id;
     }
 
     function setRoom_bed_type($room_bed_type) {

@@ -61,6 +61,7 @@ if(!isset($_SESSION["user"])) {
                                         $item->setBill_end_date(date("Y-m-d" , strtotime($end)));
                                         $item->setBill_static(1);
                                         $item->setBill_created_at(date("Y-m-d"));
+                                        $item->setBill_is_paid(0);
                                         if($bm->addBill($item)) {
                                             require_once("../libraries/Sendmail.php");
                                             $subject = "Đăng ký đặt phòng thành công!";

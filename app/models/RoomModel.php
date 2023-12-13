@@ -7,14 +7,13 @@ class RoomModel extends BasicModel {
     function addRoom(RoomObject $item) : bool {
         $sql = "INSERT INTO tblroom(
             room_number_people,room_number_bed,room_quality,
-            room_type,room_bed_type,room_price,room_detail,room_area,
-            room_static,room_image,room_address,room_hotel_name
+            room_bed_type,room_price,room_detail,room_area,
+            room_static,room_image,room_address,room_hotel_name,room_type_id
             ) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
         if($stmt = $this->con->prepare($sql)) {
             $number_people = $item->getRoom_number_people();//int
             $number_bed = $item->getRoom_number_bed();//int
             $quality = $item->getRoom_quality();//float
-            $type = $item->getRoom_type();//string
             $bed_type = $item->getRoom_bed_type();//string
             $price = $item->getRoom_price();//float
             $detail = $item->getRoom_detail();//string
@@ -23,12 +22,12 @@ class RoomModel extends BasicModel {
             $image = $item->getRoom_image();//string
             $address = $item->getRoom_address();//string
             $hotel_name = $item->getRoom_hotel_name();//string
+            $type = $item->getRoom_type_id();//string
 
-            $stmt->bind_param("iidssdsdisss",
+            $stmt->bind_param("iidsdsdisssi",
                                 $number_people,
                                 $number_bed,
                                 $quality,
-                                $type,
                                 $bed_type,
                                 $price,
                                 $detail,
@@ -36,7 +35,9 @@ class RoomModel extends BasicModel {
                                 $static,
                                 $image,
                                 $address,
-                                $hotel_name);
+                                $hotel_name,
+                                $type);
+                                
             return $this->addV2($stmt);
         }
         return false;
@@ -54,14 +55,13 @@ class RoomModel extends BasicModel {
 
     function editRoom(RoomObject $item) : bool {
         $sql = "UPDATE tblroom SET room_number_people=?,room_number_bed=?,
-            room_quality=?,room_type=?,room_bed_type=?,room_price=?,room_detail=?,
+            room_quality=?,room_bed_type=?,room_price=?,room_detail=?,
             room_area=?,room_static=?,
-            room_image=?,room_address=?,room_hotel_name=? WHERE room_id=?";
+            room_image=?,room_address=?,room_hotel_name=?,room_type_id=? WHERE room_id=?";
         if($stmt = $this->con->prepare($sql)) {
             $number_people = $item->getRoom_number_people();//int
             $number_bed = $item->getRoom_number_bed();//int
             $quality = $item->getRoom_quality();//float
-            $type = $item->getRoom_type();//string
             $bed_type = $item->getRoom_bed_type();//string
             $price = $item->getRoom_price();//float
             $detail = $item->getRoom_detail();//string
@@ -70,12 +70,12 @@ class RoomModel extends BasicModel {
             $image = $item->getRoom_image();//string
             $address = $item->getRoom_address();//string
             $hotel_name = $item->getRoom_hotel_name();//string
+            $type = $item->getRoom_type_id();//int
             $id = $item->getRoom_id();//int
-            $stmt->bind_param("iidssdsdisssi",
+            $stmt->bind_param("iidsdsdisssii",
                                 $number_people,
                                 $number_bed,
                                 $quality,
-                                $type,
                                 $bed_type,
                                 $price,
                                 $detail,
@@ -84,6 +84,7 @@ class RoomModel extends BasicModel {
                                 $image,
                                 $address,
                                 $hotel_name,
+                                $type,
                                 $id);
             return $this->editV2($stmt);
         }
@@ -92,7 +93,10 @@ class RoomModel extends BasicModel {
 
     function getRoom($id) {
         $item = null;
-        $sql = "SELECT * FROM tblroom WHERE room_id=$id";
+        $sql = "SELECT * FROM tblroom
+         LEFT JOIN tblroomtype
+         ON tblroom.room_type_id = tblroomtype.roomtype_id
+         WHERE room_id=$id";
         $result = $this->get($sql);
         if($result->num_rows > 0) {
             $item = $result->fetch_object('RoomObject');
@@ -106,7 +110,8 @@ class RoomModel extends BasicModel {
             $page = 1;
         }
         $at = ($page - 1) * $total;
-        $sql = "SELECT * FROM tblroom ";
+        $sql = "SELECT * FROM tblroom LEFT JOIN tblroomtype
+         ON tblroom.room_type_id = tblroomtype.roomtype_id ";
         $sql .= $this->createConditions($similar);
         switch($sort_type) {
             case "pricet":
@@ -156,15 +161,14 @@ class RoomModel extends BasicModel {
             $key = $similar->getRoom_hotel_name();
             $out .= "(room_hotel_name LIKE '%$key%')
                      OR (room_address LIKE '%$key%')
-                     OR (room_type LIKE '%$key%')
                      OR (room_bed_type LIKE '%$key%') ";
         }
-        if($similar->getRoom_type() != null) {
+        if($similar->getRoom_type_id() != null) {
             if($out != "") {
                 $out .= " AND ";
             }
-            $type = $similar->getRoom_type();
-            $out .= "(LOWER(room_type) LIKE '%$type%') ";
+            $type = $similar->getRoom_type_id();
+            $out .= "(room_type_id = $type) ";
         }
         if($similar->getRoom_address() != null) {
             if($out != "") {

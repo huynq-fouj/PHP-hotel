@@ -110,7 +110,7 @@ require_once("layouts/Toaster.php");
                   </li>
                   <li class="d-flex">
                     <strong class="me-2">Loại:</strong>
-                    <span><?=$item->getRoom_type()?></span>
+                    <span><?=$item->getRoomtype_name()?></span>
                   </li>
                   <li class="d-flex">
                     <strong class="me-2">Loại giường ngủ:</strong>
