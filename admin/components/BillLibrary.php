@@ -8,6 +8,7 @@ function BillTable($items) {
                         <th scope="col">Ngày tạo</th>
                         <th scope="col">Thanh toán</th>
                         <th scope="col">Trạng thái</th>
+                        <th scope="col">Hiệu lực</th>
                         <th scope="col" colspan="3">Thực hiện</th>
                     </tr>
                 </thead>
@@ -27,6 +28,7 @@ function BillRow(BillObject $item) {
     $out .= '<td scope="row" class="align-middle">'.date("d/m/Y", strtotime($item->getBill_created_at())).'</td>';
     $out .= '<td scope="row" class="align-middle">'.($item->getBill_is_paid() != 0 ? "Đã thanh toán" : "Chưa thanh toán").'</td>';
     $out .= '<td scope="row" class="align-middle">'.$item->getBillstatic_name().'</td>';
+    $out .= '<td scope="row" class="align-middle">'.($item->getBill_cancel() == 0 ? "Có" : "Không").'</td>';
     //detail
     $out .= '<td class="align-middle">
     <a class="btn btn-primary btn-sm" href="/hostay/admin/bill.php?id='.$item->getBill_id().'">

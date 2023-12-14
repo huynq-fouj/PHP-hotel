@@ -26,7 +26,7 @@ return "collapsed";
   <li class="nav-item">
     <a class="nav-link <?=getCollapsed("dashboard")?>" href="/hostay/admin/">
       <i class="bi bi-grid"></i>
-      <span>Dashboard</span>
+      <span>Thống kê</span>
     </a>
   </li><!-- End Dashboard Nav -->
 

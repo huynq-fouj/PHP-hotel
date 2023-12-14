@@ -26,6 +26,14 @@ if(!isset($_SESSION["user"])) {
                     && in_array((int)$static, $arrStaid)) {
                         $txtIsPaid = trim($_POST["slcPaid"]);
                         $isPaid = (($txtIsPaid != "") && is_numeric($txtIsPaid) && ($txtIsPaid != 0)) ? 1 : 0;
+                        if($item->getBill_staff_name() == null || $item->getBill_staff_name() == "") {
+                            $staffName = trim($_POST["txtStaffName"]);
+                            if($staffName != "" && strlen($staffName) > 6) {
+                                $item->setBill_staff_name($staffName);
+                            } else {
+                                header("location:/hostay/admin/bill.php?id=$id&err=lack");
+                            }
+                        }
                         $item->setBill_is_paid($isPaid);
                         $item->setBill_static((int) $static);
                         if($bm->editBill($item)) {

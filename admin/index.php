@@ -22,7 +22,7 @@ require_once("layouts/header.php");
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="/hostay/admin/">Trang chủ</a></li>
-          <li class="breadcrumb-item active">Dashboard</li>
+          <li class="breadcrumb-item active">Thống kê</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -226,6 +226,98 @@ require_once("layouts/header.php");
                         </div>
                     </div><!-- End Revenue Card -->
                 </div>
+
+                <!-- Reports -->
+                <div class="col-12">
+                    <div class="card">
+
+                        <div class="card-body">
+                            <h5 class="card-title">Biểu đồ <span>Trong năm <?=date("Y")?></span></h5>
+                            <?php
+                                $arrMon = array(0,0,0,0,0,0,0,0,0,0,0,0);
+                                for($i = 1; $i <= 12; $i++) {
+                                    $list = $bm->getByTime(0,$i, date("Y"), "MONTH", true);
+                                    $cur = 0;
+                                    foreach($list as $item) {
+                                        $room = $rm->getRoom($item->getBill_room_id());
+                                        $diff = getDateDiff($item->getBill_start_date(),$item->getBill_end_date());
+                                        $cur += $room->getRoom_price() * $item->getBill_number_room() * $diff;
+                                    }
+                                    $arrMon[$i - 1] = $cur;
+                                }
+                                $strArrMon = implode(",", $arrMon);
+                            ?>
+                            <!-- Line Chart -->
+                            <div id="reportsChart"></div>
+                            <style>
+                                .apexcharts-tooltip-marker {
+                                    background-color: #e08e6d;
+                                }
+                            </style>
+                            <script>
+                                document.addEventListener("DOMContentLoaded", () => {
+                                    let arrColors = ["#FF9B50", "#94A684", "#C63D2F", "#2E0249",
+                                                    "#570A57", "#A91079", "#FF9494", "#AFC8AD",
+                                                    "#A8DF8E", "#E08E6D", "#7E30E1","#35A29F",
+                                                    "#A9B388", "#B0A695", "#FFAD84","#F4DFC8"];
+                                    new ApexCharts(document.querySelector("#reportsChart"), {
+                                        series: [{
+                                                name: 'Lợi nhuận',
+                                                data: [<?=$strArrMon?>],
+                                        },],
+                                        chart: {
+                                            height: 350,
+                                            type: 'bar',
+                                        },
+                                        markers: {
+                                            size: 4
+                                        },
+                                        colors: [arrColors[Math.floor(Math.random() * arrColors.length)]],
+                                        fill: {
+                                            type: "gradient",
+                                            gradient: {
+                                                shadeIntensity: 1,
+                                                gradientToColors: [arrColors[Math.floor(Math.random() * arrColors.length)]],
+                                                type: "vertical",
+                                                stops: [0, 90, 100]
+                                            }
+                                        },
+                                        xaxis: {
+                                            categories: [
+                                                "Tháng 1",
+                                                "Tháng 2",
+                                                "Tháng 3",
+                                                "Tháng 4",
+                                                "Tháng 5",
+                                                "Tháng 6",
+                                                "Tháng 7",
+                                                "Tháng 8",
+                                                "Tháng 9",
+                                                "Tháng 10",
+                                                "Tháng 11",
+                                                "Tháng 12"
+                                            ]
+                                        },
+                                        yaxis: {
+                                            title: {
+                                                text: "Dollars",
+                                            }
+                                        },
+                                        tooltip: {
+                                            onDatasetHover: {
+                                                highlightDataSeries: true,
+                                            },
+                                        }
+                                    }).render();
+                                });
+                            </script>
+                            <!-- End Line Chart -->
+
+                        </div>
+
+                    </div>
+                </div><!-- End Reports -->
+
             </div>
         </div>
     </section>

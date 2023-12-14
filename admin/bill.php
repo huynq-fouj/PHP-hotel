@@ -137,7 +137,7 @@ require_once("layouts/Toast.php");
                             <div class="col-sm-12 fw-bold">Ghi chú</div>
                             <div class="col-sm-12"><?=$bill->getBill_notes()?></div>
                         </div>
-                        <form action="/hostay/actions/billupd.php" method="post">
+                        <form action="/hostay/actions/billupd.php" method="post" class="needs-validation" novalidate>
                             <div class="row mb-3">
                                 <label class="col-md-3 fw-bold" for="slcSta">Thanh toán</label>
                                 <div class="col-md-9">
@@ -169,6 +169,30 @@ require_once("layouts/Toast.php");
                                             }
                                         ?>
                                     </select>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label class="col-md-3 fw-bold" for="slcSta">Nhân viên xác nhận</label>
+                                <div class="col-md-9">
+                                    <?php
+                                        if($bill->getBill_staff_name() != null && $bill->getBill_staff_name() != "") {
+                                    ?>
+                                        <input type="text"
+                                            class="form-control"
+                                            value="<?=$bill->getBill_staff_name()?>"
+                                            disabled>
+                                    <?php
+                                        } else {
+                                    ?>
+                                        <input type="text"
+                                        name="txtStaffName"
+                                        class="form-control"
+                                        placeholder="Tên nhân viên xác nhận"
+                                        required>
+                                        <div class="invalid-feedback">Hãy nhập tên nhân viên xác nhận</div>
+                                    <?php
+                                        }
+                                    ?>
                                 </div>
                             </div>
                             <input type="hidden" name="idForPost" value="<?=$bill->getBill_id()?>">

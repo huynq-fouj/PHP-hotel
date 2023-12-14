@@ -9,8 +9,8 @@ class BillModel extends BasicModel {
             bill_room_id,bill_customer_id,bill_created_at,
             bill_fullname,bill_email,bill_phone,bill_start_date,
             bill_end_date,bill_number_adult,bill_number_children,
-            bill_number_room,bill_notes,bill_static,bill_is_paid
-            ) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            bill_number_room,bill_notes,bill_static,bill_is_paid,bill_cancel
+            ) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         if($stmt = $this->con->prepare($sql)) {
 
             $room_id = $item->getBill_room_id();
@@ -27,8 +27,9 @@ class BillModel extends BasicModel {
             $notes = $item->getBill_notes();
             $static = $item->getBill_static();
             $isPaid = $item->getBill_is_paid();
+            $isCancel = 0;
             
-            $stmt->bind_param("iissssssiiisii",
+            $stmt->bind_param("iissssssiiisiii",
                                 $room_id,
                                 $customer_id,
                                 $created_at,
@@ -42,7 +43,8 @@ class BillModel extends BasicModel {
                                 $number_room,
                                 $notes,
                                 $static,
-                                $isPaid);
+                                $isPaid,
+                                $isCancel);
             return $this->addV2($stmt);
         }
         return false;
@@ -59,12 +61,14 @@ class BillModel extends BasicModel {
     }
 
     function editBill(BillObject $item) : bool {
-        $sql = "UPDATE tblbill SET bill_static=?,bill_is_paid=? WHERE bill_id=?";
+        $sql = "UPDATE tblbill SET bill_static=?,bill_is_paid=?,bill_cancel=?,bill_staff_name=? WHERE bill_id=?";
         if($stmt = $this->con->prepare($sql)) {
             $static = $item->getBill_static();
             $isPaid = $item->getBill_is_paid();
+            $isCancel = $item->getBill_cancel();
+            $staff_name = $item->getBill_staff_name();
             $id = $item->getBill_id();
-            $stmt->bind_param("iii", $static, $isPaid, $id);
+            $stmt->bind_param("iiisi", $static, $isPaid, $isCancel, $staff_name, $id);
             return $this->editV2($stmt);
         }
         return false;
@@ -120,7 +124,14 @@ class BillModel extends BasicModel {
 
     private function createConditions(BillObject $similar) {
         $out = "";
+        if($similar->getBill_customer_id() != null) {
+            $user_id = $similar->getBill_customer_id();
+            $out .= "bill_customer_id=$user_id ";
+        }
 
+        if($out != "") {
+            $out = "WHERE $out";
+        }
         return $out;
     }
 

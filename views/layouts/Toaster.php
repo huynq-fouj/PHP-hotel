@@ -23,7 +23,7 @@
                     echo "Xóa tài khoản không thành công!";
                     break;
                 case "upd":
-                    echo "Cập nhật tài khoản không thành công!";
+                    echo "Cập nhật không thành công!";
                     break;
                 case "add":
                     echo "Thêm tài khoản không thành công!";
@@ -93,7 +93,7 @@
                     echo "Xóa tài khoản thành công!";
                     break;
                 case "upd":
-                    echo "Cập nhật tài khoản thành công!";
+                    echo "Cập nhật thành công!";
                     break;
                 case "add":
                     echo "Thêm tài khoản thành công!";

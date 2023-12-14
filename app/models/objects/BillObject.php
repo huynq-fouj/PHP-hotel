@@ -17,6 +17,8 @@ class BillObject extends BillstaticObject {
     private $bill_notes;//string
     private $bill_static;//int
     private $bill_is_paid;//int;
+    private $bill_cancel;//int
+    private $bill_staff_name;//string
 
     function getBill_id () {
         return $this->bill_id;
@@ -78,6 +80,14 @@ class BillObject extends BillstaticObject {
         return $this->bill_is_paid;
     }
 
+    function getBill_cancel() {
+        return $this->bill_cancel;
+    }
+
+    function getBill_staff_name() {
+        return $this->bill_staff_name;
+    }
+
     function setBill_id ($bill_id) {
         $this->bill_id = $bill_id;
     }
@@ -136,6 +146,14 @@ class BillObject extends BillstaticObject {
 
     function setBill_is_paid ($bill_is_paid) {
         $this->bill_is_paid = $bill_is_paid;
+    }
+
+    function setBill_cancel($bill_cancel) {
+        $this-> bill_cancel = $bill_cancel;
+    }
+
+    function setBill_staff_name($bill_staff_name) {
+        $this->bill_staff_name = $bill_staff_name;
     }
 
 }

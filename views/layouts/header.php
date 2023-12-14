@@ -136,6 +136,16 @@ if(str_contains($uri, "/views/profiles")) {
                     </li>
 
                     <li>
+                        <a class="dropdown-item d-flex align-items-center" href="/hostay/views/histories.php">
+                            <i class="bi bi-clock-history"></i>
+                            <span class="ms-1">Lịch sử đặt phòng</span>
+                        </a>
+                    </li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+
+                    <li>
                         <a class="dropdown-item d-flex align-items-center" href="/hostay/admin">
                             <i class="bi bi-gear"></i>
                             <span class="ms-1">Đến trang quản trị</span>

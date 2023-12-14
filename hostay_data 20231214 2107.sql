@@ -42,19 +42,23 @@ CREATE TABLE `tblbill` (
   `bill_notes` text COLLATE utf8mb4_unicode_ci,
   `bill_static` int(10) unsigned DEFAULT '0',
   `bill_is_paid` tinyint(1) DEFAULT '0',
+  `bill_cancel` tinyint(1) unsigned DEFAULT '0',
+  `bill_staff_name` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`bill_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `tblbill`
 --
 
 /*!40000 ALTER TABLE `tblbill` DISABLE KEYS */;
-INSERT INTO `tblbill` (`bill_id`,`bill_room_id`,`bill_customer_id`,`bill_created_at`,`bill_fullname`,`bill_email`,`bill_phone`,`bill_start_date`,`bill_end_date`,`bill_number_adult`,`bill_number_children`,`bill_number_room`,`bill_notes`,`bill_static`,`bill_is_paid`) VALUES 
- (2,17,15,'2023-11-15 00:00:00','Triệu Thị khánh Linh','linhnhi2243@gmail.com','0267312746','2024-01-01 00:00:00','2024-01-10 00:00:00',1,0,1,'Kiếm chỗ nghỉ trong dịp tết Tây',5,1),
- (3,29,28,'2023-12-12 00:00:00','Nguyễn Đức An','nguyenducan20384@gmail.com','0973263849','2023-12-12 00:00:00','2023-12-14 00:00:00',2,0,1,'',5,1),
- (4,28,23,'2023-12-12 00:00:00','Zenomi','zenomiarrtak2049@gmail.com','0238742343','2023-12-12 00:00:00','2023-12-20 00:00:00',1,0,1,'',5,1),
- (5,26,29,'2023-12-13 00:00:00','Nguyễn Duy Khánh','nguyenduykhanh122@gmail.com','09570283928','2023-12-30 00:00:00','2024-01-10 00:00:00',3,1,2,'Cần đặt phòng trước cho kỳ tết Tây',2,0);
+INSERT INTO `tblbill` (`bill_id`,`bill_room_id`,`bill_customer_id`,`bill_created_at`,`bill_fullname`,`bill_email`,`bill_phone`,`bill_start_date`,`bill_end_date`,`bill_number_adult`,`bill_number_children`,`bill_number_room`,`bill_notes`,`bill_static`,`bill_is_paid`,`bill_cancel`,`bill_staff_name`) VALUES 
+ (2,17,15,'2023-11-15 00:00:00','Triệu Thị khánh Linh','linhnhi2243@gmail.com','0267312746','2024-01-01 00:00:00','2024-01-10 00:00:00',1,0,1,'Kiếm chỗ nghỉ trong dịp tết Tây',5,1,0,'Nguyễn Quang Huy'),
+ (3,29,28,'2023-12-12 00:00:00','Nguyễn Đức An','nguyenducan20384@gmail.com','0973263849','2023-12-12 00:00:00','2023-12-14 00:00:00',2,0,1,'',5,1,0,'Nguyễn Quang Huy'),
+ (4,28,23,'2023-12-12 00:00:00','Zenomi','zenomiarrtak2049@gmail.com','0238742343','2023-12-12 00:00:00','2023-12-20 00:00:00',1,0,1,'',5,1,0,'Nguyễn Quang Huy'),
+ (5,26,29,'2023-12-13 00:00:00','Nguyễn Duy Khánh','nguyenduykhanh122@gmail.com','09570283928','2023-12-30 00:00:00','2024-01-10 00:00:00',3,1,2,'Cần đặt phòng trước cho kỳ tết Tây',2,0,0,'Nguyễn Quang Huy'),
+ (7,29,15,'2023-12-13 00:00:00','Admin','nguyenquanghuylt2002@gmail.com','0337212814','2023-12-13 00:00:00','2023-12-17 00:00:00',1,0,1,'',5,0,0,'Nguyễn Quang Huy'),
+ (8,16,15,'2023-12-13 00:00:00','Nguyễn Quang Huy','nguyenquanghuylt2002@gmail.com','0337212814','2024-01-01 00:00:00','2024-01-20 00:00:00',1,0,1,'',1,0,1,NULL);
 /*!40000 ALTER TABLE `tblbill` ENABLE KEYS */;
 
 
@@ -140,7 +144,7 @@ CREATE TABLE `tblroomtype` (
   `roomtype_name` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
   `roomtype_notes` text COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`roomtype_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `tblroomtype`
