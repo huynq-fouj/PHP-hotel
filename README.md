@@ -3,6 +3,8 @@
 ### Mã lớp: 20231IT6022003
 ##### Cập nhật lần cuối: .../.../20...
 
+##
+
 ## Ghi chú:
 ### Đặt tên folder là hostay
 ### Chỉnh sửa thông tin kết nối MySql ở file php.config.ini
@@ -14,9 +16,13 @@
     <img src="demo/img-1.png" width="400"/>
 </div>
 
+##
+
 <div align="center">
     <img src="demo/img-2.png" width="400"/>
 </div>
+
+##
 
 <div align="center">
     <img src="demo/img-3.png" width="400"/>
