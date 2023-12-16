@@ -89,6 +89,32 @@ INSERT INTO `tblbillstatic` (`billstatic_id`,`billstatic_name`,`billstatic_notes
 
 
 --
+-- Definition of table `tblcontact`
+--
+
+DROP TABLE IF EXISTS `tblcontact`;
+CREATE TABLE `tblcontact` (
+  `contact_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `contact_fullname` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `contact_email` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `contact_subject` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `contact_notes` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `contact_seen` tinyint(1) unsigned DEFAULT '0',
+  `contact_created_at` datetime NOT NULL,
+  PRIMARY KEY (`contact_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `tblcontact`
+--
+
+/*!40000 ALTER TABLE `tblcontact` DISABLE KEYS */;
+INSERT INTO `tblcontact` (`contact_id`,`contact_fullname`,`contact_email`,`contact_subject`,`contact_notes`,`contact_seen`,`contact_created_at`) VALUES 
+ (1,'Nguyễn Quang Huy','nguyenquanghuylt2002@gmail.com','Về dịch vụ','Dịch vụ đáp úng chưa tốt lắm, mong cải thiện thêm',1,'2023-12-16 00:00:00');
+/*!40000 ALTER TABLE `tblcontact` ENABLE KEYS */;
+
+
+--
 -- Definition of table `tblroom`
 --
 

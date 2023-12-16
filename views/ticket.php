@@ -38,6 +38,9 @@ if(!isset($_SESSION["user"]) || !isset($_SESSION["user"]["id"])) {
         $bill = $bm->getBill($_GET["id"]);
         $room = null;
         if($bill != null) {
+            if($bill->getBill_customer_id() != $_SESSION["user"]["id"]) {
+                header("location:/hostay/views");
+            }
             $room = $rm->getRoom($bill->getBill_room_id());
             if($room == null) {
                 header("location:/hostay/views/?err=noexist");

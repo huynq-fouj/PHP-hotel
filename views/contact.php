@@ -1,5 +1,4 @@
 <?php
-
 require_once("layouts/header.php");
 ?>
 <main id="main">
@@ -46,6 +45,89 @@ require_once("layouts/header.php");
       </div>
     </section><!-- End Intro Single-->
 
+    <!-- Contact form -->
+    <section class="contact mb-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="title-single-box">
+              <h1 class="title-single">Gửi phản hồi</h1>
+            </div>
+          </div>
+        </div>
+        <div class="row d-flex justify-content-center">
+          <div class="col-md-12">
+            <form action="" method="post" class="needs-validation" novalidate>
+              <div class="row">
+                <div class="col-md-4 mt-3">
+                  <label for="fullname" class="form-label text-dark fw-bold">Họ tên</label>
+                  <input type="text" class="form-control" id="fullname" name="txtFullname" required placeholder="Tên đầy đủ">
+                  <div class="invalid-feedback">Vui lòng nhập tên đầy đủ</div>
+                </div>
+                <div class="col-md-4 mt-3">
+                  <label for="email" class="form-label text-dark fw-bold">Email</label>
+                  <input type="text" class="form-control" id="email" name="txtEmail" required placeholder="Email">
+                  <div class="invalid-feedback">Vui lòng nhập email</div>
+                </div>
+                <div class="col-md-4 mt-3">
+                  <label for="subject" class="form-label text-dark fw-bold">Tiêu đề</label>
+                  <input type="text" class="form-control" id="subject" name="txtSubject" required placeholder="Tiêu đề">
+                  <div class="invalid-feedback">Vui lòng nhập tiêu đề</div>
+                </div>
+                <div class="col-md-12 mt-3">
+                  <label for="note" class="form-label text-dark fw-bold">Nội dung</label>
+                  <textarea name="txtNotes"
+                    class="form-control"
+                    id="note" rows="5"
+                    required
+                    placeholder="Nhập nội dung tại đây"></textarea>
+                  <div class="invalid-feedback">Vui lòng nhập nội dung</div>
+                </div>
+                <div class="col-md-12 mt-3 d-flex justify-content-center">
+                  <button type="submit" class="btn btn-dark px-4 fs-5" name="sendContact">
+                    <i class="bi bi-send"></i>
+                    Gửi phản hồi
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="col-md-12">
+          <?php
+              require_once("../app/models/ContactModel.php");
+              require_once("../libraries/Utilities.php");
+              $cm = new ContactModel();
+              if(isset($_POST["sendContact"])) {
+                $fullname = trim($_POST["txtFullname"]);
+                $email = trim($_POST["txtEmail"]);
+                $subject = trim($_POST["txtSubject"]);
+                $notes = trim($_POST["txtNotes"]);
+                if($fullname != ""
+                  && checkEmail($email)
+                  && $subject != ""
+                  && $notes != "") {
+                    $item = new ContactObject();
+                    $item->setContact_fullname($fullname);
+                    $item->setContact_email($email);
+                    $item->setContact_subject($subject);
+                    $item->setContact_notes($notes);
+                    $item->setContact_created_at(date("Y-m-d"));
+                    $result = $cm->addContact($item);
+                    if($result) {
+                      echo '<p class="text-success">Gửi phản hồi thành công!</p>';
+                    } else {
+                      echo '<p class="text-danger">Có lỗi trong quá trình xử lý! Vui lòng thử lại sau.</p>';
+                    }
+                  } else {
+                    echo '<p class="text-danger">Vui lòng điền đầy đủ thông tin!</p>';
+                  }
+              }
+            ?>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End Contact form -->
     <!-- ======= Contact Single ======= -->
     <section class="contact">
       <div class="container">

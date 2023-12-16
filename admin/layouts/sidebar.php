@@ -88,6 +88,18 @@ return "collapsed";
       </li>
     </ul>
   </li><!-- End Tables Nav -->
+  <li class="nav-item">
+    <a class="nav-link <?=getCollapsed("contact")?>" data-bs-target="#contacts-nav" data-bs-toggle="collapse" href="#">
+      <i class="bi bi-chat-dots"></i><span>Phản hồi</span><i class="bi bi-chevron-down ms-auto"></i>
+    </a>
+    <ul id="contacts-nav" class="nav-content collapse <?=getShow("contact")?>" data-bs-parent="#sidebar-nav">
+      <li>
+        <a href="/hostay/admin/contacts.php" class="<?=getActive("ctlist")?>">
+          <i class="bi bi-circle"></i><span>Danh sách</span>
+        </a>
+      </li>
+    </ul>
+  </li><!-- End Tables Nav -->
 
   <li class="nav-heading">Pages</li>
 

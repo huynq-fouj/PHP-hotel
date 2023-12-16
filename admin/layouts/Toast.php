@@ -64,6 +64,9 @@
                 case "fa":
                     echo "Diện tích là số nguyên lớn hơn 0!";
                     break;
+                case "send":
+                    echo "Gửi không thành công!";
+                    break;
                 default:
                     echo "Có lỗi trong quá trình thực hiện!";
                     break;
@@ -98,6 +101,9 @@
                 case "addr":
                         echo "Thêm phòng thành công!";
                         break;
+                case "send":
+                    echo "Trả lời thành công!";
+                    break;
                 default:
                     break;
             }
