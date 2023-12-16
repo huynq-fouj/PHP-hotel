@@ -42,7 +42,7 @@ require_once("layouts/Toast.php");
 <main id="main" class="main">
 
     <div class="pagetitle d-flex justify-content-between">
-      <h1>Danh sách</h1>
+      <h1>Chi tiết đơn</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="/hostay/admin/">Trang chủ</a></li>
