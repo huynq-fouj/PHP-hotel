@@ -21,7 +21,7 @@ $target_dir = "/hostay/public/images";
 if(isset($_POST["addRoom"])) {
     $hotelname = trim($_POST["txtHotelName"]);
     $address = trim($_POST["txtAddress"]);
-    $roomtype = trim($_POST["txtRoomType"]);
+    $roomtype = trim($_POST["slcRoomType"]);
     $bedtype = trim($_POST["txtBedType"]);
     $numpeople = trim($_POST["txtNumberPeople"]);
     $numbed = trim($_POST["txtNumberBed"]);
