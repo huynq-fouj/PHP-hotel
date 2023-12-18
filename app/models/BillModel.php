@@ -210,6 +210,19 @@ class BillModel extends BasicModel {
 
     }
 
+    function getNewBill($user_id) {
+        $item = null;
+        $sql = "SELECT * FROM tblbill ";
+        $sql .= "LEFT JOIN tblbillstatic ON tblbill.bill_static = tblbillstatic.billstatic_id ";
+        $sql .= "WHERE bill_customer_id=$user_id ";
+        $sql .= "ORDER BY bill_id DESC ";
+        $sql .= "LIMIT 0,1 ";
+        $result = $this->get($sql);
+        if($result->num_rows > 0) {
+            $item = $result->fetch_object("BillObject");
+        }
+        return $item;
+    }
 
 }
 ?>

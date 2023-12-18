@@ -63,18 +63,13 @@ if(!isset($_SESSION["user"])) {
                                         $item->setBill_created_at(date("Y-m-d"));
                                         $item->setBill_is_paid(0);
                                         if($bm->addBill($item)) {
-                                            //Gửi email
-                                            // require_once("../libraries/Sendmail.php");
-                                            // $subject = "Đăng ký đặt phòng thành công!";
-                                            // $mesage = "Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi;
-                                            // Đơn đăng ký đặt phòng của bạn đang được xư lý.
-                                            // Vui lòng kiểm tra email và các cuộc gọi để nhận đc thông báo từ chúng tôi.";
-                                            // try {
-                                            //     SendMail($email, $subject, $mesage);
-                                            // } catch(Exception $e) {
-                                            //     exit($e->getMessage()."</br>".$e->getTraceAsString());
-                                            // }
-                                            header("location:/hostay/views/ticket.php?id=$id");
+                                            $newBill = $bm->getNewBill($item->getBill_customer_id());
+                                            if($newBill != null) {
+                                                $newbill_id = $newBill->getBill_id();
+                                                header("location:/hostay/views/ticket.php?id=$newbill_id");
+                                            } else {
+                                                header("location:/hostay/views/room.php?id=$id&suc=bia");
+                                            }
                                         } else {
                                             header("location:/hostay/views/room.php?id=$id&err=bia");
                                         }
