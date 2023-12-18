@@ -4,8 +4,8 @@
 - Cập nhật lần cuối: .../.../20...
 ---
 ### Ghi chú:
-- Đặt tên folder là **hostay**.
-- Chỉnh sửa thông tin kết nối MySql ở file **php.config.ini**
+- Đặt tên folder là ```hostay```
+- Chỉnh sửa thông tin kết nối MySql ở file ```php.config.ini```
 - Nên sử dụng **Xampp** để chạy localhost.
 ---
 ### Demo
