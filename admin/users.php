@@ -67,6 +67,12 @@ require_once("layouts/Toast.php");
             <div class="col-lg-12">
 		        <div class="card">
 		            <div class="card-body">
+                        <div class="row my-3">
+                            <div class="col-md-12">
+                                <a href="/hostay/actions/userexcel.php" class="btn btn-success me-3"><i class="bi bi-filetype-xlsx"></i> Xuất Excel</a>
+                                <a href="/hostay/admin/adduser.php" class="btn btn-primary"><i class="bi bi-person-add"></i> Thêm người dùng</a>
+                            </div>
+                        </div>
                         <?=UserTable($items)?>
                         <?=Paging($url, $page, $total, $totalperpage)?>
                     </div>

@@ -56,6 +56,7 @@ if(!isset($_SESSION["user"]) || !isset($_SESSION["user"]["id"])) {
 
         <div class="d-flex justify-content-center my-3">
             <button class="btn btn-primary mx-3 btn-goback"><i class="bi bi-reply"></i> Quay lại</button>
+            <a href="/hostay/views" class="btn btn-primary mx-3"><i class="bi bi-house"></i> Trang chủ</a>
             <button class="btn btn-primary mx-3 ticket-dowload"><i class="bi bi-download"></i> Tải ảnh xuống</button>
             <button class="btn btn-primary mx-3 ticket-pdf"><i class="bi bi-filetype-pdf"></i> Xuất PDF</button>
         </div>

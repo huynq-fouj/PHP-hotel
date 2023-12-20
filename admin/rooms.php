@@ -64,6 +64,11 @@ require_once("layouts/Toast.php");
             <div class="col-lg-12">
 		        <div class="card">
 		            <div class="card-body">
+                        <div class="row my-3">
+                            <div class="col-md-12">
+                                <a href="/hostay/admin/addroom.php" class="btn btn-primary"><i class="bi bi-plus-circle"></i> Thêm phòng</a>
+                            </div>
+                        </div>
                         <?=RoomTable($rooms)?>
                         <?=Paging($url, $page, $total, $totalperpage)?>
                     </div>

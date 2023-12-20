@@ -188,6 +188,7 @@ require_once("layouts/Toaster.php");
                 src="https://maps.google.com/maps?q=<?=$item->getRoom_address()?>&output=embed"
                 width="100%"
                 height="460"
+                loading="lazy"
                 allowfullscreen
                 title="<?=$item->getRoom_address()?>">
             </iframe>

@@ -53,6 +53,11 @@ require_once("layouts/Toast.php");
             <div class="col-lg-12">
 		        <div class="card">
 		            <div class="card-body">
+                        <div class="row my-3">
+                            <div class="col-md-12">
+                                <a href="/hostay/actions/contactexcel.php" class="btn btn-success"><i class="bi bi-filetype-xlsx"></i> Xuất Excel</a>
+                            </div>
+                        </div>
                         <?=ContactTable($items)?>
                         <?=Paging($url, $page, $total, $totalperpage)?>
                     </div>
