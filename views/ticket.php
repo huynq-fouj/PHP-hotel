@@ -38,7 +38,7 @@ if(!isset($_SESSION["user"]) || !isset($_SESSION["user"]["id"])) {
         $bill = $bm->getBill($_GET["id"]);
         $room = null;
         if($bill != null) {
-            if($bill->getBill_customer_id() != $_SESSION["user"]["id"]) {
+            if($bill->getBill_customer_id() != $_SESSION["user"]["id"] && $_SESSION["user"]["permission"] == 0) {
                 header("location:/hostay/views");
             }
             $room = $rm->getRoom($bill->getBill_room_id());
@@ -55,8 +55,9 @@ if(!isset($_SESSION["user"]) || !isset($_SESSION["user"]["id"])) {
         </div>
 
         <div class="d-flex justify-content-center my-3">
-            <a href="/hostay/views/" class="btn btn-primary mx-3"><i class="bi bi-house"></i> Về trang chủ</a>
+            <button class="btn btn-primary mx-3 btn-goback"><i class="bi bi-reply"></i> Quay lại</button>
             <button class="btn btn-primary mx-3 ticket-dowload"><i class="bi bi-download"></i> Tải ảnh xuống</button>
+            <button class="btn btn-primary mx-3 ticket-pdf"><i class="bi bi-filetype-pdf"></i> Xuất PDF</button>
         </div>
 
         <div class="row mb-5">
@@ -67,7 +68,7 @@ if(!isset($_SESSION["user"]) || !isset($_SESSION["user"]["id"])) {
                         <?=$room->getRoom_hotel_name()?>
                     </div>
                     <div class="col-3 d-flex justify-content-center">
-                        <span class="me-2"><b>Số:</b></span>
+                        <span class="me-2"><b>Mã phiếu:</b></span>
                         <?=$bill->getBill_id()?>
                     </div>
                 </div>
@@ -158,6 +159,7 @@ if(!isset($_SESSION["user"]) || !isset($_SESSION["user"]["id"])) {
     </div>
     <script src="/hostay/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../assets/vendor/html2canvas/html2canvas.min.js"></script>
+    <script src="../assets/vendor/html2pdf/node_modules/html2pdf.js/dist/html2pdf.bundle.min.js"></script>
     <script>
         document.querySelector(".ticket-dowload").addEventListener("click", () => {
             const target = document.getElementById("ticket");
@@ -166,10 +168,30 @@ if(!isset($_SESSION["user"]) || !isset($_SESSION["user"]["id"])) {
                 const base64image = canvas.toDataURL("image/png");
                 let anchor = document.createElement("a");
                 anchor.setAttribute("href", base64image);
-                anchor.setAttribute("download", "DonDatPhongHostay.png");
+                anchor.setAttribute("download", "Phieu_xac_nhan_dat_phong_<?=$bill->getBill_id()?>.png");
                 anchor.click();
                 anchor.remove();
             });
+        });
+
+        document.querySelector(".ticket-pdf").addEventListener("click", () => {
+            const target = document.getElementById("ticket");
+
+            var opt = {
+                margin:       0.5,
+                filename:     'Phieu_xac_nhan_dat_phong_<?=$bill->getBill_id()?>.pdf',
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2 , width: 920 },
+                jsPDF:        { unit: 'in', format: 'A4', orientation: 'portrait' }
+            };
+
+            var worker = html2pdf().from(target).set(opt).toPdf().get("pdf").then((pdf) => { 
+                window.open(pdf.output('bloburl'), '_blank');
+            });
+        });
+
+        document.querySelector(".btn-goback").addEventListener("click", () => {
+            window.history.back();
         });
     </script>
 </body>

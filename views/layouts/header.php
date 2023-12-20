@@ -21,6 +21,10 @@ if(str_contains($uri, "/views/profiles")) {
     $title = "Thông tin cá nhân";
     $active = "";
 }
+if(str_contains($uri, "/views/histories")) {
+    $title = "Lịch sử đặt phòng";
+    $active = "";
+}
 ?>
 <!DOCTYPE html>
 <html lang="vi">

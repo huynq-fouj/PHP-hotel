@@ -94,6 +94,11 @@ require_once("layouts/Toast.php");
                         <!-- End preview room -->
                         <!-- Start bill detail -->
                         <div class="row mb-3">
+                            <div class="col-md-12">
+                                <a href="/hostay/views/ticket.php?id=<?=$bill->getBill_id()?>">Xem phiếu xác nhận.</a>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
                             <div class="col-md-3 fw-bold">Họ và tên</div>
                             <div class="col-md-9"><?=$bill->getBill_fullname()?></div>
                         </div>
