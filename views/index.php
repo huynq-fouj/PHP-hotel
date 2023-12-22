@@ -1,5 +1,6 @@
 <?php
-require_once __DIR__."/layouts/header.php";
+require_once("layouts/header.php");
+require_once("layouts/Toaster.php");
 ?>
 
 <!-- ======= Intro Section ======= -->
@@ -434,5 +435,5 @@ require_once __DIR__."/layouts/header.php";
   });
 </script>
 <?php
-    require_once __DIR__."/layouts/footer.php";
+    require_once("layouts/footer.php");
 ?>

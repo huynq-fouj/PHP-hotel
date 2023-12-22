@@ -201,12 +201,22 @@ require_once("layouts/Toast.php");
                                 </div>
                             </div>
                             <input type="hidden" name="idForPost" value="<?=$bill->getBill_id()?>">
-                            <div class="row mb-3 d-flex justify-content-center">
-                                <button class="col-md-3 btn btn-primary disabled btn-updsta"
+                            <div class="mb-3 d-flex justify-content-center">
+                                <button class="btn btn-primary disabled btn-updsta mx-3"
                                     type="submit"
                                     name="updSta">
                                     Cập nhật trạng thái
                                 </button>
+                                <?php
+                                    if($bill->getBill_cancel() == 0) {
+                                ?>
+                                    <a href="/hostay/actions/billcl.php?id=<?=$bill->getBill_id()?>"
+                                            class="btn btn-danger mx-3">
+                                            Hủy đơn
+                                        </a>
+                                <?php
+                                    }
+                                ?>
                             </div>
                         </form>
                         <!-- End bill detail -->

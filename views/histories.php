@@ -3,6 +3,7 @@ session_start();
 if(!isset($_SESSION["user"]) || !isset($_SESSION["user"]["id"])) {
     header("location:/hostay/views");
 }
+$_REQUEST["pos"] = "";
 //
 require_once("../app/models/UserModel.php");
 require_once("../app/models/BillModel.php");
@@ -53,7 +54,7 @@ require_once("layouts/Toaster.php");
                             <span>Đơn đặt phòng ngày <?=date("d-m-Y", strtotime($bill->getBill_created_at()))?></span>
                             <?php
                                 if($bill->getBill_cancel() != 0) {
-                                    echo '<span class="ms-1 text-danger">(Đã hủy)</span>';
+                                    echo '<span class="ms-1 text-danger">(Đã bị hủy)</span>';
                                 }
                             ?>
                         </a>
@@ -176,7 +177,7 @@ require_once("layouts/Toaster.php");
                                         <?=$bill->getBill_cancel() == 0 ?
                                         '<span class="text-success">Có</span>' :
                                         '<span class="text-danger me-1">Không</span>
-                                        <span>(Khách hàng đã hủy đơn đặt phòng)</span>'?>
+                                        <span>(Đơn đặt phòng đã bị hủy)</span>'?>
                                     </div>
                                 </div>
                             </div>

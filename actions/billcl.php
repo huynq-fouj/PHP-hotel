@@ -10,12 +10,25 @@ if(!isset($_SESSION["user"])) {
         $bm = new BillModel();
         $bill = $bm->getBill($_GET["id"]);
         if($bill != null){
-            $bill->setBill_cancel(1);
-            $result = $bm->editBill($bill);
-            if($result) {
-                header("location:/hostay/views/histories.php?suc=upd");
+            if($_SESSION["user"]["id"] == $bill->getBill_customer_id() || $_SESSION["user"]["permission"] > 0) {
+                $id = $bill->getBill_id();
+                $bill->setBill_cancel(1);
+                $result = $bm->editBill($bill);
+                if($result) {
+                    if($_SESSION["pos"] == "bill") {
+                        header("location:/hostay/admin/bill.php?id=$id&suc=upd");
+                    } else {
+                        header("location:/hostay/views/histories.php?suc=upd");
+                    }
+                } else {
+                    if($_SESSION["pos"] == "bill") {
+                        header("location:/hostay/admin/bill.php?id=$id&err=upd");
+                    } else {
+                        header("location:/hostay/views/histories.php?err=upd");
+                    }
+                }
             } else {
-                header("location:/hostay/views/histories.php?err=upd");
+                header("location:/hostay/views/?err=notok");
             }
         } else {
             header("location:/hostay/views/histories.php?err=noexist");
