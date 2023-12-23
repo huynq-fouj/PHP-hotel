@@ -25,7 +25,7 @@ function Paging($url, $page, $total, $totalperpage) {
         $leftCurrent = "";
         $count = 0;
         for($i = $page - 1; $i > 1; $i--) {
-            $leftCurrent = "<li class=\"page-item\"><a class=\"page-link\" href=\"".$url+"page=".$i."\">".$i."</a></li>".$leftCurrent;
+            $leftCurrent = "<li class=\"page-item\"><a class=\"page-link\" href=\"".$url."page=".$i."\">".$i."</a></li>".$leftCurrent;
             if(++$count >= 2) {
                 break;
             }

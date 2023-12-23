@@ -51,10 +51,10 @@ if(isset($_POST["addRoom"])) {
         if(!is_numeric($quality) || $quality < 1 || $quality > 5) {
             header("location:/hostay/admin/addroom.php?err=fq");
         }
-        if(!is_numeric($price) || $quality < 0) {
+        if(!is_numeric($price) || $price < 0) {
             header("location:/hostay/admin/addroom.php?err=fp");
         }
-        if(!is_numeric($area) || $quality < 0) {
+        if(!is_numeric($area) || $area < 0) {
             header("location:/hostay/admin/addroom.php?err=fa");
         }
         if(isset($_FILES["roomImage"])
