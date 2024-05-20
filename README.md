@@ -1,8 +1,3 @@
-## Dự án Web môn Lập trình web bằng PHP 
-### Chủ để quản lý đặt phòng khách sạn
-- Mã lớp: **20231IT6022003**
-- Cập nhật lần cuối: 23/12/2024
----
 ### Ghi chú:
 - Đặt tên folder là ```hostay```
 - Chỉnh sửa thông tin kết nối MySql ở file ```php.config.ini```
