@@ -12,4 +12,3 @@ function getConnection() : mysqli {
     }
     return $con;
 }
-?>
