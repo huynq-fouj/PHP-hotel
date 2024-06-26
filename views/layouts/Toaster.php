@@ -67,6 +67,9 @@
                 case "bia":
                     echo "Đặt phòng không thành công!";
                     break;
+                case "invalid_voucher":
+                    echo "Voucher không khả dụng";
+                    break;
                 default:
                     echo "Có lỗi trong quá trình thực hiện!";
                     break;

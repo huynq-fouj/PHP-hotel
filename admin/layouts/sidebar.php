@@ -1,21 +1,24 @@
 <?php
-function getActive(string $act) {
-if(isset($_SESSION["active"]) && $_SESSION["active"] == $act){
-return "active";
+function getActive(string $act)
+{
+    if (isset($_SESSION["active"]) && $_SESSION["active"] == $act) {
+        return "active";
+    }
+    return "";
 }
-return "";
+function getShow(string $pos)
+{
+    if (isset($_SESSION["pos"]) && $_SESSION["pos"] == $pos) {
+        return "show";
+    }
+    return "";
 }
-function getShow(string $pos) {
-if(isset($_SESSION["pos"]) && $_SESSION["pos"] == $pos){
-return "show";
-}
-return "";
-}
-function getCollapsed(string $pos) {
-if(isset($_SESSION["pos"]) && $_SESSION["pos"] == $pos){
-return "";
-}
-return "collapsed";
+function getCollapsed(string $pos)
+{
+    if (isset($_SESSION["pos"]) && $_SESSION["pos"] == $pos) {
+        return "";
+    }
+    return "collapsed";
 }
 ?>
 <!-- ======= Sidebar ======= -->

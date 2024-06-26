@@ -67,6 +67,9 @@
                 case "send":
                     echo "Gửi không thành công!";
                     break;
+                case "invalid_code":
+                    echo "Voucher không hợp lệ";
+                    break;
                 default:
                     echo "Có lỗi trong quá trình thực hiện!";
                     break;
