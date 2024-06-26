@@ -13,6 +13,7 @@ if(!isset($_SESSION["user"])) {
             $id = $_POST["idForPost"];
             $rm = new RoomModel();
             if($rm->getRoom($id) != null) {
+                
                 $user_id = $_SESSION["user"]["id"];
                 $fullname = trim($_POST["txtFullname"]);
                 $email = trim($_POST["txtEmail"]);
@@ -23,6 +24,9 @@ if(!isset($_SESSION["user"])) {
                 $start = trim($_POST["txtStartDate"]);
                 $end = trim($_POST["txtEndDate"]);
                 $notes = trim($_POST["txtNotes"]);
+                $personalID = trim($_POST["txtPersonalID"]);
+                $voucher = trim($_POST["txtVoucher"]);
+
                 if($fullname != ""
                 && checkEmail($email)
                 && $phone != ""
@@ -30,7 +34,9 @@ if(!isset($_SESSION["user"])) {
                 && $numAdult != ""
                 && $numChild != ""
                 && $start != ""
-                && $end != "") {
+                && $end != ""
+                && $personalID != ""
+                && $voucher != "") {
                     if(!is_numeric($numRoom) || $numRoom < 1 || $numRoom > 5) {
                         header("location:/hostay/views/room.php?id=$id&err=nr");
                     } else {
@@ -89,4 +95,3 @@ if(!isset($_SESSION["user"])) {
         }
     }
 }
-?>
