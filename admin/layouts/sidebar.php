@@ -92,6 +92,23 @@ function getCollapsed(string $pos)
     </ul>
   </li><!-- End Tables Nav -->
   <li class="nav-item">
+    <a class="nav-link <?=getCollapsed("voucher")?>" data-bs-target="#voucher-nav" data-bs-toggle="collapse" href="#">
+    <i class="bi bi-patch-plus"></i><span>Voucher</span><i class="bi bi-chevron-down ms-auto"></i>
+    </a>
+    <ul id="voucher-nav" class="nav-content collapse <?=getShow("voucher")?>" data-bs-parent="#sidebar-nav">
+      <li>
+        <a href="/hostay/admin/vouchers.php" class="<?=getActive("voulist")?>">
+          <i class="bi bi-circle"></i><span>Danh sách</span>
+        </a>
+      </li>
+      <li>
+        <a href="/hostay/admin/addroom.php" class="<?=getActive("vouadd")?>">
+          <i class="bi bi-circle"></i><span>Thêm mới</span>
+        </a>
+      </li>
+    </ul>
+  </li><!-- End Voucher Nav -->
+  <li class="nav-item">
     <a class="nav-link <?=getCollapsed("contact")?>" data-bs-target="#contacts-nav" data-bs-toggle="collapse" href="#">
       <i class="bi bi-chat-dots"></i><span>Phản hồi</span><i class="bi bi-chevron-down ms-auto"></i>
     </a>
