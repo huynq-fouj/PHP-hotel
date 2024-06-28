@@ -70,6 +70,12 @@
                 case "invalid_code":
                     echo "Voucher không hợp lệ";
                     break;
+                case "invalid_value":
+                    echo "Giá trị nhập vào phải lớn hơn 0";
+                    break;
+                case "voucher_date":
+                    echo "Ngày bắt đầu phải nhỏ hơn ngày kết thúc voucher";
+                    break;
                 default:
                     echo "Có lỗi trong quá trình thực hiện!";
                     break;
