@@ -43,4 +43,18 @@ function getDateDiff($start, $end) {
         return 0;
     }
 }
-?>
+
+function headerRedirect($messageParam, $status, $endpoint = null) {
+    
+    $url = "/hostay/admin/";
+
+    if (!empty($messageParam) && !empty($status)) {
+        $url .= $endpoint . '.php?' . $status . '=' . urlencode($messageParam);
+    }
+
+    echo '
+        <script>
+            location.href = "' . $url . '";
+        </script>';
+    exit();
+}
