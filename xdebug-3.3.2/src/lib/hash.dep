@@ -1,0 +1,4 @@
+src/lib/hash.lo: \
+ /home/vandunxg/CODE/hotel/hostay/xdebug-3.3.2/src/lib/hash.c \
+ /home/vandunxg/CODE/hotel/hostay/xdebug-3.3.2/src/lib/hash.h \
+ /home/vandunxg/CODE/hotel/hostay/xdebug-3.3.2/src/lib/llist.h

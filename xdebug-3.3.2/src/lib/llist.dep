@@ -1,0 +1,3 @@
+src/lib/llist.lo: \
+ /home/vandunxg/CODE/hotel/hostay/xdebug-3.3.2/src/lib/llist.c \
+ /home/vandunxg/CODE/hotel/hostay/xdebug-3.3.2/src/lib/llist.h
