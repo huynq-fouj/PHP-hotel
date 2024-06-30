@@ -1,10 +1,14 @@
 <?php
+require_once("../libraries/Utilities.php");
 session_start();
-if(!isset($_SESSION["user"])) {
-    header("location:/hostay/admin/login.php");
+
+$currentFileName = basename($_SERVER['PHP_SELF'], '.php');
+
+if (!isset($_SESSION["user"])) {
+    headerRedirect(null, null, "login");
 } else {
-    if(!isset($_SESSION["user"]["permission"]) || $_SESSION["user"]["permission"] < 1) {
-        header("location:/hostay/admin/login.php?err=permis");
+    if (!isset($_SESSION["user"]["permission"]) || $_SESSION["user"]["permission"] < 1) {
+        headerRedirect("permis", "err", "login");
     }
 }
 //
@@ -69,7 +73,7 @@ require_once("layouts/Toast.php");
 		            <div class="card-body">
                         <div class="row my-3">
                             <div class="col-md-12">
-                                <a href="/hostay/admin/addroom.php" class="btn btn-primary"><i class="bi bi-plus-circle"></i> Thêm voucher</a>
+                                <a href="/hostay/admin/addvoucher.php" class="btn btn-primary"><i class="bi bi-plus-circle"></i> Thêm voucher</a>
                             </div>
                         </div>
                         <?=voucherTable($vouchers)?>
