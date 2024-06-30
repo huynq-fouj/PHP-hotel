@@ -76,6 +76,9 @@
                 case "voucher_date":
                     echo "Ngày bắt đầu phải nhỏ hơn ngày kết thúc voucher";
                     break;
+                case "duplicate_code":
+                    echo "Mã giảm giá đã tồn tại trong hệ thống";
+                    break;
                 default:
                     echo "Có lỗi trong quá trình thực hiện!";
                     break;
