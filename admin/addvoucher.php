@@ -1,33 +1,39 @@
 <?php
+require_once("../libraries/Utilities.php");
 session_start();
-if(!isset($_SESSION["user"])) {
-    header("location:/hostay/admin/login.php");
+
+$currentFileName = basename($_SERVER['PHP_SELF'], '.php');
+
+if (!isset($_SESSION["user"])) {
+    headerRedirect(null, null, "login");
 } else {
-    if(!isset($_SESSION["user"]["permission"]) || $_SESSION["user"]["permission"] < 1) {
-        header("location:/hostay/admin/login.php?err=permis");
+    if (!isset($_SESSION["user"]["permission"]) || $_SESSION["user"]["permission"] < 1) {
+        headerRedirect("permis", "err", "login");
     }
 }
 //
 $_SESSION["pos"] = "voucher";
 $_SESSION["active"] = "vouadd";
 //
-require_once("../app/models/VoucherModel.php");
+require_once "../app/models/VoucherModel.php";
+require_once "../app/models/objects/VoucherObject.php";
+require_once "../app/models/UserModel.php";
+require_once "../app/models/objects/UserObject.php";
 $voucherModel = new VoucherModel();
 
 if (isset($_POST["addVoucher"])) {
 
-    $voucherCode = trim($_POST["txtVoucherCode"]);
+    $voucherCode = strtoupper(trim($_POST["txtVoucherCode"]));
     $voucherPercent = trim($_POST["txtPercent"]);
-    $limitDiscount = trim($_POST["txtLimitDiscount"]);
+    $limitDiscount = trim($_POST["txtDiscountLimit"]);
     $startDate = trim($_POST["txtStartDate"]);
     $expireDate = trim($_POST["txtExpireDate"]);
     $createdBy = trim($_POST["txtUserName"]);
     $description = trim($_POST["txtDescription"]);
     $minOrderValue = trim($_POST["txtMinOrderValue"]);
 
-    
     if (
-        $voucherCode != "" 
+        $voucherCode != ""
         && $voucherPercent != ""
         && $limitDiscount != ""
         && $startDate != ""
@@ -35,46 +41,53 @@ if (isset($_POST["addVoucher"])) {
         && $createdBy != ""
         && $minOrderValue != ""
     ) {
-        if ($voucherPercent < 0 || $limitDiscount < 0 && $minOrderValue < 0) {
-            header("location:/hostay/admin/addvoucher.php?err=invalid_value");
+
+
+        $voucherModel = new VoucherModel();
+
+        $countCode = $voucherModel->countVoucherByCode($voucherCode);
+
+        if($countCode >= 1){
+            headerRedirect("duplicate_code", "err", $currentFileName); 
         }
 
-        if($startDate >= $expireDate){
-            header("location:/hostay/admin/addvoucher.php?err=voucher_date");
+        if ($voucherPercent < 1 || $limitDiscount < 1 && $minOrderValue < 1) {
+            headerRedirect("invalid_value", "err", $currentFileName);
         }
-        
 
+        if ($startDate >= $expireDate) {
+            headerRedirect("voucher_date", "err", $currentFileName);
+        }
 
         $detail = $_POST["txtDetail"];
-        $rm = new RoomModel();
-        $item = new RoomObject();
-        $item->setRoom_address($address);
-        $item->setRoom_hotel_name($hotelname);
-        $item->setRoom_type_id($roomtype);
-        $item->setRoom_bed_type($bedtype);
-        $item->setRoom_number_people((int) $numpeople);
-        $item->setRoom_number_bed((int) $numbed);
-        $item->setRoom_price((float) $price);
-        $item->setRoom_quality((float) $quality);
-        $item->setRoom_area((float) $area);
-        $item->setRoom_static((int) $static);
-        $item->setRoom_image($target_file);
-        $item->setRoom_detail($detail);
-        if ($rm->addRoom($item)) {
-            header("location:/hostay/admin/addroom.php?suc=addr");
+        $voucherObject = new VoucherObject();
+
+        $userModel = new UserModel();
+        $userId = $userModel->getUserByUserName($createdBy);
+
+        $voucherObject->setVoucherCode($voucherCode);
+        $voucherObject->setPercent($voucherPercent);
+        $voucherObject->setDiscountLimit($limitDiscount);
+        $voucherObject->setStartDate($startDate);
+        $voucherObject->setExpireDate($expireDate);
+        $voucherObject->setMinOrderValue($minOrderValue);
+        $voucherObject->setUserId($userId);
+        $voucherObject->setDescription($description);
+
+        if ($voucherModel->addVoucher($voucherObject)) {
+            headerRedirect("addr", "suc", $currentFileName);
         } else {
-            DeleteFile($target_file);
-            header("location:/hostay/admin/addroom.php?err=add");
+            headerRedirect("add", "err", $currentFileName);
         }
 
     } else {
-        header("location:/hostay/admin/addvoucher.php?err=lack");
+        headerRedirect("lack", "err", $currentFileName);
     }
 
 }
 
-require_once("layouts/header.php");
-require_once("layouts/Toast.php");
+require_once "layouts/header.php";
+require_once "layouts/Toast.php";
 ?>
 <!--Start main page-->
 <main id="main" class="main">
@@ -114,7 +127,7 @@ require_once("layouts/Toast.php");
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label for="percent" class="col-sm-2 col-form-label fw-bold">Phần trăm giảm giá</label>
+                                <label for="percent" class="col-sm-2 col-form-label fw-bold">Ưu đãi</label>
                                 <div class="col-sm-10">
                                     <input type="number"
                                         class="form-control"
@@ -122,14 +135,13 @@ require_once("layouts/Toast.php");
                                         name="txtPercent"
                                         min="1"
                                         max="100"
-                                        placeholder="100"
+                                        placeholder="100%"
                                         required>
                                     <div class="invalid-feedback">
-                                        Hãy nhập phần trăm cần giảm
+                                        Hãy nhập phần trăm cần giảm 1% <= x <= 100%
                                     </div>
                                 </div>
                             </div>
-                            
                             <div class="mb-3 row">
                                 <label for="discountLimit" class="col-sm-2 col-form-label fw-bold">Giảm tối đa</label>
                                 <div class="col-sm-10">
@@ -237,5 +249,5 @@ require_once("layouts/Toast.php");
     });
 </script>
 <?php
-require_once("layouts/footer.php");
+require_once "layouts/footer.php";
 ?>
