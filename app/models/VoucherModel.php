@@ -1,36 +1,61 @@
 <?php
+use PhpOffice\PhpSpreadsheet\Style\NumberFormat\Wizard\Percentage;
 
 require_once("BasicModel.php");
 require_once("objects/VoucherObject.php");
 
 class VoucherModel extends BasicModel{
 
-    // function addVoucher(VoucherObject $item) : bool{
-    //     $sqlStatement = "INSERT INTO voucher (
-    //         voucher_code, description, start_date, expire_date, percent, discount_limit,
-    //         status, usage_count, min_order_value, user_id) VALUES (?,?,?,?,?,?,?,?,?,?)
-    //     )";
+    function addVoucher(VoucherObject $item) : bool{
+        $sqlStatement = "INSERT INTO voucher (
+        voucher_code, description, start_date, expire_date, percent, discount_limit
+        , min_order_value, user_id) VALUES (?,?,?,?,?,?,?,?)";
 
-    //     if($query = $this->con->prepare($sqlStatement)){
-    //         $voucherCode = $item->getVoucherCode();
-    //         $description = $item->getDescription();
-    //         $startDate = $item->getStartDate();
-    //         $expireDate = $item->getExpireDate();
-    //         $percent = $item->getPercent();
-    //         $discountLimit = $item->getDiscountLimit();
-    //         $status = $item->getStatus();
-    //         $usageCount = $item->getUsageCount();
-    //         $minOrderValue = $item->getMinOrderValue(); 
-    //         $userId = $item->getUserID();
-    //     }
-    // }
+        if($query = $this->con->prepare($sqlStatement)){
+            $voucherCode = $item->getVoucherCode();
+            $description = $item->getDescription();
+            $startDate = $item->getStartDate();
+            $expireDate = $item->getExpireDate();
+            $percent = $item->getPercent();
+            $discountLimit = $item->getDiscountLimit();
+            $minOrderValue = $item->getMinOrderValue(); 
+            $userId = $item->getUserID();
 
-    function getVoucher($id) {
+            $query->bind_param("sssssiii",
+                                $voucherCode,
+                                $description,
+                                $startDate,
+                                $expireDate,
+                                $percent,
+                                $discountLimit,
+                                $minOrderValue,
+                                $userId);
+
+            return $this->addV2($query);
+                        
+        }
+
+        return false;
+
+    }
+
+    function getVoucher($id) : VoucherObject{
         $item = null;
         $sql = "SELECT * FROM voucher WHERE voucher_id=$id";
         $result = $this->get($sql);
         if($result->num_rows > 0) {
             $item = $result->fetch_object('VoucherObject');
+        }
+        return $item;
+    }
+
+    function countVoucherByCode($voucherCode) : int{
+        $item = 0;
+        $sql = "SELECT COUNT(*) as COUNT FROM voucher WHERE voucher_code = '$voucherCode'";
+        $result = $this->get($sql);
+        if($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            $item = (int) $row["COUNT"];
         }
         return $item;
     }
@@ -127,6 +152,31 @@ class VoucherModel extends BasicModel{
             $id = $item->getVoucherId();
             $stmt->bind_param("i", $id);
             return $this->delV2($stmt);
+        }
+        return false;
+    }
+
+    function updateVoucher(VoucherObject $item) : bool {
+        $sqlStatement = "UPDATE voucher SET voucher_code=?,percent=?,
+            start_date=?,expire_date=?,discount_limit=?,min_order_value=?,
+            status=? WHERE voucher_id=?";
+        if($sqlQuery = $this->con->prepare($sqlStatement)) {
+            $voucherCode = $item->getVoucherCode();
+            $percent = $item->getPercent();
+            $startDate = $item->getStartDate();
+            $expireDate = $item->getExpireDate();
+            $discountLimit = $item->getDiscountLimit();
+            $minOrderValue = $item->getMinOrderValue();
+            $status = $item->getStatus();
+            $voucherId = $item->getVoucherId();
+
+            $sqlQuery->bind_param("sissiisi",
+                $voucherCode, $percent, $startDate, $expireDate, $discountLimit,
+                $minOrderValue, $status, $voucherId
+        );
+
+                                
+            return $this->editV2($sqlQuery);
         }
         return false;
     }
