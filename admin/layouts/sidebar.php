@@ -102,7 +102,7 @@ function getCollapsed(string $pos)
         </a>
       </li>
       <li>
-        <a href="/hostay/admin/addroom.php" class="<?=getActive("vouadd")?>">
+        <a href="/hostay/admin/addvoucher.php" class="<?=getActive("vouadd")?>">
           <i class="bi bi-circle"></i><span>Thêm mới</span>
         </a>
       </li>
