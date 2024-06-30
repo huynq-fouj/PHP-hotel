@@ -40,14 +40,14 @@ function voucherRow(VoucherObject $item) {
     $out .= '<td scope="row" class="align-middle">'.getStatic($item->getStatus()).'</td>';
     //detail
     $out .= '<td class="align-middle">
-    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#viewRoom'.$item->getVoucherId().'">
+    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#viewVoucher'.$item->getVoucherId().'">
         <i class="bi bi-eye"></i>
     </button>
     </td>';
-    //$out .= viewDetail($item);
-    //edit
+    $out .= viewDetail($item);
+    
     $out .= '<td class="align-middle">
-    <a class="btn btn-success btn-sm" href="/hostay/admin/editroom.php?id='.$item->getVoucherId().'">
+    <a class="btn btn-success btn-sm" href="/hostay/admin/editvoucher.php?id='.$item->getVoucherId().'">
         <i class="bi bi-pencil-square"></i>
     </a>
     </td>';
@@ -82,80 +82,80 @@ function getStatic($static) {
     return $out;
 }
 
-// function viewDetail(RoomObject $item) {
-//     $out = '<div class="modal fade"
-//         id="viewRoom'.$item->getRoom_id().'"
-//         data-bs-keyboard="false"
-//         tabindex="-1" aria-labelledby="staticBackdropLabel"
-//         aria-hidden="true">';
-//     $out .= '<div class="modal-dialog">';
-//     $out .= '<div class="modal-content">';
-//     $out .= '<div class="modal-header">';
-//     $out .= '<h1 class="modal-title fs-5" id="staticBackdropLabel">Thông tin phòng</h1>';
-//     $out .= '<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>';
-//     $out .= '</div><div class="modal-body">';
-//     $out .= '<div class="row">
-//                 <div class="col-sm-12 d-flex justify-content-center">
-//                     <img src="'.$item->getRoom_image().'"
-//                         alt="" class="room-img"
-//                         style="
-//                             width: 100%;
-//                             object-fit: contain;
-//                             max-height:300px;
-//                         ">
-//                 </div>
-//             </div>';
-//     $out .= '<div class="row mt-3">
-//                 <div class="col-sm-12 fw-bold">Tên khách sạn</div>
-//                 <div class="col-sm-12">'.$item->getRoom_hotel_name().'</div>
-//             </div>';
-//     $out .= '<div class="row mt-3">
-//                 <div class="col-sm-12 fw-bold">Tên địa chỉ</div>
-//                 <div class="col-sm-12">'.$item->getRoom_address().'</div>
-//             </div>';
-//     $out .= '<div class="row mt-3">
-//                 <div class="col-sm-12 fw-bold">Kiểu phòng</div>
-//                 <div class="col-sm-12">'.$item->getRoomtype_name().'</div>
-//             </div>';
-//      $out .= '<div class="row mt-3">
-//                 <div class="col-sm-12 fw-bold">Kiểu giường ngủ</div>
-//                 <div class="col-sm-12">'.$item->getRoom_bed_type().'</div>
-//             </div>';
-//     $out .= '<div class="row mt-3">
-//                 <div class="col-sm-12 fw-bold">Số người ở</div>
-//                 <div class="col-sm-12">'.$item->getRoom_number_people().'</div>
-//             </div>';
-//     $out .= '<div class="row mt-3">
-//                 <div class="col-sm-12 fw-bold">Số giường ngủ</div>
-//                 <div class="col-sm-12">'.$item->getRoom_number_bed().'</div>
-//             </div>';
-//     $out .= '<div class="row mt-3">
-//                 <div class="col-sm-12 fw-bold">Đánh giá</div>
-//                 <div class="col-sm-12">'.$item->getRoom_quality().'
-//                     <i class="bi bi-star-fill text-warning ms-1"></i>
-//                 </div>
-//             </div>';
-//     $out .= '<div class="row mt-3">
-//                 <div class="col-sm-12 fw-bold">Đơn giá</div>
-//                 <div class="col-sm-12">'.$item->getRoom_price().'</div>
-//             </div>';
-//     $out .= '<div class="row mt-3">
-//                 <div class="col-sm-12 fw-bold">Diện tích</div>
-//                 <div class="col-sm-12">'.$item->getRoom_area().'m<sup>2</sup></div>
-//             </div>';
-//     $out .= '<div class="row mt-3">
-//                 <div class="col-sm-12 fw-bold">Trạng thái</div>
-//                 <div class="col-sm-12">'.getStatic($item->getRoom_static()).'</div>
-//             </div>';
-//     $out .= '<div class="row mt-3">
-//                 <div class="col-sm-12 fw-bold">Chi tiết</div>
-//                 <div class="col-sm-12">'.$item->getRoom_detail().'</div>
-//             </div>';
-//     $out .= '</div><div class="modal-footer">
-//                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Thoát</button>
-//             </div></div></div></div>';
-//     return $out;
-// }
+function viewDetail(VoucherObject $item) {
+    $out = '<div class="modal fade"
+        id="viewVoucher'.$item->getVoucherId().'"
+        data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="staticBackdropLabel"
+        aria-hidden="true">';
+    $out .= '<div class="modal-dialog">';
+    $out .= '<div class="modal-content">';
+    $out .= '<div class="modal-header">';
+    $out .= '<h1 class="modal-title fs-5" id="staticBackdropLabel">Thông tin voucher</h1>';
+    $out .= '<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>';
+    $out .= '</div><div class="modal-body">';
+    $out .= '<div class="row">
+                <div class="col-sm-12 d-flex justify-content-center">
+                    <img src="https://img.freepik.com/free-vector/gradient-sale-background-design_23-2149069433.jpg"
+                        alt="" class="room-img"
+                        style="
+                            width: 100%;
+                            object-fit: contain;
+                            max-height:300px;
+                        ">
+                </div>
+            </div>';
+    $out .= '<div class="row mt-3">
+                <div class="col-sm-12 fw-bold">Voucher code</div>
+                <div class="col-sm-12">'.$item->getVoucherCode().'</div>
+            </div>';
+    $out .= '<div class="row mt-3">
+                <div class="col-sm-12 fw-bold">Ưu đãi</div>
+                <div class="col-sm-12">'.$item->getPercent().'% </div>
+            </div>';
+    $out .= '<div class="row mt-3">
+                <div class="col-sm-12 fw-bold">Giảm tối đa</div>
+                <div class="col-sm-12">'.number_format($item->getDiscountLimit(), 0, '', ',').'đ</div>
+            </div>';
+     $out .= '<div class="row mt-3">
+                <div class="col-sm-12 fw-bold">Đơn tối thiểu</div>
+                <div class="col-sm-12">'.number_format($item->getMinOrderValue(), 0, '', ',').'đ</div>
+            </div>';
+    $out .= '<div class="row mt-3">
+                <div class="col-sm-12 fw-bold">Ngày bắt đầu</div>
+                <div class="col-sm-12">'.$item->getStartDate().'</div>
+            </div>';
+    $out .= '<div class="row mt-3">
+                <div class="col-sm-12 fw-bold">Ngày kết thúc</div>
+                <div class="col-sm-12">'.$item->getExpireDate().'</div>
+            </div>';
+    $out .= '<div class="row mt-3">
+                <div class="col-sm-12 fw-bold">Lượt sử dụng</div>
+                <div class="col-sm-12">'.$item->getUsageCount().'
+                    
+                </div>
+            </div>';
+    // $out .= '<div class="row mt-3">
+    //             <div class="col-sm-12 fw-bold">Đơn giá</div>
+    //             <div class="col-sm-12">'.$item->getRoom_price().'</div>
+    //         </div>';
+    // $out .= '<div class="row mt-3">
+    //             <div class="col-sm-12 fw-bold">Diện tích</div>
+    //             <div class="col-sm-12">'.$item->getRoom_area().'m<sup>2</sup></div>
+    //         </div>';
+    $out .= '<div class="row mt-3">
+                <div class="col-sm-12 fw-bold">Trạng thái</div>
+                <div class="col-sm-12">'.getStatic($item->getStatus()).'</div>
+            </div>';
+    $out .= '<div class="row mt-3">
+                <div class="col-sm-12 fw-bold">Mô tả</div>
+                <div class="col-sm-12">'.$item->getDescription().'</div>
+            </div>';
+    $out .= '</div><div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Thoát</button>
+            </div></div></div></div>';
+    return $out;
+}
 
 function viewDel($item) {
     $out = '<div class="modal fade"
