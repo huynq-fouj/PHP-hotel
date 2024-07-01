@@ -9,7 +9,7 @@ class VoucherModel extends BasicModel{
     function addVoucher(VoucherObject $item) : bool{
         $sqlStatement = "INSERT INTO voucher (
         voucher_code, description, start_date, expire_date, percent, discount_limit
-        , min_order_value, user_id) VALUES (?,?,?,?,?,?,?,?)";
+        , min_order_value, usage_limit, user_id) VALUES (?,?,?,?,?,?,?,?,?)";
 
         if($query = $this->con->prepare($sqlStatement)){
             $voucherCode = $item->getVoucherCode();
@@ -20,8 +20,9 @@ class VoucherModel extends BasicModel{
             $discountLimit = $item->getDiscountLimit();
             $minOrderValue = $item->getMinOrderValue(); 
             $userId = $item->getUserID();
+            $usageLimit = $item->getUsageLimit();
 
-            $query->bind_param("sssssiii",
+            $query->bind_param("sssssiiii",
                                 $voucherCode,
                                 $description,
                                 $startDate,
@@ -29,6 +30,7 @@ class VoucherModel extends BasicModel{
                                 $percent,
                                 $discountLimit,
                                 $minOrderValue,
+                                $usageLimit,
                                 $userId);
 
             return $this->addV2($query);
@@ -158,8 +160,8 @@ class VoucherModel extends BasicModel{
 
     function updateVoucher(VoucherObject $item) : bool {
         $sqlStatement = "UPDATE voucher SET voucher_code=?,percent=?,
-            start_date=?,expire_date=?,discount_limit=?,min_order_value=?,
-            status=? WHERE voucher_id=?";
+            start_date=?,expire_date=?,discount_limit=?,min_order_value=?,usage_limit=?,
+            status=?, description=? WHERE voucher_id=?";
         if($sqlQuery = $this->con->prepare($sqlStatement)) {
             $voucherCode = $item->getVoucherCode();
             $percent = $item->getPercent();
@@ -167,12 +169,14 @@ class VoucherModel extends BasicModel{
             $expireDate = $item->getExpireDate();
             $discountLimit = $item->getDiscountLimit();
             $minOrderValue = $item->getMinOrderValue();
+            $usageLimit = $item->getUsageLimit();
             $status = $item->getStatus();
+            $description = $item->getDescription();
             $voucherId = $item->getVoucherId();
 
-            $sqlQuery->bind_param("sissiisi",
+            $sqlQuery->bind_param("sissiiissi",
                 $voucherCode, $percent, $startDate, $expireDate, $discountLimit,
-                $minOrderValue, $status, $voucherId
+                $minOrderValue,$usageLimit, $status, $description, $voucherId
         );
 
                                 

@@ -50,16 +50,16 @@ if(isset($_POST["updateVoucher"])) {
     $expireDate = $_POST['txtExpireDate'];
     $status = trim($_POST['statusSelect']);
     $description = trim($_POST['txtDescription']);
-
+    $usageLimit = trim($_POST["txtUsageLimit"]);
     
     if(
-        !empty($voucherCode) 
+        !empty($voucherCode) && !empty($usageLimit)
         && !empty($percent) && !empty($discountLimit)
         && !empty($minOrderValue) && !empty($startDate) 
         && !empty($expireDate) && !empty($status)
     ) {
         
-        if ($percent < 1 || $discountLimit < 1 && $minOrderValue < 1) {
+        if ($percent < 1 || $discountLimit < 1 || $minOrderValue < 1 || $usageLimit < 1) {
             headerRedirect("invalid_value", "err", $currentFileName);
         }
 
@@ -68,7 +68,6 @@ if(isset($_POST["updateVoucher"])) {
         }
 
 
-        $detail = $_POST["txtDescription"];
         $voucherItem->setVoucherCode($voucherCode);
         $voucherItem->setPercent($percent);
         $voucherItem->setDiscountLimit($discountLimit);
@@ -76,6 +75,8 @@ if(isset($_POST["updateVoucher"])) {
         $voucherItem->setStartDate($startDate);
         $voucherItem->setExpireDate($expireDate);
         $voucherItem->setStatus($status);
+        $voucherItem->setUsageLimit($usageLimit);
+        $voucherItem->setDescription($description);
 
         if($voucherModel->updateVoucher($voucherItem)) {
             header("location:/hostay/admin/vouchers.php?suc=upd");
@@ -239,9 +240,20 @@ require_once("layouts/Toast.php");
                                     </div>
                                 </div>
                             </div>
-
-                            
-
+                            <div class="mb-3 row">
+                                <label for="usageLimit" class="col-sm-2 col-form-label fw-bold">Lượt sử dụng tối đa</label>
+                                <div class="col-sm-10">
+                                    <input type="number"
+                                        class="form-control"
+                                        id="usageLimit"
+                                        name="txtUsageLimit"
+                                        value="<?=$voucherItem->getUsageLimit()?>"
+                                        required>
+                                    <div class="invalid-feedback">
+                                        Hãy nhập lượt sử dụng tối đa
+                                    </div>
+                                </div>
+                            </div>
                             <div class="mb-3 row">
                                 <label for="roomStatic" class="col-sm-2 col-form-label fw-bold">Trạng thái</label>
                                 <div class="col-sm-10">

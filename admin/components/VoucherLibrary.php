@@ -1,14 +1,16 @@
 <?php
+
+require_once("../app/models/UserModel.php");
 function voucherTable($items) {
     $out = '<table class="table table-striped table-sm">
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
                         <th scope="col">Code</th>
-                        <th scope="col">Description</th>
                         <th scope="col">Ngày bắt đầu</th>
                         <th scope="col">Ngày kết thúc</th>
                         <th scope="col">Trạng thái</th>
+                        <th scope="col">Description</th>
                         <th scope="col" colspan="3">Thực hiện</th>
                     </tr>
                 </thead>
@@ -34,10 +36,10 @@ function voucherRow(VoucherObject $item) {
 
     $out .= '<th scope="row" class="align-middle">'.$item->getVoucherId().'</th>';
     $out .= '<td scope="row" class="align-middle">'.$item->getVoucherCode().'</td>';
-    $out .= '<td scope="row" class="align-middle">'.$item->getDescription().'</td>';
     $out .= '<td scope="row" class="align-middle">'.$item->getStartDate().'</td>';
     $out .= '<td scope="row" class="align-middle">'.$item->getExpireDate().'</td>';
     $out .= '<td scope="row" class="align-middle">'.getStatic($item->getStatus()).'</td>';
+    $out .= '<td scope="row" class="align-middle">'.$item->getDescription().'</td>';
     //detail
     $out .= '<td class="align-middle">
     <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#viewVoucher'.$item->getVoucherId().'">
@@ -130,9 +132,13 @@ function viewDetail(VoucherObject $item) {
                 <div class="col-sm-12">'.$item->getExpireDate().'</div>
             </div>';
     $out .= '<div class="row mt-3">
+        <div class="col-sm-12 fw-bold">Lượt sử dụng tối đa</div>
+        <div class="col-sm-12">'.$item->getUsageLimit().'  
+        </div>
+    </div>';
+    $out .= '<div class="row mt-3">
                 <div class="col-sm-12 fw-bold">Lượt sử dụng</div>
-                <div class="col-sm-12">'.$item->getUsageCount().'
-                    
+                <div class="col-sm-12">'.$item->getUsageCount().'  
                 </div>
             </div>';
     // $out .= '<div class="row mt-3">
@@ -146,6 +152,15 @@ function viewDetail(VoucherObject $item) {
     $out .= '<div class="row mt-3">
                 <div class="col-sm-12 fw-bold">Trạng thái</div>
                 <div class="col-sm-12">'.getStatic($item->getStatus()).'</div>
+            </div>';
+
+    $userModel = new UserModel();
+    $userCreateVoucher = $userModel->getUserById($item->getUserId());
+
+    $out .= '<div class="row mt-3">
+                <div class="col-sm-12 fw-bold">Người tạo</div>
+
+                <div class="col-sm-12">'.$userCreateVoucher->getUser_name().'</div>
             </div>';
     $out .= '<div class="row mt-3">
                 <div class="col-sm-12 fw-bold">Mô tả</div>

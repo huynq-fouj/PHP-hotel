@@ -15,6 +15,8 @@ class VoucherObject
     private $user_id;
     private $create_at;
 
+    private $usage_limit;
+
 
 
     /**
@@ -194,6 +196,21 @@ class VoucherObject
      */
     public function setCreateAt($create_at): self {
         $this->create_at = $create_at;
+        return $this;
+    }
+
+    /**
+     * Get the value of usage_limit
+     */
+    public function getUsageLimit() {
+        return $this->usage_limit;
+    }
+
+    /**
+     * Set the value of usage_limit
+     */
+    public function setUsageLimit($usage_limit): self {
+        $this->usage_limit = $usage_limit;
         return $this;
     }
 }
