@@ -232,6 +232,29 @@ CREATE TABLE `tbluser` (
 ) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
+-- Definition of table `voucher`
+--
+DROP TABLE IF EXISTS `voucher`;
+CREATE TABLE voucher (
+	voucher_id int unsigned NOT NULL AUTO_INCREMENT,
+    voucher_code varchar(20),
+    start_date datetime,
+    expire_date datetime,
+    percent int,
+    discount_limit bigint default 0,
+    min_order_value bigint default 0,
+    usage_limit int,
+    usage_count int default 0,
+    status ENUM('active', 'expired', 'used') default 'active',
+    create_at datetime default now(),
+    user_id int,
+    description text,
+    
+    primary key(voucher_id)
+);
+
+
+--
 -- Dumping data for table `tbluser`
 --
 
@@ -280,3 +303,5 @@ INSERT INTO `tbluser` (`user_id`,`user_name`,`user_password`,`user_fullname`,`us
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+
+
