@@ -31,15 +31,17 @@ if (isset($_POST["addVoucher"])) {
     $createdBy = trim($_POST["txtUserName"]);
     $description = trim($_POST["txtDescription"]);
     $minOrderValue = trim($_POST["txtMinOrderValue"]);
+    $usageLimit = trim($_POST["txtUsageLimit"]);
 
     if (
-        $voucherCode != ""
-        && $voucherPercent != ""
-        && $limitDiscount != ""
-        && $startDate != ""
-        && $expireDate != ""
-        && $createdBy != ""
-        && $minOrderValue != ""
+        !empty($voucherCode) 
+        && !empty($voucherPercent) 
+        && !empty($limitDiscount)
+        && !empty($startDate)
+        && !empty($expireDate)
+        && !empty($createdBy) 
+        && !empty($minOrderValue)
+        && !empty($usageLimit)
     ) {
 
 
@@ -51,7 +53,7 @@ if (isset($_POST["addVoucher"])) {
             headerRedirect("duplicate_code", "err", $currentFileName); 
         }
 
-        if ($voucherPercent < 1 || $limitDiscount < 1 && $minOrderValue < 1) {
+        if ($voucherPercent < 1 || $limitDiscount < 1 && $minOrderValue < 1 || $usageLimit < 1) {
             headerRedirect("invalid_value", "err", $currentFileName);
         }
 
@@ -73,6 +75,7 @@ if (isset($_POST["addVoucher"])) {
         $voucherObject->setMinOrderValue($minOrderValue);
         $voucherObject->setUserId($userId);
         $voucherObject->setDescription($description);
+        $voucherObject->setUsageLimit($usageLimit);
 
         if ($voucherModel->addVoucher($voucherObject)) {
             headerRedirect("addr", "suc", $currentFileName);
@@ -167,6 +170,20 @@ require_once "layouts/Toast.php";
                                         required>
                                     <div class="invalid-feedback">
                                         Hãy nhập giá đơn hàng tối thiểu
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="usageLimit" class="col-sm-2 col-form-label fw-bold">Lượt sử dụng tối đa</label>
+                                <div class="col-sm-10">
+                                    <input type="number"
+                                        name="txtUsageLimit"
+                                        id="usageLimit"
+                                        class="form-control"
+                                        placeholder="100"
+                                        required>
+                                    <div class="invalid-feedback">
+                                        Hãy nhập lượt sử dụng tối đa
                                     </div>
                                 </div>
                             </div>
