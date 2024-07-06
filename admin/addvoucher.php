@@ -65,7 +65,7 @@ if (isset($_POST["addVoucher"])) {
         $voucherObject = new VoucherObject();
 
         $userModel = new UserModel();
-        $userId = $userModel->getUserByUserName($createdBy);
+        $userId = $userModel->getUserIdByUserName($createdBy);
 
         $voucherObject->setVoucherCode($voucherCode);
         $voucherObject->setPercent($voucherPercent);

@@ -309,7 +309,7 @@ require_once("layouts/Toast.php");
 <!--End main page-->
 <script>
     let inImg = document.querySelector(".upload-img-input");
-    inImg.addEventListener("change", async () => {
+        inImg.addEventListener("change", async () => {
         let img = document.querySelector(".img-uploaded");
         img.src = await convertBase64(inImg.files[0]);
     });

@@ -70,6 +70,30 @@
                 case "invalid_voucher":
                     echo "Voucher không khả dụng";
                     break;
+                case "limit":
+                    echo "Voucher đã hết lượt sử dụng";
+                    break;
+                case "expire":
+                    echo "Voucher đã hết hạn";
+                    break;
+                case "bill_id":
+                    echo "Mã hóa đơn không tồn tại";
+                    break;
+                case "bill_num":
+                    echo "Mã hóa đơn không tồn tại";
+                    break;
+                case "checkin_date":
+                    echo "Ngày checkin không thể sau ngày bắt đầu ";
+                    break;
+                case "img_lack":
+                    echo "Thiếu ảnh căn cước";
+                    break;
+                case "false_upl":
+                        echo "Lỗi trong quá trình tải ảnh lên";
+                        break;
+                case "checkin_err":
+                    echo "Lỗi trong quá checkin";
+                    break;
                 default:
                     echo "Có lỗi trong quá trình thực hiện!";
                     break;
@@ -103,6 +127,9 @@
                     break;
                 case "bia":
                     echo "Đặt phòng thành công!";
+                    break;
+                case "checkin":
+                    echo "Checkin thành công!";
                     break;
                 default:
                     break;

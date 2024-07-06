@@ -44,9 +44,8 @@ function getDateDiff($start, $end) {
     }
 }
 
-function headerRedirect($messageParam, $status, $endpoint = null) {
+function headerRedirect($messageParam = null, $status = null, $endpoint = null, $url = "/hostay/admin/") {
     
-    $url = "/hostay/admin/";
 
     if (!empty($messageParam) && !empty($status)) {
         $url .= $endpoint . '.php?' . $status . '=' . urlencode($messageParam);
@@ -57,4 +56,33 @@ function headerRedirect($messageParam, $status, $endpoint = null) {
             location.href = "' . $url . '";
         </script>';
     exit();
+}
+
+function headerRedirectViews($status = null, $messageParam = null, $url){
+
+    if(empty($messageParam) && empty($status)){
+        echo '
+            <script>
+                location.href = "' . $url . '";
+            </script>';
+    } else{
+        echo '
+            <script>
+                location.href = "' . $url . $status . '=' . $messageParam .'";
+            </script>';
+    }
+
+    
+    exit();
+}
+
+
+function generateRandomString($length = 10) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[random_int(0, $charactersLength - 1)];
+    }
+    return $randomString;
 }

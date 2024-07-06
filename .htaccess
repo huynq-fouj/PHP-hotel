@@ -1,0 +1,9 @@
+RewriteEngine On
+
+# Nếu URL không kết thúc bằng dấu "/"
+RewriteCond %{REQUEST_URI} ^/hostay/view$
+RewriteRule ^hostay/view$ /hostay/view/ [R=301,L]
+
+# Đảm bảo rằng các URL có dấu "/" được xử lý đúng
+RewriteCond %{REQUEST_URI} !^/hostay/view/
+RewriteRule ^hostay/view/(.*)$ /hostay/view/$1 [L]

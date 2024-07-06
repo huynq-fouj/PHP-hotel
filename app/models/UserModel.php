@@ -140,6 +140,17 @@ class UserModel extends BasicModel {
         return $user;
     }
 
+
+    function getUserByUsername(string $username) : UserObject | null {
+        $user = null;
+        $sql = "SELECT * FROM tbluser WHERE user_name='$username'";
+        $result = $this->get($sql);
+        if($result->num_rows > 0) {
+            $user = $result->fetch_object('UserObject');
+        }
+        return $user;
+    }
+
     /**
      * Phương thức lấy thông tin người sử dụng dựa trên id;
      * - Author: Nguyễn Quang Huy
@@ -157,7 +168,7 @@ class UserModel extends BasicModel {
     }
 
 
-    function getUserByUserName($user_name) : int | null {
+    function getUserIdByUserName($user_name) : int | null {
         $user = null;
         $sql = "SELECT * FROM tbluser WHERE user_name='$user_name'";
         $result = $this->get($sql);

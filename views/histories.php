@@ -68,6 +68,15 @@ require_once("layouts/Toaster.php");
                                     Xem hóa đơn
                                 </a>
                             </li>
+                            <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                            <li>
+                                <a class="dropdown-item py-0"
+                                    href="/hostay/views/ticket.php?id=<?=$bill->getBill_id()?>">
+                                    Checkin online
+                                </a>
+                            </li>
                             <?php
                                 if($bill->getBill_is_paid() != 0 || $bill->getBill_cancel() != 0) {
                                     echo "";

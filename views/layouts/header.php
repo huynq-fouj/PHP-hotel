@@ -46,8 +46,10 @@ if(str_contains($uri, "/views/histories")) {
     <!-- Template Main CSS File -->
     <link href="/hostay/assets/css/fonts.css" rel="stylesheet">
     <link href="/hostay/assets/css/views_style.css" rel="stylesheet">
+    
 
     <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/hostay/assets/js/base64Convert.js"></script>
     <!-- lightgallery -->
     <script type="module" src="../assets/vendor/lightgallery.js/src/js/lightgallery.js"></script>
     <!-- lightgallery plugins -->
@@ -143,6 +145,15 @@ if(str_contains($uri, "/views/histories")) {
                         <a class="dropdown-item d-flex align-items-center" href="/hostay/views/histories.php">
                             <i class="bi bi-clock-history"></i>
                             <span class="ms-1">Lịch sử đặt phòng</span>
+                        </a>
+                    </li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li>
+                        <a class="dropdown-item d-flex align-items-center" href="/hostay/views/checkin.php">
+                            <i class="bi bi-check2-all"></i>
+                            <span class="ms-1">Checkin</span>
                         </a>
                     </li>
                     <li>

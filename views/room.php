@@ -319,20 +319,20 @@ require_once("layouts/Toaster.php");
                               </div>
                               <div class="row">
                                   <div class="form-group col-md-6 mb-3">
-                                      <label for="txtPersonalID" class="form-label">Căn cước công dân | Passport</label>
+                                      <label for="personalID" class="form-label">Căn cước công dân | Passport</label>
                                       <input type="text"
                                           class="form-control form-control-lg form-control-a"
-                                          id="txtPersonalID"
+                                          id="personalID"
                                           name="txtPersonalID"
                                           placeholder="Căn cước công dân | Passport"
                                           required>
                                           <div class="invalid-feedback">Vui lòng nhập số căn cước công dân hoặc passport của bạn</div>
                                   </div>
                                   <div class="form-group col-md-6 mb-3">
-                                      <label for="txtVoucher" class="form-label">Voucher</label>
+                                      <label for="voucher" class="form-label">Voucher</label>
                                       <input type="text"
                                               class="form-control form-control-lg form-control-a"
-                                              id="txtVoucher"
+                                              id="voucher"
                                               name="txtVoucher"
                                               placeholder="Voucher">
                                       <div class="invalid-feedback">Voucher không hợp lệ</div>
@@ -362,7 +362,7 @@ require_once("layouts/Toaster.php");
                   </div>
                 </div>
 
-                <div class="tab-pane fade friends-booking pt-3" id="friends-booking">
+                <!-- <div class="tab-pane fade friends-booking pt-3" id="friends-booking">
                   <div class="row">
                     <div class="col-sm-12">
                       <div class="property-contact">
@@ -509,7 +509,7 @@ require_once("layouts/Toaster.php");
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> -->
               </div><!-- End Bordered Tabs -->
           </div>
         </div>

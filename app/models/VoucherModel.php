@@ -51,6 +51,21 @@ class VoucherModel extends BasicModel{
         return $item;
     }
 
+    function updateUsedVoucher($voucherId){
+        $sql = "UPDATE voucher SET usage_count = usage_count + 1 WHERE voucher_id = $voucherId";
+        return $this->exe($sql);
+    }
+
+    function getVoucherByCode($voucherCode) : VoucherObject | null {
+        $item = null;
+        $sql = "SELECT * FROM voucher WHERE voucher_code='".$voucherCode."';";
+        $result = $this->get($sql);
+        if($result->num_rows > 0) {
+            $item = $result->fetch_object('VoucherObject');
+        }
+        return $item;
+    }
+
     function countVoucherByCode($voucherCode) : int{
         $item = 0;
         $sql = "SELECT COUNT(*) as COUNT FROM voucher WHERE voucher_code = '$voucherCode'";

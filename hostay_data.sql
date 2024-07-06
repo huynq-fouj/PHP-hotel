@@ -253,6 +253,22 @@ CREATE TABLE voucher (
     primary key(voucher_id)
 );
 
+--
+-- Definition of table `checkin`
+--
+DROP TABLE IF EXISTS checkin;
+CREATE TABLE checkin(
+	checkin_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    first_indentity_card text,
+    second_indentity_card text,
+    checkin_code varchar(20),
+    checkin_date datetime,
+    checkin_user_id int,
+    description text,
+    
+    primary key (checkin_id)
+);
+
 
 --
 -- Dumping data for table `tbluser`

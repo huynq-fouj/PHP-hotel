@@ -2277,3 +2277,119 @@ footer .credits {
   color: #fff;
   font-size: 25px;
 }
+
+/*  */
+.upload-img-input {
+  display: none;
+}
+
+.btn-uploaded,
+.btn-upd-uploaded {
+  position: relative;
+  cursor: pointer;
+  height: 446px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px dashed;
+  border-color: #a1abff;
+  transition: all 0.5s ease;
+}
+
+.btn-upd-uploaded {
+  height: 300px;
+}
+
+@media (max-width: 767px) {
+  .btn-uploaded {
+      height: 388px;
+  }
+}
+
+@media (max-width: 540px) {
+  .btn-uploaded {
+      height: 300px;
+  }
+}
+
+@media (max-width: 420px) {
+  .btn-uploaded {
+      height: 240px;
+  }
+}
+
+.btn-uploaded::before,
+.btn-upd-uploaded::before {
+  content: "";
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background-image: url("/hostay/public/btn-upload-icon.png");
+  background-size: cover;
+  z-index: 1;
+}
+
+.btn-uploaded::after {
+  content: "Click to upload image";
+  position: absolute;
+  color: #466FFF;
+  transform: translateY(60px);
+  z-index: 1;
+}
+
+.btn-uploaded:hover,
+.btn-upd-uploaded:hover {
+  border-color: #4154f1;
+}
+
+.btn-uploaded .img-uploaded[src=""],
+.btn-upd-uploaded .img-uploaded[src=""] {
+  display: none;
+}
+
+.btn-uploaded .img-uploaded,
+.btn-upd-uploaded .img-uploaded {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+  z-index: 2;
+}
+/*  */
+.room-img-container {
+  position: relative;
+  cursor: pointer;
+  height: 446px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.5s ease;
+}
+
+@media (max-width: 767px) {
+  .room-img-container {
+      height: 388px;
+  }
+}
+
+@media (max-width: 540px) {
+  .room-img-container {
+      height: 300px;
+  }
+}
+
+@media (max-width: 420px) {
+  .room-img-container {
+      height: 240px;
+  }
+}
+
+.room-img-container .room-img {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+  z-index: 2;
+}
