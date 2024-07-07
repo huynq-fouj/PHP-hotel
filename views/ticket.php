@@ -99,6 +99,10 @@ if(!isset($_SESSION["user"]) || !isset($_SESSION["user"]["id"])) {
                     <div class="col-9"><?=$bill->getBillPersonalId()?></div>
                 </div>
                 <div class="row">
+                    <div class="col-3"><b>Mã checkin:</b></div>
+                    <div class="col-9"><?=$bill->getBillCheckinCode()?></div>
+                </div>
+                <div class="row">
                     <div class="col-3"><b>Ngày tạo:</b></div>
                     <div class="col-9"><?=date("d-m-Y", strtotime($bill->getBill_created_at()))?></div>
                 </div>

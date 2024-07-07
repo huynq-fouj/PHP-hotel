@@ -34,4 +34,16 @@ class CheckinModel extends BasicModel{
         }
         return $item;
     }
+
+    function isExists($checkinCode) : bool {
+        $item = null;
+        $sql = "SELECT * FROM checkin ";
+        $sql .= "WHERE checkin_code='$checkinCode'";
+        $result = $this->get($sql);
+        if($result->num_rows > 0) {
+            return true;
+        }
+        return false;;
+    }
+
 }

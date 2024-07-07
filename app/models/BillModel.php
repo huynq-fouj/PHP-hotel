@@ -54,6 +54,15 @@ class BillModel extends BasicModel {
         return false;
     }
 
+    function addCheckinCode(string $checkinCode, int $billId) : bool{
+        $sql = "UPDATE tblbill SET bill_checkin_code = ? WHERE bill_id=?";
+        if($stmt = $this->con->prepare($sql)) {
+            $stmt->bind_param("si", $checkinCode, $billId);
+            return $this->exeV2($stmt);
+        }
+        return false;
+    }
+
     function delBill(BillObject $item) : bool {
         $sql = "DELETE FROM tblbill WHERE bill_id=?";
         if($stmt = $this->con->prepare($sql)) {
@@ -83,6 +92,17 @@ class BillModel extends BasicModel {
         $sql = "SELECT * FROM tblbill ";
         $sql .= "LEFT JOIN tblbillstatic ON tblbill.bill_static = tblbillstatic.billstatic_id ";
         $sql .= "WHERE bill_id=$id";
+        $result = $this->get($sql);
+        if($result->num_rows > 0) {
+            $item = $result->fetch_object("BillObject");
+        }
+        return $item;
+    }
+
+    function getBillByCheckinCode($checkinCode) {
+        $item = null;
+        $sql = "SELECT * FROM tblbill ";
+        $sql .= "WHERE bill_checkin_code='$checkinCode'";
         $result = $this->get($sql);
         if($result->num_rows > 0) {
             $item = $result->fetch_object("BillObject");
