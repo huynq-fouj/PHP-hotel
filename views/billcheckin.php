@@ -8,14 +8,7 @@ if(!isset($_SESSION["user"]) || !isset($_SESSION["user"]["id"])) {
     headerRedirect(null, null, null, "/hostay/views/");
 }
 
-// Define the API URL
-$apiUrl = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Example";
 
-// Use file_get_contents to get the image from the API
-$imageData = file_get_contents($apiUrl);
-
-// Encode the image data into base64
-$base64Image = base64_encode($imageData);
 
 ?>
 <!DOCTYPE html>
@@ -28,7 +21,39 @@ $base64Image = base64_encode($imageData);
     <link rel="stylesheet" href="/hostay/assets/vendor/bootstrap-icons/bootstrap-icons.min.css">
     <link rel="stylesheet" href="/hostay/assets/vendor/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/hostay/assets/css/checkin.css">
-    
+    <style>
+        
+        
+        .header, .section-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .section-header {
+            margin-top: 30px;
+            margin-bottom: 10px;
+            font-weight: bold;
+            font-size: 18px;
+            background-color: #e9ecef;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .info-table {
+            width: 100%;
+            margin-bottom: 20px;
+            border-collapse: collapse;
+        }
+        .info-table th, .info-table td {
+            border: 1px solid #dee2e6;
+            padding: 10px;
+        }
+        .info-table th {
+            width: 30%;
+            background-color: #e9ecef;
+        }
+        .td-img{
+            align-items: right;
+        }
+    </style>
 </head>
 <body>
 
@@ -61,6 +86,15 @@ $base64Image = base64_encode($imageData);
         $fullname = $userModel->getUserByUsername($checkinItem->getCheckinUser())->getUser_fullname();
         $billItem = $billModel->getBillById($checkinItem->getBillId());
 
+        // Define the API URL
+        $apiUrl = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" . $checkinItem->getCheckinCode();
+
+        // Use file_get_contents to get the image from the API
+        $imageData = file_get_contents($apiUrl);
+
+        // Encode the image data into base64
+        $base64Image = base64_encode($imageData);
+
     ?>
     
     <div class="container">
@@ -77,7 +111,7 @@ $base64Image = base64_encode($imageData);
 
         <div class="row mb-5">
         <div class="invoice-box" id="ticket">
-			<table cellpadding="0" cellspacing="0">
+			<table  cellpadding="0" cellspacing="0">
 				<tr class="top">
 					<td colspan="2">
 						<table>
@@ -89,7 +123,7 @@ $base64Image = base64_encode($imageData);
 									/>
 								</td>
 
-								<td>
+								<td style="text-align: right;">
                                 <img class="qr-code" src="data:image/png;base64, <?php echo $base64Image; ?>" alt="QR Code"
                                     style="width: 100%; max-width: 70px"
                                 >
@@ -99,61 +133,43 @@ $base64Image = base64_encode($imageData);
 					</td>
 				</tr>
 
-				<tr class="information">
-					<td colspan="2">
-						<table>
-							<tr>
-								<td>
-									
-								</td>
-
-                                <td>
-									
-									52 Trieu Khuc<br />
-									Ha Noi
-								</td>
-
-
-								
-							</tr>
-						</table>
-					</td>
-				</tr>
-
-				
-
-				<tr class="details">
-					<td>Tên khách hàng</td>
-
-					<td><b><?= $fullname ?></b></td>
-				</tr>
-
-                <tr class="details">
-					<td>Thời gian bắt đầu</td>
-
-					<td><b><?= date("Y-m-d", strtotime($billItem->getBill_start_date())) ?></b></td>
-				</tr>
-
-                <tr class="details">
-					<td>Thời gian kết thúc</td>
-
-					<td><b><?= date("Y-m-d", strtotime($billItem->getBill_end_date())) ?></b></td>
-				</tr>
-
-                <tr class="details">
-					<td>Mã phòng</td>
-
-					<td><b><?= $billItem->getBill_room_id() ?></b></td>
-				</tr>
-
-                <tr class="details">
-					<td>Mã checkin</td>
-
-					<td><b><?= $billItem->checkin_code() ?></b></td>
-				</tr>
-
-				
-			</table>
+			
+            </table>
+            <h2 class="text-center"><strong>Hóa đơn check-in</strong></h2>
+            <div class="section-header">Thông tin checkin</div>
+            <table class="info-table" style="margin-top: 30px;">
+                <tr>
+                    <th>Họ tên:</th>
+                    <td class="child-tr"><?= $fullname?></td>
+                </tr>
+                <tr>
+                    <th>Số điện thoại:</th>
+                    <td><?= $billItem->getBill_phone() ?></td>
+                </tr>
+                <tr>
+                <th>Email:</th>
+                <td><?= $billItem->getBill_email() ?></td>
+                </tr>
+                <tr>
+                <th>Mã checkin:</th>
+                <td><?= $billItem->getBillCheckinCode() ?></td>
+                </tr>
+                <tr>
+                <th>Ngày checkin:</th>
+                <td><?= date("d-m-Y", strtotime($checkinItem->getCheckinDate())) ?></td>
+                </tr>
+            </table>
+            <div class="row my-5 d-flex justify-content-between">
+                    <div class="col-5">
+                        <div class="d-flex justify-content-center mb-2"><b></b></div>
+                        <div class="d-flex justify-content-center"></div>
+                    </div>
+                    <div class="col-5">
+                        <div class="d-flex justify-content-center mb-2">Trân trọng</div>
+                        <div class="d-flex justify-content-center mb-2"><b>Hostay</b></div>
+                        <div class="d-flex justify-content-center"></div>
+                    </div>
+                </div>
 		</div>
         </div>
     </div>

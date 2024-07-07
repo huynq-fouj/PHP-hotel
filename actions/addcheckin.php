@@ -25,29 +25,34 @@ if (isset($_POST["checkin"])) {
     $target_dir = "/hostay/admin/images/indentity_card";
 
     // get data from form
-    $billId = trim($_POST["txtBillId"]);
+    $checkinCode = trim($_POST["txtCheckinCode"]);
     $checkinDate = $_POST["txtCheckinDate"];
 
-    if(!empty($billId) && !empty($checkinDate)){
+    if(!empty($checkinCode) && !empty($checkinDate)){
         // check valid bill id
         $billModel = new BillModel();
-        $billItem = $billModel->getBill($billId);
-
-        // var_dump(!is_numeric((int)$billId) || !isset($billId));
-        // die;
+        $billItem = $billModel->getBillByCheckinCode($checkinCode);
+        $checkinModel = new CheckinModel();
+        $checkinItem = new CheckinObject();
         
-        if(!is_numeric((int)$billId) || !isset($billId)){
-            headerRedirectViews("err", "bill_num", $url);
+        if($checkinModel->isExists($checkinCode)){
+            headerRedirectViews("err", "checkincode_exist", $url);
         }
 
-        if(!$billModel->isExists($billId)){
-            headerRedirectViews("err", "bill_id", $url);
+        if($billItem == null){
+            headerRedirectViews("err", "checkincode_err", $url);
         }
 
         $billStartDate = $billItem->getBill_start_date();
         
         if($checkinDate > $billStartDate){
             headerRedirectViews("err", "checkin_date", $url);
+        }
+
+        $billCreatedAt = $billItem->getBill_created_at();
+
+        if(getDateDiff($checkinDate, $billCreatedAt) > 0){
+            headerRedirectViews("err", "checkin_date_af", $url);
         }
 
 
@@ -64,17 +69,14 @@ if (isset($_POST["checkin"])) {
 
             if($targetFirstFile && $targetSecondFile){
                 
-                $checkinModel = new CheckinModel();
-                $checkinItem = new CheckinObject();
-
-                $checkinCode = generateRandomString() . $billId;
+                
 
                 $checkinItem->setFirstIndentityCard($targetFirstFile);
                 $checkinItem->setSecondIndentityCard($targetSecondFile);
                 $checkinItem->setCheckinDate($checkinDate);
                 $checkinItem->setCheckinUser($_SESSION["user"]["name"]);
                 $checkinItem->setCheckinCode($checkinCode);
-                $checkinItem->setBillId($billId);
+                $checkinItem->setBillId($billItem->getBill_id());
 
                 if($checkinModel->addBill($checkinItem)){
                     headerRedirectViews("suc", "checkin", $url);

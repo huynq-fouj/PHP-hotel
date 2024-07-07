@@ -11,6 +11,7 @@ if(!isset($_GET["id"]) || !is_numeric($_GET["id"]) || $_GET["id"] <= 0) {
 $id = $_GET["id"];
 //
 require_once("../app/models/RoomModel.php");
+require_once("../app/models/UserModel.php");
 require_once("../app/models/BillModel.php");
 require_once("../libraries/Utilities.php");
 require_once("../libraries/Sendmail.php");
@@ -20,6 +21,10 @@ $item = $rm->getRoom($id);
 if($item == null) {
     header("location:/hostay/views/rooms.php?err=notok");
 }
+
+$userModel = new UserModel();
+$userItem = $userModel->getUserByUsername($_SESSION["user"]["name"]);
+
 $state = "";
 switch($item->getRoom_static()) {
     case 1:
@@ -225,6 +230,8 @@ require_once("layouts/Toaster.php");
                                             class="form-control form-control-lg form-control-a"
                                             id="txtFullname"
                                             name="txtFullname"
+                                            value="<?= $userItem->getUser_fullname() ?>"
+                                            readonly
                                             placeholder="Fullname"
                                             required>
                                         <div class="invalid-feedback">Vui lòng nhập đầy đủ họ tên</div>
@@ -236,6 +243,8 @@ require_once("layouts/Toaster.php");
                                           id="txtEmail"
                                           name="txtEmail"
                                           placeholder="Email"
+                                          value="<?= $userItem->getUser_email() ?>"
+                                          readonly
                                           required>
                                       <div class="invalid-feedback">Vui lòng nhập email</div>
                                   </div>
@@ -361,15 +370,14 @@ require_once("layouts/Toaster.php");
                     </div>
                   </div>
                 </div>
-
-                <!-- <div class="tab-pane fade friends-booking pt-3" id="friends-booking">
+                <div class="tab-pane fade friends-booking pt-3" id="friends-booking">
                   <div class="row">
                     <div class="col-sm-12">
                       <div class="property-contact">
                           <form class="form-a needs-validation" method="post" action="/hostay/actions/billadd.php" novalidate>
                               <div class="row">
                                   <div class="form-group col-md-6 mb-3">
-                                    <label for="txtFullname" class="form-label">Họ và tên 1</label>
+                                    <label for="txtFullname" class="form-label">Họ và tên </label>
                                         <input type="text"
                                             class="form-control form-control-lg form-control-a"
                                             id="txtFullname"
@@ -509,7 +517,7 @@ require_once("layouts/Toaster.php");
                       </div>
                     </div>
                   </div>
-                </div> -->
+                </div>
               </div><!-- End Bordered Tabs -->
           </div>
         </div>

@@ -38,7 +38,7 @@ body {
 }
 
 .invoice-box table tr td:nth-child(2) {
-	text-align: right;
+	text-align: left;
 }
 
 .invoice-box table tr.top table td {

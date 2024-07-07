@@ -75,16 +75,15 @@ require_once("layouts/Toaster.php");
               </div>  
               <div class="row">
                 <div class="col-md-6 mt-3">
-                  <label for="billId" class="form-label text-dark fw-bold">Mã hóa đơn</label>
-                  <input type="number" class="form-control" id="billId" name="txtBillId" required placeholder="Mã hóa đơn">
-                  <div class="invalid-feedback">Vui lòng nhập mã hóa đơn</div>
+                  <label for="checkinCode" class="form-label text-dark fw-bold">Mã checkin</label>
+                  <input type="text" class="form-control" id="checkinCode" name="txtCheckinCode" required placeholder="Mã checkin">
+                  <div class="invalid-feedback">Vui lòng nhập mã checkin</div>
                 </div>
                 <div class="col-md-6 mt-3">
-                  <label for="checkinDate" class="form-label text-dark fw-bold">Ngày checkin</label>
+                  <label for="checkinDate" class="form-label text-dark fw-bold">Ngày vào</label>
                   <input type="date" class="form-control" id="checkinDate" name="txtCheckinDate" required placeholder="Email">
-                  <div class="invalid-feedback">Vui lòng ngày checkin</div>
-                </div>
-                
+                  <div class="invalid-feedback">Vui lòng ngày vào</div>
+                </div>  
                 <div class="col-md-12 mt-3">
                   <label for="description" class="form-label text-dark fw-bold">Nội dung</label>
                   <textarea name="txtDescription"

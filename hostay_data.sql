@@ -43,6 +43,9 @@ CREATE TABLE `tblbill` (
   `bill_static` int(10) unsigned DEFAULT '0',
   `bill_is_paid` tinyint(1) DEFAULT '0',
   `bill_cancel` tinyint(1) unsigned DEFAULT '0',
+  `bill_voucher_code` varchar(20),
+  `bill_personal_id` varchar(20),
+  `bill_checkin_code` varchar(20),
   `bill_staff_name` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`bill_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

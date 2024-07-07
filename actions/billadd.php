@@ -111,6 +111,8 @@ if (isset($_POST["idForPost"]) && is_numeric($_POST["idForPost"])) {
 
                 if ($newBill != null) {
                     $newbill_id = $newBill->getBill_id();
+                    $checkinCode = generateRandomString(5) . $newbill_id;
+                    $bm->addCheckinCode($checkinCode, $newbill_id);
                     headerRedirectViews(null, null, "/hostay/views/ticket.php?id=$newbill_id");
                 } else {
                     headerRedirectViews("suc", "bia", $roomUrl);

@@ -94,6 +94,15 @@
                 case "checkin_err":
                     echo "Lỗi trong quá checkin";
                     break;
+                case "checkincode_err":
+                    echo "Không tìm thấy mã checkin";
+                    break;
+                case "checkincode_exist":
+                    echo "Phòng đã được checkin trước đó";
+                    break;
+                case "checkin_date_af":
+                    echo "Ngày checkin không thể sau ngày tạo hóa đơn";
+                    break;
                 default:
                     echo "Có lỗi trong quá trình thực hiện!";
                     break;
