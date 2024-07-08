@@ -35,6 +35,7 @@ class CheckinModel extends BasicModel{
         return $item;
     }
 
+
     function getCheckinByCode($checkinCode) : CheckinObject | null{
         $item = null;
         $sql = "SELECT * FROM checkin WHERE checkin_code='$checkinCode'";
@@ -44,7 +45,6 @@ class CheckinModel extends BasicModel{
         }
         return $item;
     }
-
     function isExists($checkinCode) : bool {
         $item = null;
         $sql = "SELECT * FROM checkin ";
@@ -125,5 +125,4 @@ class CheckinModel extends BasicModel{
         }
         return $total;
     }
-
-}
+ }
