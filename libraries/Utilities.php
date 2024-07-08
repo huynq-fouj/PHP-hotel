@@ -86,3 +86,7 @@ function generateRandomString($length = 10) {
     }
     return $randomString;
 }
+
+function debug($message){
+    echo "<script type='text/javascript'>alert('$message');</script>";
+}

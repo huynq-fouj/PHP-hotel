@@ -152,7 +152,7 @@ if(str_contains($uri, "/views/histories")) {
                     </li>
                     <li>
                         <a class="dropdown-item d-flex align-items-center" href="/hostay/views/checkin.php">
-                            <i class="bi bi-check2-all"></i>
+                            <i class="bi bi-check-all"></i>
                             <span class="ms-1">Checkin</span>
                         </a>
                     </li>

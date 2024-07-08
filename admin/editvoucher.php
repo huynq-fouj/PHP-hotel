@@ -270,7 +270,6 @@ require_once("layouts/Toast.php");
                                     </div>
                                 </div>
                             </div>
-
                             <div class="mb-3 row">
                                 <label for="description" class="col-sm-2 col-form-label fw-bold">Mô tả</label>
                                 <div class="col-sm-10">

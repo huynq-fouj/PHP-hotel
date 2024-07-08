@@ -10,6 +10,7 @@ class CheckinObject
     private $create_at;
     private $bill_id;
     private $checkin_user;
+    private $status;
     private $description;
     
 
@@ -146,6 +147,21 @@ class CheckinObject
      */
     public function setBillId($bill_id): self {
         $this->bill_id = $bill_id;
+        return $this;
+    }
+
+    /**
+     * Get the value of status
+     */
+    public function getStatus() {
+        return $this->status;
+    }
+
+    /**
+     * Set the value of status
+     */
+    public function setStatus($status): self {
+        $this->status = $status;
         return $this;
     }
 }

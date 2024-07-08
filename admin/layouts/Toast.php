@@ -79,6 +79,12 @@
                 case "duplicate_code":
                     echo "Mã giảm giá đã tồn tại trong hệ thống";
                     break;
+                case "checkin_date":
+                    echo "Ngày checkin phải trước ngày bắt đầu";
+                    break;
+                case "checkin_no":
+                    echo "Không có gì để thay đổi";
+                    break;
                 default:
                     echo "Có lỗi trong quá trình thực hiện!";
                     break;
@@ -114,6 +120,9 @@
                         echo "Thêm phòng thành công!";
                         break;
                 case "send":
+                    echo "Trả lời thành công!";
+                    break;
+                case "checkin":
                     echo "Trả lời thành công!";
                     break;
                 default:

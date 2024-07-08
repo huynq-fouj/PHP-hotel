@@ -79,7 +79,9 @@ if (isset($_POST["checkin"])) {
                 $checkinItem->setBillId($billItem->getBill_id());
 
                 if($checkinModel->addBill($checkinItem)){
-                    headerRedirectViews("suc", "checkin", $url);
+                    $checkinCurrentItem = $checkinModel->getCheckinByCode($checkinCode);
+                    $urlBillCheckin = "/hostay/views/billcheckin.php?id=" . $checkinCurrentItem->getCheckinId();
+                    headerRedirectViews(null, null, $urlBillCheckin);
                 } else{
                     headerRedirectViews("err", "checkin_err", $url);
                 }
