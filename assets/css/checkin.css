@@ -34,7 +34,7 @@ body {
 
 .invoice-box table td {
 	padding: 5px;
-	vertical-align: top;
+	vertical-align: center;
 }
 
 .invoice-box table tr td:nth-child(2) {

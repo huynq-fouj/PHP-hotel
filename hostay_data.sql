@@ -266,7 +266,10 @@ CREATE TABLE checkin(
     second_indentity_card text,
     checkin_code varchar(20),
     checkin_date datetime,
-    checkin_user_id int,
+    create_at datetime default now(),
+    checkin_user varchar(20),
+    bill_id varchar(20),
+    status varchar(20) default 'uncheck', -- uncheck, checked, incorrect
     description text,
     
     primary key (checkin_id)
