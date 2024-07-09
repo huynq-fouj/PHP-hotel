@@ -51,8 +51,21 @@ class VoucherModel extends BasicModel{
         return $item;
     }
 
-    function updateUsedVoucher($voucherId){
+    function updateUsedVoucher(VoucherObject $voucherItem){
+
+        $voucherId = $voucherItem->getVoucherId();
+
+        if($voucherItem->getUsageCount() + 1 == $voucherItem->getUsageLimit()){
+            $sql = "UPDATE voucher SET usage_count = usage_count + 1, status = 'used' WHERE voucher_id = $voucherId";
+            return $this->exe($sql);
+        }
+
         $sql = "UPDATE voucher SET usage_count = usage_count + 1 WHERE voucher_id = $voucherId";
+        return $this->exe($sql);
+    }
+
+    function updateExpireDate(){
+        $sql = "CALL update_voucher_status()";
         return $this->exe($sql);
     }
 

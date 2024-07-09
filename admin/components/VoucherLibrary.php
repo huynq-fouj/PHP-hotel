@@ -36,8 +36,8 @@ function voucherRow(VoucherObject $item) {
 
     $out .= '<th scope="row" class="align-middle">'.$item->getVoucherId().'</th>';
     $out .= '<td scope="row" class="align-middle">'.$item->getVoucherCode().'</td>';
-    $out .= '<td scope="row" class="align-middle">'.$item->getStartDate().'</td>';
-    $out .= '<td scope="row" class="align-middle">'.$item->getExpireDate().'</td>';
+    $out .= '<td scope="row" class="align-middle">'.date("d/m/Y", strtotime($item->getStartDate())).'</td>';
+    $out .= '<td scope="row" class="align-middle">'.date("d/m/Y", strtotime($item->getExpireDate())).'</td>';
     $out .= '<td scope="row" class="align-middle">'.getStatic($item->getStatus()).'</td>';
     $out .= '<td scope="row" class="align-middle">'.$item->getDescription().'</td>';
     //detail
@@ -125,11 +125,11 @@ function viewDetail(VoucherObject $item) {
             </div>';
     $out .= '<div class="row mt-3">
                 <div class="col-sm-12 fw-bold">Ngày bắt đầu</div>
-                <div class="col-sm-12">'.$item->getStartDate().'</div>
+                <div class="col-sm-12">'.date("d/m/Y", strtotime($item->getStartDate())).'</div>
             </div>';
     $out .= '<div class="row mt-3">
                 <div class="col-sm-12 fw-bold">Ngày kết thúc</div>
-                <div class="col-sm-12">'.$item->getExpireDate().'</div>
+                <div class="col-sm-12">'.date("d/m/Y", strtotime($item->getExpireDate())).'</div>
             </div>';
     $out .= '<div class="row mt-3">
         <div class="col-sm-12 fw-bold">Lượt sử dụng tối đa</div>

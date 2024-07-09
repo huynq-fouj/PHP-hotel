@@ -54,7 +54,7 @@ if (isset($_POST["idForPost"]) && is_numeric($_POST["idForPost"])) {
                     headerRedirectViews("err", "invalid_voucher", $roomUrl);
                 }
                 // check usage limit
-                if((int)$voucherObject->getUsageLimit() < (int)$voucherObject->getUsageCount()){
+                if((int)$voucherObject->getUsageLimit() <= (int)$voucherObject->getUsageCount()){
                     headerRedirectViews("err", "limit", $roomUrl);
                 }
                 // check expire date
@@ -106,7 +106,7 @@ if (isset($_POST["idForPost"]) && is_numeric($_POST["idForPost"])) {
 
                 // increase usage voucher
                 if(!empty($voucher)){
-                    $voucherModel->updateUsedVoucher($voucherObject->getVoucherId());
+                    $voucherModel->updateUsedVoucher($voucherObject);
                 }
 
                 if ($newBill != null) {

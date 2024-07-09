@@ -1,6 +1,5 @@
 <?php
-
-require_once("../app/models/UserModel.php");
+require_once("../app/models/BillModel.php");
 function checkinTable($items) {
     $out = '<table class="table table-striped table-sm">
                 <thead>
@@ -31,11 +30,11 @@ function debug_to_console($data) {
 }
 
 function checkinRow(CheckinObject $item) {
-    $out = '<tr>';
 
+    $out = '<tr>';
     $out .= '<th scope="row" class="align-middle">'.$item->getCheckinId().'</th>';
     $out .= '<td scope="row" class="align-middle">'.$item->getCheckinCode().'</td>';
-    $out .= '<td scope="row" class="align-middle">'.$item->getCheckinDate().'</td>';
+    $out .= '<td scope="row" class="align-middle">'.date("d/m/Y", strtotime($item->getCheckinDate())).'</td>';
     $out .= '<td scope="row" class="align-middle">'.getStatic($item->getStatus()).'</td>';
     $out .= '<td scope="row" class="align-middle">'.$item->getDescription().'</td>';
     //detail
@@ -83,6 +82,10 @@ function getStatic($static) {
 }
 
 function viewDetail(CheckinObject $item) {
+
+    $billModel = new BillModel();
+    $billItem = $billModel->getBillById($item->getBillId());
+
     $out = '<div class="modal fade"
         id="viewVoucher'.$item->getCheckinId().'"
         data-bs-keyboard="false"
@@ -113,12 +116,28 @@ function viewDetail(CheckinObject $item) {
                 </div>
             </div>';
     $out .= '<div class="row mt-3">
+                <div class="col-sm-12 fw-bold">Họ và tên</div>
+                <div class="col-sm-12">'.$billItem->getBill_fullname().'</div>
+            </div>';
+    $out .= '<div class="row mt-3">
+                <div class="col-sm-12 fw-bold">Số điện thoại</div>
+                <div class="col-sm-12">'.$billItem->getBill_phone().'</div>
+            </div>';
+    $out .= '<div class="row mt-3">
+                <div class="col-sm-12 fw-bold">Số căn cước công dân</div>
+                <div class="col-sm-12">'.$billItem->getBillPersonalId().'</div>
+            </div>';
+    $out .= '<div class="row mt-3">
                 <div class="col-sm-12 fw-bold">Mã checkin</div>
                 <div class="col-sm-12">'.$item->getCheckinCode().'</div>
             </div>';
     $out .= '<div class="row mt-3">
+                <div class="col-sm-12 fw-bold">Mã phòng</div>
+                <div class="col-sm-12">'.$billItem->getBill_room_id().'</div>
+            </div>';
+    $out .= '<div class="row mt-3">
                 <div class="col-sm-12 fw-bold">Ngày checkin</div>
-                <div class="col-sm-12">'.$item->getCheckinDate().' </div>
+                <div class="col-sm-12">'.date("d/m/Y", strtotime($item->getCheckinDate())).' </div>
             </div>';
     
     $out .= '<div class="row mt-3">
