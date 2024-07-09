@@ -87,7 +87,7 @@ if(!isset($_SESSION["user"]) || !isset($_SESSION["user"]["id"])) {
         $billItem = $billModel->getBillById($checkinItem->getBillId());
 
         // Define the API URL
-        $apiUrl = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" . $checkinItem->getCheckinCode();
+        $apiUrl = "https://quickchart.io/qr?text=" . $checkinItem->getCheckinCode();
 
         // Use file_get_contents to get the image from the API
         $imageData = file_get_contents($apiUrl);
