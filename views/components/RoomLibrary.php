@@ -28,7 +28,7 @@ function RoomBox(RoomObject $item) {
     $out .= '</div>';
     $out .= '<div class="card-body-a">';
     $out .= '<div class="price-box d-flex">';
-    $out .= '<span class="price-a">Giá | $ '.$item->getRoom_price().'</span>';
+    $out .= '<span class="price-a">Giá |  '.number_format($item->getRoom_price(), 0, '', ',').'₫</span>';
     $out .= '</div>';
     $out .= '<a href="/hostay/views/room.php?id='.$item->getRoom_id().'" class="link-a">Click để xem';
     $out .= '<span class="bi bi-chevron-right"></span>';

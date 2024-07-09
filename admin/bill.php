@@ -136,7 +136,7 @@ require_once("layouts/Toast.php");
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-3 fw-bold">Lợi nhuận ước tính</div>
-                            <div class="col-md-9"><?=$price * $diff * $bill->getBill_number_room()?>$</div>
+                            <div class="col-md-9"><?=number_format($price * $diff * $bill->getBill_number_room(), 0, '', ',')?>₫</div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-sm-12 fw-bold">Ghi chú</div>
