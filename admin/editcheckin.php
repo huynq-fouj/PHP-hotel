@@ -59,6 +59,7 @@ if (isset($_POST["updateCheckin"])) {
     $checkinItem->setDescription($description);
 
     if($checkinModel->updateCheckin($checkinItem)){
+      $billModel->updateBillStatus($billItem, $updateStatus);
       headerRedirectViews("suc", "upd", "/hostay/admin/checkin.php?");
     } else{
       headerRedirectViews("err", "checkin_no", "/hostay/admin/checkin.php?");
