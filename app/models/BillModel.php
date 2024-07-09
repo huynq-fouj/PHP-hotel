@@ -87,6 +87,23 @@ class BillModel extends BasicModel {
         return false;
     }
 
+    function updateBillStatus(BillObject $item,string $status) : bool {
+
+        $static = 1;
+
+        if($status == "checked"){
+            $static = 6;
+        }
+
+        $sql = "UPDATE tblbill SET bill_static=? WHERE bill_id=?";
+        if($stmt = $this->con->prepare($sql)) {
+            $id = $item->getBill_id();
+            $stmt->bind_param("ii", $static, $id);
+            return $this->editV2($stmt);
+        }
+        return false;
+    }
+
     function getBill($id) {
         $item = null;
         $sql = "SELECT * FROM tblbill ";
@@ -110,7 +127,7 @@ class BillModel extends BasicModel {
         return $item;
     }
 
-    function getBillById($id) {
+    function getBillById($id) : BillObject | null {
         $item = null;
         $sql = "SELECT * FROM tblbill ";
         $sql .= "WHERE bill_id=$id";
