@@ -72,6 +72,7 @@ if (isset($_POST["checkout"])) {
 
         
         if($checkoutModel->addCheckout($checkoutItem)){
+            $billModel->updateBillStatus($billItem, "checkout");
             headerRedirectViews("suc", "checkout", $url);
         } else{
             headerRedirectViews("err", "checkout", $url);

@@ -82,6 +82,9 @@
                 case "bill_num":
                     echo "Mã hóa đơn không tồn tại";
                     break;
+                case "not_paid":
+                    echo "Vui lòng thanh toán để được checkin online";
+                    break;
                 case "checkin_date":
                     echo "Ngày checkin không thể sau ngày bắt đầu ";
                     break;

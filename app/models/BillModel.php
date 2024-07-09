@@ -93,6 +93,8 @@ class BillModel extends BasicModel {
 
         if($status == "checked"){
             $static = 6;
+        } else if($status == "checkout"){
+            $static = 7;
         }
 
         $sql = "UPDATE tblbill SET bill_static=? WHERE bill_id=?";

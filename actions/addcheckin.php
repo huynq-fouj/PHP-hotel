@@ -43,6 +43,10 @@ if (isset($_POST["checkin"])) {
             headerRedirectViews("err", "checkincode_err", $url);
         }
 
+        if((int)$billItem->getBill_is_paid() == 0){
+            headerRedirectViews("err", "not_paid", $url);
+        }
+
         $billStartDate = $billItem->getBill_start_date();
         
         if($checkinDate > $billStartDate){
