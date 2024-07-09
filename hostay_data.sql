@@ -3,7 +3,7 @@
 --
 CREATE DATABASE IF NOT EXISTS hostay_data;
 USE hostay_data;
--------------------------------TABLE----------------------------------------------
+-- -----------------------------TABLE----------------------------------------------
 --
 -- Definition of table `tblbill`
 --
@@ -150,8 +150,8 @@ CREATE TABLE checkin(
   description text, 
   primary key (checkin_id)
 );
------------------------ VALUES ----------------------------------------
------- INSERT VALUES
+-- --------------------- VALUES ----------------------------------------
+-- ---- INSERT VALUES
 -- bill values
 INSERT INTO `tblbill` (
   `bill_id`, `bill_room_id`, `bill_customer_id`, 
@@ -720,8 +720,8 @@ VALUES
     '', 0, '2023-12-23 00:00:00'
   );
 
------------------------ PROCUDURE--------------------------------------
----- check and update expire date
+-- --------------------- PROCUDURE--------------------------------------
+-- -- check and update expire date
 DELIMITER // CREATE PROCEDURE update_voucher_status() BEGIN -- Update status to 'expired' if the current date is greater than expire_date
 UPDATE 
   voucher 
