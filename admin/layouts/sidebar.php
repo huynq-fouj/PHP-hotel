@@ -117,6 +117,9 @@ function getCollapsed(string $pos)
         <a href="/hostay/admin/checkin.php" class="<?=getActive("checkinlist")?>">
           <i class="bi bi-circle"></i><span>Danh sách</span>
         </a>
+        <a href="/hostay/admin/checkinqr.php" class="<?=getActive("checkinqr")?>">
+          <i class="bi bi-circle"></i><span>Quét QR</span>
+        </a>
       </li>
       
     </ul>

@@ -33,6 +33,7 @@
   <link href="/hostay/assets/vendor/simple-datatables/style.css" rel="stylesheet">
 
   <script src="/hostay/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/hostay/assets/js/html5-qrcode.min.js"></script>
   <script src="/hostay/assets/js/base64Convert.js"></script>
   <!-- Template Main CSS File -->
   <link href="/hostay/assets/css/admin_style.css" rel="stylesheet">
