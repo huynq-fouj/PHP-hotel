@@ -85,6 +85,7 @@
                 case "checkin_no":
                     echo "Không có gì để thay đổi";
                     break;
+               
                 default:
                     echo "Có lỗi trong quá trình thực hiện!";
                     break;

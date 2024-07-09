@@ -100,8 +100,26 @@
                 case "checkincode_exist":
                     echo "Phòng đã được checkin trước đó";
                     break;
+                case "no_checkin":
+                    echo "Phòng chưa được checkin";
+                    break;
                 case "checkin_date_af":
                     echo "Ngày checkin không thể sau ngày tạo hóa đơn";
+                    break;
+                case "checkin_no":
+                    echo "Hóa đơn chưa được checkin";
+                    break;
+                case "checkout":
+                    echo "Có lỗi trong quá trình checkout";
+                    break;
+                case "checkout_end_date":
+                    echo "Ngày checkout không thể sau ngày hết hạn phòng";
+                    break;
+                case "checkout_start_date":
+                    echo "Ngày checkout không thể trước ngày đặt phòng";
+                    break;
+                case "checkout_exist":
+                    echo "Hóa đơn đã được checkout";
                     break;
                 default:
                     echo "Có lỗi trong quá trình thực hiện!";
@@ -139,6 +157,9 @@
                     break;
                 case "checkin":
                     echo "Checkin thành công!";
+                    break;
+                case "checkout":
+                    echo "Checkout thành công!";
                     break;
                 default:
                     break;

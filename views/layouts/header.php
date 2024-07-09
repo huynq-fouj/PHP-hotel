@@ -159,6 +159,15 @@ if(str_contains($uri, "/views/histories")) {
                     <li>
                         <hr class="dropdown-divider">
                     </li>
+                    <li>
+                        <a class="dropdown-item d-flex align-items-center" href="/hostay/views/checkout.php">
+                            <i class="bi bi-calendar-check"></i>
+                            <span class="ms-1">Checkout</span>
+                        </a>
+                    </li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
 
                     <?php
                         if($_SESSION["user"]["permission"] > 0) {

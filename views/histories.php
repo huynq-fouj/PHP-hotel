@@ -73,7 +73,7 @@ require_once("layouts/Toaster.php");
                                 </li>
                             <li>
                                 <a class="dropdown-item py-0"
-                                    href="/hostay/views/ticket.php?id=<?=$bill->getBill_id()?>">
+                                    href="/hostay/actions/usercheckincode.php?code=<?=$bill->getBillCheckinCode()?>">
                                     Checkin online
                                 </a>
                             </li>

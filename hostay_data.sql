@@ -32,7 +32,20 @@ CREATE TABLE `tblbill` (
   `bill_staff_name` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL, 
   PRIMARY KEY (`bill_id`)
 ) ENGINE = InnoDB AUTO_INCREMENT = 19 DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
-
+--
+-- Definition of table `checkout`
+--
+DROP 
+  TABLE IF EXISTS `checkout`;
+CREATE TABLE checkout(
+	id int auto_increment,
+    bill_id int, 
+    checkout_by_user varchar(20), 
+    checkout_date date,
+    description text,
+    
+    primary key(id)
+)
 --
 -- Definition of table `tblbillstatic`
 --
