@@ -184,8 +184,8 @@ require_once("layouts/Toast.php");
                                     ?>
                                         <input type="text"
                                             class="form-control"
-                                            value="<?=$bill->getBill_staff_name()?>"
-                                            disabled>
+                                            value="<?=$_SESSION["user"]["fullname"]?>"
+                                            readonly>
                                     <?php
                                         } else {
                                     ?>
@@ -193,7 +193,8 @@ require_once("layouts/Toast.php");
                                         name="txtStaffName"
                                         class="form-control"
                                         placeholder="Tên nhân viên xác nhận"
-                                        required>
+                                        value="<?=$_SESSION["user"]["fullname"]?>"
+                                        readonly>
                                         <div class="invalid-feedback">Hãy nhập tên nhân viên xác nhận</div>
                                     <?php
                                         }
