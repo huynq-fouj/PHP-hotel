@@ -1,7 +1,11 @@
 <?php
 session_start();
+
+// require dependencies
+require_once("../libraries/Utilities.php");
+
 if(!isset($_SESSION["user"]) || !isset($_SESSION["user"]["id"])) {
-    header("location:/hostay/views");
+    headerRedirect(null, null, null, "/hostay/views/");
 }
 ?>
 <!DOCTYPE html>
@@ -21,7 +25,7 @@ if(!isset($_SESSION["user"]) || !isset($_SESSION["user"]["id"])) {
         }
         .ticket {
             margin: auto;
-            width: 900px;
+            width: 1000px;
         }
     </style>
 </head>
@@ -33,13 +37,15 @@ if(!isset($_SESSION["user"]) || !isset($_SESSION["user"]["id"])) {
         require_once("../app/models/BillModel.php");
         require_once("../app/models/RoomModel.php");
         require_once("../libraries/Utilities.php");
+        require_once("../app/models/VoucherModel.php");
+
         $bm = new BillModel();
         $rm = new RoomModel();
         $bill = $bm->getBill($_GET["id"]);
         $room = null;
         if($bill != null) {
             if($bill->getBill_customer_id() != $_SESSION["user"]["id"] && $_SESSION["user"]["permission"] == 0) {
-                header("location:/hostay/views");
+                header("location:/hostay/views/");
             }
             $room = $rm->getRoom($bill->getBill_room_id());
             if($room == null) {
@@ -56,7 +62,7 @@ if(!isset($_SESSION["user"]) || !isset($_SESSION["user"]["id"])) {
 
         <div class="d-flex justify-content-center my-3">
             <button class="btn btn-primary mx-3 btn-goback"><i class="bi bi-reply"></i> Quay lại</button>
-            <a href="/hostay/views" class="btn btn-primary mx-3"><i class="bi bi-house"></i> Trang chủ</a>
+            <a href="/hostay/views/" class="btn btn-primary mx-3"><i class="bi bi-house"></i> Trang chủ</a>
             <button class="btn btn-primary mx-3 ticket-dowload"><i class="bi bi-download"></i> Tải ảnh xuống</button>
             <button class="btn btn-primary mx-3 ticket-pdf"><i class="bi bi-filetype-pdf"></i> Xuất PDF</button>
         </div>
@@ -89,6 +95,14 @@ if(!isset($_SESSION["user"]) || !isset($_SESSION["user"]["id"])) {
                     <div class="col-9"><?=$bill->getBill_email()?></div>
                 </div>
                 <div class="row">
+                    <div class="col-3"><b>Giấy tờ tùy thân:</b></div>
+                    <div class="col-9"><?=$bill->getBillPersonalId()?></div>
+                </div>
+                <div class="row">
+                    <div class="col-3"><b>Mã checkin:</b></div>
+                    <div class="col-9"><?=$bill->getBillCheckinCode()?></div>
+                </div>
+                <div class="row">
                     <div class="col-3"><b>Ngày tạo:</b></div>
                     <div class="col-9"><?=date("d-m-Y", strtotime($bill->getBill_created_at()))?></div>
                 </div>
@@ -104,6 +118,7 @@ if(!isset($_SESSION["user"]) || !isset($_SESSION["user"]["id"])) {
                                     <th>Trẻ nhỏ</th>
                                     <th>Ngày nhận</th>
                                     <th>Ngày trả</th>
+                                    <th>Giảm giá</th>
                                     <th>Đơn giá</th>
                                     <th>Thành tiền</th>
                                 </tr>
@@ -120,18 +135,31 @@ if(!isset($_SESSION["user"]) || !isset($_SESSION["user"]["id"])) {
                                     <td>
                                         <span class="d-flex justify-content-end"><?=$bill->getBill_number_children()?></span>
                                     </td>
-                                    <td><?=date("d-m-Y", strtotime($bill->getBill_start_date()))?></td>
-                                    <td><?=date("d-m-Y", strtotime($bill->getBill_end_date()))?></td>
-                                    <td><span class="d-flex justify-content-end"><?=$room->getRoom_price()?>$</span></td>
                                     <?php
+
                                         $diff = getDateDiff($bill->getBill_start_date(), $bill->getBill_end_date());
                                         $total = $diff * $room->getRoom_price() * $bill->getBill_number_room();
+                                        $voucherModel = new VoucherModel();
+                                        $voucherObject = $voucherModel->getVoucherByCode($bill->getBillVoucherCode());
+                                        $voucherPercent = 0;
+                                        if($voucherObject != null){
+                                            $discount = $total / $voucherObject->getPercent();
+                                            $voucherPercent = $voucherObject->getPercent();
+                                        }
                                     ?>
-                                    <td><span class="d-flex justify-content-end"><?=$total?>$</span></td>
+                                    <td><?=date("d-m-Y", strtotime($bill->getBill_start_date()))?></td>
+                                    <td><?=date("d-m-Y", strtotime($bill->getBill_end_date()))?></td>
+                                    <td><span class="d-flex justify-content-end"><?=$voucherPercent ?>%</span></td>
+                                    <td><span class="d-flex justify-content-end"><?=number_format($room->getRoom_price(), 0, '', ',') ?>đ</span></td>
+                                    <td><span class="d-flex justify-content-end"><?=number_format($total, 0, '', ',');?>đ</span></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="7"><span class="d-flex justify-content-end"><b>Tổng:</b></span></td>
-                                    <td><span class="d-flex justify-content-end"><b><?=$total?>$</b></span></td>
+                                    <td colspan="8"><span class="d-flex justify-content-end">Giảm:</span></td>
+                                    <td><span class="d-flex justify-content-end">- <?=  number_format($discount, 0, '', ',') ?> đ</span></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="8"><span class="d-flex justify-content-end"><b>Tổng:</b></span></td>
+                                    <td><span class="d-flex justify-content-end"><b><?=number_format($total - $discount, 0, '', ',');?>đ</b></span></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -143,7 +171,7 @@ if(!isset($_SESSION["user"]) || !isset($_SESSION["user"]["id"])) {
                 </div>
                 <div class="row mt-3">
                     <div class="col-3"><b>Thanh toán:</b></div>
-                    <div class="col-9"><?=$bill->getBill_is_paid() != 0 ? "Đã thanh toán" : ""?></div>
+                    <div class="col-9"><?=$bill->getBill_is_paid() != 0 ? "Đã thanh toán" : "Chưa thanh toán"?></div>
                 </div>
                 <div class="row my-5 d-flex justify-content-between">
                     <div class="col-5">

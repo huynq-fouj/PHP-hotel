@@ -11,7 +11,7 @@ class BasicModel {
         $this->con->autocommit(false);
     }
 
-    private function exe(string $sql) : bool {
+    protected function exe(string $sql) : bool {
         $result = $this->con->query($sql);
         if($result && $this->con->affected_rows > 0) {
             if($this->con->commit()) {
@@ -53,7 +53,7 @@ class BasicModel {
         return $this->exe($sql);
     }
 
-    private function exeV2(mysqli_stmt $stmt) : bool {
+    protected function exeV2(mysqli_stmt $stmt) : bool {
         try {
             if($stmt->execute()) {
                 if($stmt->affected_rows > 0) {
@@ -132,4 +132,3 @@ class BasicModel {
     }
 
 }
-?>

@@ -21,7 +21,6 @@ require_once("layouts/Toaster.php");
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
-
                     <div class="card">
                     <div class="card-body pt-3">
                         <!-- Bordered Tabs -->
@@ -204,10 +203,10 @@ require_once("layouts/Toaster.php");
                         </div><!-- End Bordered Tabs -->
 
                     </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 </main>
 <?php
 require_once("layouts/footer.php");

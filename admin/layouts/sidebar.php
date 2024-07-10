@@ -1,21 +1,24 @@
 <?php
-function getActive(string $act) {
-if(isset($_SESSION["active"]) && $_SESSION["active"] == $act){
-return "active";
+function getActive(string $act)
+{
+    if (isset($_SESSION["active"]) && $_SESSION["active"] == $act) {
+        return "active";
+    }
+    return "";
 }
-return "";
+function getShow(string $pos)
+{
+    if (isset($_SESSION["pos"]) && $_SESSION["pos"] == $pos) {
+        return "show";
+    }
+    return "";
 }
-function getShow(string $pos) {
-if(isset($_SESSION["pos"]) && $_SESSION["pos"] == $pos){
-return "show";
-}
-return "";
-}
-function getCollapsed(string $pos) {
-if(isset($_SESSION["pos"]) && $_SESSION["pos"] == $pos){
-return "";
-}
-return "collapsed";
+function getCollapsed(string $pos)
+{
+    if (isset($_SESSION["pos"]) && $_SESSION["pos"] == $pos) {
+        return "";
+    }
+    return "collapsed";
 }
 ?>
 <!-- ======= Sidebar ======= -->
@@ -47,7 +50,21 @@ return "collapsed";
       </li>
     </ul>
   </li><!-- End Components Nav -->
-
+  <li class="nav-item">
+    <a class="nav-link <?=getCollapsed("em")?>" data-bs-target="#checkin-nav" data-bs-toggle="collapse" href="#">
+    <i class="bi bi-person-badge"></i></i><span>Nhân viên</span><i class="bi bi-chevron-down ms-auto"></i>
+    </a>
+    <ul id="checkin-nav" class="nav-content collapse <?=getShow("em")?>" data-bs-parent="#sidebar-nav">
+      <li>
+        <a href="/hostay/admin/employee.php" class="<?=getActive("emlist")?>">
+          <i class="bi bi-circle"></i><span>Danh sách</span>
+        </a>
+        <a href="/hostay/admin/addemployee.php" class="<?=getActive("emadd")?>">
+          <i class="bi bi-circle"></i><span>Thêm nhân viên</span>
+        </a>
+      </li>
+    </ul>
+  </li><!-- End Checkin Nav -->
   <li class="nav-item">
     <a class="nav-link <?=getCollapsed("bill")?>" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
       <i class="bi bi-journal-text"></i><span>Đơn đặt phòng</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -88,6 +105,38 @@ return "collapsed";
       </li>
     </ul>
   </li><!-- End Tables Nav -->
+  <li class="nav-item">
+    <a class="nav-link <?=getCollapsed("voucher")?>" data-bs-target="#voucher-nav" data-bs-toggle="collapse" href="#">
+    <i class="bi bi-patch-plus"></i><span>Voucher</span><i class="bi bi-chevron-down ms-auto"></i>
+    </a>
+    <ul id="voucher-nav" class="nav-content collapse <?=getShow("voucher")?>" data-bs-parent="#sidebar-nav">
+      <li>
+        <a href="/hostay/admin/vouchers.php" class="<?=getActive("voulist")?>">
+          <i class="bi bi-circle"></i><span>Danh sách</span>
+        </a>
+      </li>
+      <li>
+        <a href="/hostay/admin/addvoucher.php" class="<?=getActive("vouadd")?>">
+          <i class="bi bi-circle"></i><span>Thêm mới</span>
+        </a>
+      </li>
+    </ul>
+  </li><!-- End Voucher Nav -->
+  <li class="nav-item">
+    <a class="nav-link <?=getCollapsed("checkin")?>" data-bs-target="#checkin-nav" data-bs-toggle="collapse" href="#">
+    <i class="bi bi-check-all"></i><span>Checkin</span><i class="bi bi-chevron-down ms-auto"></i>
+    </a>
+    <ul id="checkin-nav" class="nav-content collapse <?=getShow("checkin")?>" data-bs-parent="#sidebar-nav">
+      <li>
+        <a href="/hostay/admin/checkin.php" class="<?=getActive("checkinlist")?>">
+          <i class="bi bi-circle"></i><span>Danh sách</span>
+        </a>
+        <a href="/hostay/admin/checkinqr.php" class="<?=getActive("checkinqr")?>">
+          <i class="bi bi-circle"></i><span>Quét QR</span>
+        </a>
+      </li>
+    </ul>
+  </li><!-- End Checkin Nav -->
   <li class="nav-item">
     <a class="nav-link <?=getCollapsed("contact")?>" data-bs-target="#contacts-nav" data-bs-toggle="collapse" href="#">
       <i class="bi bi-chat-dots"></i><span>Phản hồi</span><i class="bi bi-chevron-down ms-auto"></i>

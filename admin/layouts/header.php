@@ -33,6 +33,7 @@
   <link href="/hostay/assets/vendor/simple-datatables/style.css" rel="stylesheet">
 
   <script src="/hostay/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/hostay/assets/js/html5-qrcode.min.js"></script>
   <script src="/hostay/assets/js/base64Convert.js"></script>
   <!-- Template Main CSS File -->
   <link href="/hostay/assets/css/admin_style.css" rel="stylesheet">
@@ -44,7 +45,7 @@
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
+      <a href="index.php" class="logo d-flex align-items-center">
         <img src="/hostay/assets/img-admin/logo.png" alt="">
         <span class="d-none d-lg-block">HostayAdmin</span>
       </a>
@@ -71,13 +72,12 @@
 
           <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
             <i class="bi bi-bell"></i>
-            <span class="badge bg-primary badge-number">4</span>
+            <span id="number-of-notifications" class="badge bg-primary badge-number"></span>
           </a><!-- End Notification Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
             <li class="dropdown-header">
-              You have 4 new notifications
-              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+              You have <span id="number-of-notifications"></span> new notifications
             </li>
             <li>
               <hr class="dropdown-divider">

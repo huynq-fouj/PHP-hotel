@@ -215,7 +215,7 @@ require_once("layouts/header.php");
                                                 }
                                             }
                                         ?>
-                                        <h6>$<?=number_format($countCCur, 2)?></h6>
+                                        <h6><?=number_format($countCCur, 2)?>₫</h6>
                                         <span class="text-muted small pt-2 ps-1"><?=$__Cstat?></span>
                                         <span class="text-<?=$__Ccolor?> small pt-1 fw-bold"><?=number_format($__Cper, 2)?>%</span>
 
@@ -300,7 +300,7 @@ require_once("layouts/header.php");
                                         },
                                         yaxis: {
                                             title: {
-                                                text: "Dollars",
+                                                text: "Vietnam dong",
                                             }
                                         },
                                         tooltip: {

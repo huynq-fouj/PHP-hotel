@@ -14,6 +14,9 @@ class BillObject extends BillstaticObject {
     private $bill_number_adult;//int
     private $bill_number_children;//int
     private $bill_number_room;//int
+    private $bill_personal_id;
+    private $bill_voucher_code;
+    private $bill_checkin_code;
     private $bill_notes;//string
     private $bill_static;//int
     private $bill_is_paid;//int;
@@ -156,5 +159,52 @@ class BillObject extends BillstaticObject {
         $this->bill_staff_name = $bill_staff_name;
     }
 
+
+    /**
+     * Get the value of bill_personal_id
+     */
+    public function getBillPersonalId() {
+        return $this->bill_personal_id;
+    }
+
+    /**
+     * Set the value of bill_personal_id
+     */
+    public function setBillPersonalId($bill_personal_id): self {
+        $this->bill_personal_id = $bill_personal_id;
+        return $this;
+    }
+
+    
+   
+
+    /**
+     * Get the value of bill_voucher_code
+     */
+    public function getBillVoucherCode() {
+        return $this->bill_voucher_code;
+    }
+
+    /**
+     * Set the value of bill_voucher_code
+     */
+    public function setBillVoucherCode($bill_voucher_code): self {
+        $this->bill_voucher_code = $bill_voucher_code;
+        return $this;
+    }
+
+    /**
+     * Get the value of bill_checkin_code
+     */
+    public function getBillCheckinCode() {
+        return $this->bill_checkin_code;
+    }
+
+    /**
+     * Set the value of bill_checkin_code
+     */
+    public function setBillCheckinCode($bill_checkin_code): self {
+        $this->bill_checkin_code = $bill_checkin_code;
+        return $this;
+    }
 }
-?>

@@ -67,6 +67,63 @@
                 case "bia":
                     echo "Đặt phòng không thành công!";
                     break;
+                case "invalid_voucher":
+                    echo "Voucher không khả dụng";
+                    break;
+                case "limit":
+                    echo "Voucher đã hết lượt sử dụng";
+                    break;
+                case "expire":
+                    echo "Voucher đã hết hạn";
+                    break;
+                case "bill_id":
+                    echo "Mã hóa đơn không tồn tại";
+                    break;
+                case "bill_num":
+                    echo "Mã hóa đơn không tồn tại";
+                    break;
+                case "not_paid":
+                    echo "Vui lòng thanh toán để được checkin online";
+                    break;
+                case "checkin_date":
+                    echo "Ngày checkin không thể sau ngày bắt đầu ";
+                    break;
+                case "img_lack":
+                    echo "Thiếu ảnh căn cước";
+                    break;
+                case "false_upl":
+                        echo "Lỗi trong quá trình tải ảnh lên";
+                        break;
+                case "checkin_err":
+                    echo "Lỗi trong quá checkin";
+                    break;
+                case "checkincode_err":
+                    echo "Không tìm thấy mã checkin";
+                    break;
+                case "checkincode_exist":
+                    echo "Phòng đã được checkin trước đó";
+                    break;
+                case "no_checkin":
+                    echo "Phòng chưa được checkin";
+                    break;
+                case "checkin_date_af":
+                    echo "Ngày checkin không thể sau ngày tạo hóa đơn";
+                    break;
+                case "checkin_no":
+                    echo "Hóa đơn chưa được checkin";
+                    break;
+                case "checkout":
+                    echo "Có lỗi trong quá trình checkout";
+                    break;
+                case "checkout_end_date":
+                    echo "Ngày checkout không thể sau ngày hết hạn phòng";
+                    break;
+                case "checkout_start_date":
+                    echo "Ngày checkout không thể trước ngày đặt phòng";
+                    break;
+                case "checkout_exist":
+                    echo "Hóa đơn đã được checkout";
+                    break;
                 default:
                     echo "Có lỗi trong quá trình thực hiện!";
                     break;
@@ -100,6 +157,12 @@
                     break;
                 case "bia":
                     echo "Đặt phòng thành công!";
+                    break;
+                case "checkin":
+                    echo "Checkin thành công!";
+                    break;
+                case "checkout":
+                    echo "Checkout thành công!";
                     break;
                 default:
                     break;

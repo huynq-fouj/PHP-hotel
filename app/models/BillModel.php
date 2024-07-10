@@ -9,8 +9,8 @@ class BillModel extends BasicModel {
             bill_room_id,bill_customer_id,bill_created_at,
             bill_fullname,bill_email,bill_phone,bill_start_date,
             bill_end_date,bill_number_adult,bill_number_children,
-            bill_number_room,bill_notes,bill_static,bill_is_paid,bill_cancel
-            ) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            bill_number_room,bill_personal_id, bill_voucher_code,bill_notes,bill_static,bill_is_paid,bill_cancel
+            ) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         if($stmt = $this->con->prepare($sql)) {
 
             $room_id = $item->getBill_room_id();
@@ -24,12 +24,14 @@ class BillModel extends BasicModel {
             $number_adult = $item->getBill_number_adult();
             $number_children    = $item->getBill_number_children();
             $number_room = $item->getBill_number_room();
+            $personalId = $item->getBillPersonalId();
+            $voucherCode = $item->getBillVoucherCode();
             $notes = $item->getBill_notes();
             $static = $item->getBill_static();
             $isPaid = $item->getBill_is_paid();
             $isCancel = 0;
             
-            $stmt->bind_param("iissssssiiisiii",
+            $stmt->bind_param("iissssssiiisssiii",
                                 $room_id,
                                 $customer_id,
                                 $created_at,
@@ -41,11 +43,22 @@ class BillModel extends BasicModel {
                                 $number_adult,
                                 $number_children,
                                 $number_room,
+                                $personalId,
+                                $voucherCode,
                                 $notes,
                                 $static,
                                 $isPaid,
                                 $isCancel);
             return $this->addV2($stmt);
+        }
+        return false;
+    }
+
+    function addCheckinCode(string $checkinCode, int $billId) : bool{
+        $sql = "UPDATE tblbill SET bill_checkin_code = ? WHERE bill_id=?";
+        if($stmt = $this->con->prepare($sql)) {
+            $stmt->bind_param("si", $checkinCode, $billId);
+            return $this->exeV2($stmt);
         }
         return false;
     }
@@ -74,6 +87,25 @@ class BillModel extends BasicModel {
         return false;
     }
 
+    function updateBillStatus(BillObject $item,string $status) : bool {
+
+        $static = 1;
+
+        if($status == "checked"){
+            $static = 6;
+        } else if($status == "checkout"){
+            $static = 7;
+        }
+
+        $sql = "UPDATE tblbill SET bill_static=? WHERE bill_id=?";
+        if($stmt = $this->con->prepare($sql)) {
+            $id = $item->getBill_id();
+            $stmt->bind_param("ii", $static, $id);
+            return $this->editV2($stmt);
+        }
+        return false;
+    }
+
     function getBill($id) {
         $item = null;
         $sql = "SELECT * FROM tblbill ";
@@ -84,6 +116,37 @@ class BillModel extends BasicModel {
             $item = $result->fetch_object("BillObject");
         }
         return $item;
+    }
+
+    function getBillByCheckinCode($checkinCode) {
+        $item = null;
+        $sql = "SELECT * FROM tblbill ";
+        $sql .= "WHERE bill_checkin_code='$checkinCode'";
+        $result = $this->get($sql);
+        if($result->num_rows > 0) {
+            $item = $result->fetch_object("BillObject");
+        }
+        return $item;
+    }
+
+    function getBillById($id) : BillObject | null {
+        $item = null;
+        $sql = "SELECT * FROM tblbill ";
+        $sql .= "WHERE bill_id=$id";
+        $result = $this->get($sql);
+        if($result->num_rows > 0) {
+            $item = $result->fetch_object("BillObject");
+        }
+        return $item;
+    }
+
+    function isExists($id){
+        $sql = "SELECT * FROM tblbill WHERE bill_id='".$id."';";
+        $result = $this->get($sql);
+        if($result->num_rows > 0) {
+            return true;
+        }
+        return false;
     }
 
     function getBills(BillObject $similar, $page, $total) : array {
