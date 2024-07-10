@@ -1,8 +1,9 @@
 --
 -- Create schema hostay_data
 --
-CREATE DATABASE IF NOT EXISTS hostay_data;
-USE hostay_data;
+DROP DATABASE IF EXISTS dataaa;
+CREATE DATABASE IF NOT EXISTS dataaa;
+USE dataaa;
 -- -----------------------------TABLE----------------------------------------------
 --
 -- Definition of table `tblbill`
@@ -58,10 +59,10 @@ CREATE TABLE employee(
     email varchar(20),
     address varchar(50),
     personal_id varchar(20),
-    role enum('Bảo vệ', 'Lễ tân', 'Phục vụ'),
+    role enum('Bảo vệ', 'Lễ tân', 'Phục vụ') COLLATE utf8mb4_unicode_ci,
     
     primary key(id)
-)
+)ENGINE = InnoDB AUTO_INCREMENT = 19 DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 --
 -- Definition of table `tblbillstatic`
 --
@@ -180,120 +181,7 @@ CREATE TABLE checkin(
   primary key (checkin_id)
 );
 -- --------------------- VALUES ----------------------------------------
--- ---- INSERT VALUES
--- bill values
-INSERT INTO `tblbill` (
-  `bill_id`, `bill_room_id`, `bill_customer_id`, 
-  `bill_created_at`, `bill_fullname`, 
-  `bill_email`, `bill_phone`, `bill_start_date`, 
-  `bill_end_date`, `bill_number_adult`, 
-  `bill_number_children`, `bill_number_room`, 
-  `bill_notes`, `bill_static`, `bill_is_paid`, 
-  `bill_cancel`, `bill_staff_name`
-) 
-VALUES 
-  (
-    2, 17, 15, '2023-11-15 00:00:00', 'Triệu Thị khánh Linh', 
-    'linhnhi2243@gmail.com', '0267312746', 
-    '2024-01-01 00:00:00', '2024-01-10 00:00:00', 
-    1, 0, 1, 'Kiếm chỗ nghỉ trong dịp tết Tây', 
-    5, 1, 0, 'Nguyễn Quang Huy'
-  ), 
-  (
-    3, 29, 28, '2023-12-12 00:00:00', 'Nguyễn Đức An', 
-    'nguyenducan20384@gmail.com', '0973263849', 
-    '2023-12-12 00:00:00', '2023-12-14 00:00:00', 
-    2, 0, 1, '', 5, 1, 0, 'Nguyễn Quang Huy'
-  ), 
-  (
-    4, 28, 23, '2023-12-12 00:00:00', 'Zenomi', 
-    'zenomiarrtak2049@gmail.com', '0238742343', 
-    '2023-12-12 00:00:00', '2023-12-20 00:00:00', 
-    1, 0, 1, '', 5, 1, 0, 'Nguyễn Quang Huy'
-  ), 
-  (
-    5, 26, 29, '2023-12-13 00:00:00', 'Nguyễn Duy Khánh', 
-    'nguyenduykhanh122@gmail.com', 
-    '09570283928', '2023-12-30 00:00:00', 
-    '2024-01-10 00:00:00', 3, 1, 2, 'Cần đặt phòng trước cho kỳ tết Tây', 
-    2, 0, 0, 'Nguyễn Quang Huy'
-  ), 
-  (
-    7, 29, 15, '2023-12-13 00:00:00', 'Admin', 
-    'nguyenquanghuylt2002@gmail.com', 
-    '0337212814', '2023-12-13 00:00:00', 
-    '2023-12-17 00:00:00', 1, 0, 1, '', 
-    5, 0, 1, 'Nguyễn Quang Huy'
-  ), 
-  (
-    8, 25, 30, '2023-12-18 00:00:00', 'Nguyễn Văn Hòa', 
-    'hoavan1978@gmail.com', '0393100328', 
-    '2023-12-22 00:00:00', '2023-12-31 00:00:00', 
-    2, 1, 1, '', 4, 0, 0, 'Triệu Thị Khánh Linh'
-  ), 
-  (
-    9, 27, 30, '2023-12-18 00:00:00', 'Nguyễn Quang Huy', 
-    'nguyenquanghuylt2002@gmail.com', 
-    '0337212814', '2023-12-18 00:00:00', 
-    '2023-12-18 00:00:00', 1, 0, 1, '', 
-    1, 0, 0, NULL
-  ), 
-  (
-    10, 28, 30, '2023-12-18 00:00:00', 
-    'Trần Thị Thu Trang', 'trangthu2993@gmail.com', 
-    '0387292134', '2024-01-01 00:00:00', 
-    '2024-02-01 00:00:00', 1, 0, 1, '', 
-    4, 1, 0, 'Khổng Thị Hoài Thanh'
-  ), 
-  (
-    11, 29, 15, '2023-12-19 00:00:00', 
-    'Nguyễn Q Huy', 'nguyenquanghuylt2002@gmail.com', 
-    '0337212814', '2023-12-19 00:00:00', 
-    '2023-12-19 00:00:00', 1, 0, 1, '', 
-    1, 0, 1, NULL
-  ), 
-  (
-    12, 23, 31, '2023-12-20 00:00:00', 
-    'Arataki Itto', 'aratakiitto2394@gmail.com', 
-    '0493953820', '2024-01-01 00:00:00', 
-    '2024-02-05 00:00:00', 3, 0, 1, '', 
-    1, 0, 0, NULL
-  ), 
-  (
-    14, 28, 15, '2023-12-22 00:00:00', 
-    'Đỗ Việt Hà', 'hadov12983@gmail.com', 
-    '0828723421', '2023-12-30 00:00:00', 
-    '2024-01-15 00:00:00', 2, 0, 1, '', 
-    1, 0, 1, NULL
-  ), 
-  (
-    15, 16, 32, '2023-12-22 00:00:00', 
-    'Lương Thị Ngọc Thúy', 'thuyngoc23@gmail.com', 
-    '0382938492', '2023-12-22 00:00:00', 
-    '2023-12-22 00:00:00', 1, 0, 1, '', 
-    3, 0, 1, 'Nguyễn Quang Huy'
-  ), 
-  (
-    16, 26, 33, '2023-12-22 00:00:00', 
-    'Triệu Quang Lâm', 'trieuquanglam3452@gmail.com', 
-    '0339582813', '2024-01-01 00:00:00', 
-    '2024-01-15 00:00:00', 4, 0, 1, '', 
-    1, 0, 1, NULL
-  ), 
-  (
-    17, 26, 33, '2023-12-22 00:00:00', 
-    'Triệu Quang Lâm', 'trieuquanglam3452@gmail.com', 
-    '0928273928', '2024-01-01 00:00:00', 
-    '2024-01-30 00:00:00', 4, 0, 1, '', 
-    1, 0, 0, NULL
-  ), 
-  (
-    18, 46, 15, '2023-12-23 00:00:00', 
-    'Nguyễn Tiến Đạt', 'nguyenquanghuylt2002@gmail.com', 
-    '0337212814', '2024-01-31 00:00:00', 
-    '2024-02-28 00:00:00', 2, 0, 1, '', 
-    2, 1, 0, 'Triệu Thị Khánh Linh'
-  );
+
 -- tblbillstatic
 INSERT INTO `tblbillstatic` (
   `billstatic_id`, `billstatic_name`, 
