@@ -47,6 +47,22 @@ CREATE TABLE checkout(
     primary key(id)
 )
 --
+-- Definition of table `employee`
+--
+DROP 
+  TABLE IF EXISTS `employee`;
+CREATE TABLE employee(
+	id int auto_increment, 
+    fullname nvarchar(50), 
+    phone varchar(15),
+    email varchar(20),
+    address varchar(50),
+    personal_id varchar(20),
+    role enum('Bảo vệ', 'Lễ tân', 'Phục vụ'),
+    
+    primary key(id)
+)
+--
 -- Definition of table `tblbillstatic`
 --
 DROP 

@@ -50,7 +50,21 @@ function getCollapsed(string $pos)
       </li>
     </ul>
   </li><!-- End Components Nav -->
-
+  <li class="nav-item">
+    <a class="nav-link <?=getCollapsed("em")?>" data-bs-target="#checkin-nav" data-bs-toggle="collapse" href="#">
+    <i class="bi bi-person-badge"></i></i><span>Nhân viên</span><i class="bi bi-chevron-down ms-auto"></i>
+    </a>
+    <ul id="checkin-nav" class="nav-content collapse <?=getShow("em")?>" data-bs-parent="#sidebar-nav">
+      <li>
+        <a href="/hostay/admin/employee.php" class="<?=getActive("emlist")?>">
+          <i class="bi bi-circle"></i><span>Danh sách</span>
+        </a>
+        <a href="/hostay/admin/addemployee.php" class="<?=getActive("emadd")?>">
+          <i class="bi bi-circle"></i><span>Thêm nhân viên</span>
+        </a>
+      </li>
+    </ul>
+  </li><!-- End Checkin Nav -->
   <li class="nav-item">
     <a class="nav-link <?=getCollapsed("bill")?>" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
       <i class="bi bi-journal-text"></i><span>Đơn đặt phòng</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -121,7 +135,6 @@ function getCollapsed(string $pos)
           <i class="bi bi-circle"></i><span>Quét QR</span>
         </a>
       </li>
-      
     </ul>
   </li><!-- End Checkin Nav -->
   <li class="nav-item">
