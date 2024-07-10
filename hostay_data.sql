@@ -1,9 +1,9 @@
 --
 -- Create schema hostay_data
 --
-DROP DATABASE IF EXISTS dataaa;
-CREATE DATABASE IF NOT EXISTS dataaa;
-USE dataaa;
+DROP DATABASE IF EXISTS hostay_data;
+CREATE DATABASE IF NOT EXISTS hostay_data;
+USE hostay_data;
 -- -----------------------------TABLE----------------------------------------------
 --
 -- Definition of table `tblbill`
