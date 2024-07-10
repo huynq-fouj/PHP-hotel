@@ -8,23 +8,11 @@
 
 <h2>🚀 Demo</h2>
 
-[updating...](updating...)
+updating...
 
 <h2>Project Screenshots:</h2>
 
-<img src="https://github.com/vandunxg/hostay/blob/demo/demo/img-1.png?raw=true" alt="project-screenshot" width="1920" height="1080/">
-
-<img src="https://github.com/vandunxg/hostay/blob/demo/demo/img-10.png?raw=true" alt="project-screenshot" width="1920" height="1080/">
-
-<img src="https://github.com/vandunxg/hostay/blob/demo/demo/20240710-180732.jpg?raw=true" alt="project-screenshot" width="1920" height="1080/">
-
-<img src="https://github.com/vandunxg/hostay/blob/demo/demo/20240710-180715.jpg?raw=true" alt="project-screenshot" width="1920" height="1080/">
-
-<img src="https://github.com/vandunxg/hostay/blob/demo/demo/20240710-180735.jpg?raw=true" alt="project-screenshot" width="1920" height="1080/">
-
-<img src="https://github.com/vandunxg/hostay/blob/demo/demo/20240710-180728.jpg?raw=true" alt="project-screenshot" width="1920" height="1080/">
-
-  
+updating...
   
 <h2>🧐 Features</h2>
 
