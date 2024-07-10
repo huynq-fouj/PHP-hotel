@@ -45,7 +45,7 @@ CREATE TABLE checkout(
     description text,
     
     primary key(id)
-)
+);
 --
 -- Definition of table `employee`
 --
