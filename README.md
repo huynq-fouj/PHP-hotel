@@ -4,15 +4,15 @@
 
 <p id="description">The HOSTAY HOTEL project using PHP HTML CSS and MySQL automates various hotel operations enhancing efficiency and customer experience. Key features include online room booking customer and room management secure payment processing and streamlined check-in/check-out procedures. A standout feature is the QR code-based checkout allowing quick and convenient customer departures. Additionally the system offers reports and analytics for informed decision-making and user roles management to ensure data security. This project effectively modernizes hotel management processes providing a seamless experience for both staff and guests.</p>
 
-<p align="center"><img src="https://img.shields.io/badge/PHP-777BB4?style=flat&amp;logo=php&amp;logoColor=white" alt="shields"><img src="https://img.shields.io/badge/MySQL-4479A1?style=flat&amp;logo=mysql&amp;logoColor=white" alt="shields"><img src="https://img.shields.io/badge/HTML-e34c26?style=flat&amp;logo=html5&amp;logoColor=white" alt="shields"><img src="https://img.shields.io/badge/CSS-563d7c?&amp;style=flat&amp;logo=css3&amp;logoColor=white" alt="shields"><img src="https://img.shields.io/badge/JavaScript-323330?style=flat&amp;logo=javascript&amp;logoColor=F7DF1E" alt="shields"><img src="https://img.shields.io/badge/jQuery-0769AD?style=flat&amp;logo=jquery&amp;logoColor=white" alt="shields"></p>
+<p align="center"><img src="https://img.shields.io/badge/PHP-777BB4?style=flat&amp;logo=php&amp;logoColor=white" alt="shields"> <img src="https://img.shields.io/badge/MySQL-4479A1?style=flat&amp;logo=mysql&amp;logoColor=white" alt="shields"> <img src="https://img.shields.io/badge/HTML-e34c26?style=flat&amp;logo=html5&amp;logoColor=white" alt="shields"> <img src="https://img.shields.io/badge/CSS-563d7c?&amp;style=flat&amp;logo=css3&amp;logoColor=white" alt="shields"> <img src="https://img.shields.io/badge/JavaScript-323330?style=flat&amp;logo=javascript&amp;logoColor=F7DF1E" alt="shields"> <img src="https://img.shields.io/badge/jQuery-0769AD?style=flat&amp;logo=jquery&amp;logoColor=white" alt="shields"></p>
 
 <h2>🚀 Demo</h2>
 
-updating...
+Updating...
 
 <h2>Project Screenshots:</h2>
 
-updating...
+Updating...
   
 <h2>🧐 Features</h2>
 
@@ -25,28 +25,28 @@ Here're some of the project's best features:
 
 <h2>🛠️ Installation Steps:</h2>
 
-<p>1. clone code to local</p>
+<p>1. Clone code to local</p>
 
 ```
-git clone repository
+git Clone repository
 ```
 
-<p>2. put all code in folder `hostay`</p>
+<p>2. Put all code in folder `hostay`</p>
 
 ```
 /hostay/ (code in here)
 ```
 
-<p>3. config application</p>
+<p>3. Config application</p>
 
 ```
 edit file php.config.ini
 ```
 
-<p>4. run</p>
+<p>4. Run</p>
 
 ```
-localhost:8080/hostay
+http://localhost/hostay
 ```
 
   
@@ -64,4 +64,4 @@ Technologies used in the project:
 
 <h2>🛡️ License:</h2>
 
-This project is licensed under the MIT License
+This project is licensed under the MIT License.
