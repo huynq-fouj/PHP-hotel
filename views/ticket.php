@@ -142,6 +142,7 @@ if(!isset($_SESSION["user"]) || !isset($_SESSION["user"]["id"])) {
                                         $voucherModel = new VoucherModel();
                                         $voucherObject = $voucherModel->getVoucherByCode($bill->getBillVoucherCode());
                                         $voucherPercent = 0;
+                                        $discount = 0;
                                         if($voucherObject != null){
                                             $discount = $total / $voucherObject->getPercent();
                                             $voucherPercent = $voucherObject->getPercent();
